@@ -1,0 +1,13 @@
+{
+	"name": "fishEye",
+	"version": "1.0.0",
+	"description": "FishEye is a platform for photography creators",
+	"main": "fishEye.js",
+	"scripts": {
+		"sass": "sass --watch sass/main.scss:public/css/style.css",
+		"prefix": "postcss public/css/style.css --use autoprefixer -d public/css"
+	},
+	"author": "Benoit Maréchal",
+	"license": "ISC",
+	"browerslist": "last 4 versions"
+}

@@ -1,0 +1,43 @@
+html,
+body {
+	margin: 0px;
+	padding: 0px;
+}
+
+main {
+	display: flex;
+	width: 100%;
+	flex-direction: column;
+}
+h1 {
+	width: 100%;
+	display: flex;
+	justify-content: flex-end;
+	color: $colour-primary;
+}
+
+// <main>
+// 			<h1>Nos photographes</h1>
+
+// 			<article class="photographer">
+// 				<a href="" class="photographer__link">
+// 					<img
+// 						class="photographer__link__img"
+// 						src="images\Mimi\Portrait_Nora.jpg"
+// 						alt=""
+// 					/>
+// 					<h2 class="photographer__link__name">Mimi Keel</h2>
+// 					<p class="photographer__link__location">London, UK</p>
+// 					<p class="photographer__link__motto">
+// 						Voir le beau dans le quotidien
+// 					</p>
+// 					<p class="photographer__link__price">400€/jour</p>
+// 					<ul class="photographer__link__tags">
+// 						<li><button class="tag">#Portait</button></li>
+// 						<li><button class="tag">#Events</button></li>
+// 						<li><button class="tag">#Travel</button></li>
+// 						<li><button class="tag">#Animals</button></li>
+// 					</ul>
+// 				</a>
+// 			</article>
+// 		</main>
