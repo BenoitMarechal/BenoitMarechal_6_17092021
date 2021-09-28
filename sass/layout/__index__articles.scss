@@ -35,9 +35,9 @@
 
 		&__img {
 			object-fit: cover;
-			width: 500px;
-			height: 500px;
-			border-radius: 250px;
+			width: 300px;
+			height: 300px;
+			border-radius: 150px;
 		}
 		&__tags {
 			display: flex;
@@ -48,10 +48,11 @@
 		}
 
 		&__location {
+			display: flex;
 			color: $colour-secondary;
 		}
 
-		&__motto {
+		&__tagline {
 			color: $colour-black;
 		}
 
