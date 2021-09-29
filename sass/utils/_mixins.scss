@@ -9,3 +9,18 @@
 		@content;
 	}
 }
+
+@mixin colorway-red-on-white {
+	color: $colour-primary;
+	background: $colour-white;
+}
+
+@mixin colorway-white-on-red {
+	background: $colour-primary;
+	color: $colour-white;
+}
+
+@mixin colorway-black-on-salmon {
+	color: $colour-black;
+	background: $colour-secondary;
+}

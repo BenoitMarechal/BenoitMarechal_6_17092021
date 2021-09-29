@@ -1,0 +1,5 @@
+button {
+	border-radius: 11px;
+	border: 1px solid $colour-primary;
+	@include colorway-red-on-white;
+}

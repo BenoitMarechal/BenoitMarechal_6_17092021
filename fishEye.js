@@ -1,8 +1,9 @@
-//liste tous les auteurs de la base
-async function getData() {
+//Generating all artists articles
+//fetch data
+async function buildArtistsArticles() {
 	let rep = await fetch('./public/dataBase.json');
 	let dataFromJson = await rep.json();
-	console.log(dataFromJson.photographers);
+	//console.log(dataFromJson.photographers);
 	dataFromJson.photographers.forEach((photographer) => {
 		newArtist(
 			photographer.name,
@@ -15,7 +16,39 @@ async function getData() {
 	});
 }
 
-getData();
+//utilitaries
+function changeBoolean(boolean) {
+	if (boolean === true) {
+		boolean = false;
+	} else {
+		boolean = true;
+	}
+
+	return boolean;
+}
+
+console.log('true ' + changeBoolean(true));
+console.log('false ' + changeBoolean(false));
+
+function removeSpacesInString(string) {
+	var reg = /[ ,-]/g;
+	return string.replace(reg, '');
+}
+
+function removeHashTagsInString(string) {
+	// var reg = /[ ,-]/g;
+	return string.replace('#', '');
+}
+
+function generateTagButtons(tagsArray) {
+	let resultString = '';
+	let firstHalfOfString = '<li><button class="tag">#';
+	let secondHalfOfString = '</button></li>';
+	tagsArray.forEach((tag) => {
+		resultString = resultString + firstHalfOfString + tag + secondHalfOfString;
+	});
+	return resultString;
+}
 
 function newArtist(name, city, country, tagline, price, tags) {
 	let photographerPresentation = document.createElement('article'); //creates an article
@@ -40,25 +73,70 @@ function newArtist(name, city, country, tagline, price, tags) {
 	main.appendChild(photographerPresentation); //add the article to the bottom of the list
 }
 
-function removeSpacesInString(string) {
-	var reg = /[ ,-]/g;
-	return string.replace(reg, '');
-}
+//calling
+buildArtistsArticles();
 
-function generateTagButtons(tagsArray) {
-	let resultString = '';
-	let firstHalfOfString = '<li><button class="tag">#';
-	let secondHalfOfString = '</button></li>';
+//////////////////////////////END OF CREATING ARTISTS ARTICLES///////////////////
 
-	tagsArray.forEach((tag) => {
-		resultString = resultString + firstHalfOfString + tag + secondHalfOfString;
+//////////////////////////////MANAGING FILTERS ///////////////////
+
+///////////////////////BUILDING TAG BUTTONS IN NAV BAR/////////////////////////
+//declare constants
+navBar = document.getElementById('header__nav__ul');
+let everyTagArray = [];
+
+//filling nav bar with all tags found in media and photographers
+async function getAllTags() {
+	let rep = await fetch('./public/dataBase.json'); //fetch data
+	let dataFromJson = await rep.json();
+	dataFromJson.photographers.forEach((photographer) => {
+		//collect tags from photographers
+		for (var i = 0; i < photographer.tags.length; i++) {
+			everyTagArray.push(photographer.tags[i]);
+		}
 	});
-	return resultString;
+	dataFromJson.media.forEach((med) => {
+		//collect tags from media
+		for (var i = 0; i < med.tags.length; i++) {
+			//console.log(photographer.tags[i]);
+			everyTagArray.push(med.tags[i]);
+		}
+	});
+
+	everyTagArray = [...new Set(everyTagArray)]; //delete all duplicates in list of every tags
+	navBar.innerHTML = generateTagButtons(everyTagArray); //fill navbar with tag buttons
+	///////////////END OF BUILDING TAG BUTTONS IN NAV BAR////////////////
+	/////////MANAGE FILTER SELECTION//////////////////
+	let currentTagSelection = { tag: [], selected: [] }; //creating object
+	currentTagSelection.tag = everyTagArray;
+	//function initTags() {
+	for (var i = 0; i < currentTagSelection.tag.length; i++) {
+		currentTagSelection.selected.push(false);
+	}
+	//}
+	//initTags();
+	//console.log(currentTagSelection); //initializing object
+
+	allNavBtn = document.querySelectorAll('#header__nav__ul button');
+	//console.log(allNavBtn);
+	allNavBtn.forEach((btn) => {
+		//console.log(removeHashTagsInString(btn.innerText));
+		btn.addEventListener('click', function (e) {
+			//console.log('click on ' + removeHashTagsInString(btn.innerText)); //detect click on individual tag btn
+
+			for (var i = 0; i < currentTagSelection.tag.length; i++) {
+				if (
+					removeHashTagsInString(btn.innerText) === currentTagSelection.tag[i]
+				) {
+					console.log('yeah' + currentTagSelection.tag[i]);
+					currentTagSelection.selected[i] = changeBoolean(
+						currentTagSelection.selected[i]
+					);
+					console.log(currentTagSelection);
+				}
+			}
+		});
+	});
 }
 
-//list all articles
-
-let allLinkTagsArray = document.getElementsByClassName(
-	'photographer__link__tags'
-);
-console.log(allLinkTagsArray);
+getAllTags();

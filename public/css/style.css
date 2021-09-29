@@ -10,7 +10,9 @@ body {
 main {
   display: flex;
   width: 100%;
-  flex-direction: column;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 
 h1 {
@@ -63,6 +65,13 @@ h5 {
   display: flex;
   flex-direction: row;
   border: 1px solid red;
+}
+
+button {
+  border-radius: 11px;
+  border: 1px solid #901c1c;
+  color: #901c1c;
+  background: #fff;
 }
 
 .photographer {
