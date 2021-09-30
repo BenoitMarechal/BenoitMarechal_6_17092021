@@ -1,5 +1,7 @@
 //Generating all artists articles
 //fetch data
+//let dataFromJson = null;
+
 async function buildArtistsArticles() {
 	let rep = await fetch('./public/dataBase.json');
 	let dataFromJson = await rep.json();
@@ -118,6 +120,9 @@ async function getAllTags() {
 	//console.log(currentTagSelection); //initializing object
 
 	allNavBtn = document.querySelectorAll('#header__nav__ul button');
+	allArtistArticles = document.getElementsByClassName('photographer');
+	//eachArticleTagList = allArtistArticles.getElementsByClassName('tag');
+
 	//console.log(allNavBtn);
 	allNavBtn.forEach((btn) => {
 		//console.log(removeHashTagsInString(btn.innerText));
@@ -136,10 +141,29 @@ async function getAllTags() {
 				}
 
 				if (currentTagSelection.selected[i] === true) {
+					//managing tag button colors
 					console.log(allNavBtn[i]);
 					allNavBtn[i].className = 'tag--On';
+
+					// for (var i = 0; i < allArtistArticles.length; i++) {
+					// 	for (
+					// 		var i = 0;
+					// 		i < allArtistArticles[i].getElementsByClassName('tag').length;
+					// 		i++
+					// 	) {
+					// 		console.log(
+					// 			allArtistArticles[i].getElementsByClassName('tag')[i]
+					// 		);
+					// 	}
+					// }
 				} else allNavBtn[i].className = 'tag--Off';
 			}
+			//console.log(
+			//allArtistArticles[2].getElementsByClassName('tag')[1].innerText
+			//);
+			//console.log(allArtistArticles.length);
+
+			//console.log(dataFromJson.photographers[1].tags[0]);
 		});
 	});
 }
