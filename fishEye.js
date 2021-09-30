@@ -128,12 +128,17 @@ async function getAllTags() {
 				if (
 					removeHashTagsInString(btn.innerText) === currentTagSelection.tag[i]
 				) {
-					console.log('yeah' + currentTagSelection.tag[i]);
+					//console.log('added' + currentTagSelection.tag[i]);
 					currentTagSelection.selected[i] = changeBoolean(
 						currentTagSelection.selected[i]
 					);
 					console.log(currentTagSelection);
 				}
+
+				if (currentTagSelection.selected[i] === true) {
+					console.log(allNavBtn[i]);
+					allNavBtn[i].className = 'tag--On';
+				} else allNavBtn[i].className = 'tag--Off';
 			}
 		});
 	});

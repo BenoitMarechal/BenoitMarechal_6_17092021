@@ -2,4 +2,18 @@ button {
 	border-radius: 11px;
 	border: 1px solid $colour-primary;
 	@include colorway-red-on-white;
+	&:hover {
+		@include colorway-white-on-red;
+	}
 }
+
+.tag {
+	&--On {
+		@include colorway-white-on-red;
+	}
+
+	&--Off {
+		@include colorway-red-on-white;
+	}
+}
+// tag--Off
