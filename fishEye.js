@@ -1,11 +1,22 @@
 //Generating all artists articles
 //fetch data
 //let dataFromJson = null;
+let dataFromJson = [];
+
+async function global() {
+	await extractData(); //gets data from json
+	await buildArtistsArticles(); //builds artists articles
+	await getAllTags(); //builds tag Nav bar
+}
+global();
+
+async function extractData() {
+	let rep = await fetch('./public/dataBase.json');
+	dataFromJson = await rep.json();
+	return;
+}
 
 async function buildArtistsArticles() {
-	let rep = await fetch('./public/dataBase.json');
-	let dataFromJson = await rep.json();
-	//console.log(dataFromJson.photographers);
 	dataFromJson.photographers.forEach((photographer) => {
 		newArtist(
 			photographer.name,
@@ -25,12 +36,8 @@ function changeBoolean(boolean) {
 	} else {
 		boolean = true;
 	}
-
 	return boolean;
 }
-
-console.log('true ' + changeBoolean(true));
-console.log('false ' + changeBoolean(false));
 
 function removeSpacesInString(string) {
 	var reg = /[ ,-]/g;
@@ -53,6 +60,8 @@ function generateTagButtons(tagsArray) {
 }
 
 function newArtist(name, city, country, tagline, price, tags) {
+	//faire plusieurs ajout d'elements plut^to qu'une grosse ligne
+
 	let photographerPresentation = document.createElement('article'); //creates an article
 	photographerPresentation.classList.add('photographer'); // Adds a class
 	photographerPresentation.innerHTML = //fills the article
@@ -76,7 +85,7 @@ function newArtist(name, city, country, tagline, price, tags) {
 }
 
 //calling
-buildArtistsArticles();
+//buildArtistsArticles();
 
 //////////////////////////////END OF CREATING ARTISTS ARTICLES///////////////////
 
@@ -91,6 +100,7 @@ let everyTagArray = [];
 async function getAllTags() {
 	let rep = await fetch('./public/dataBase.json'); //fetch data
 	let dataFromJson = await rep.json();
+
 	dataFromJson.photographers.forEach((photographer) => {
 		//collect tags from photographers
 		for (var i = 0; i < photographer.tags.length; i++) {
@@ -168,4 +178,4 @@ async function getAllTags() {
 	});
 }
 
-getAllTags();
+//getAllTags();
