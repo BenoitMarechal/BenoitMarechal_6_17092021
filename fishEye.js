@@ -7,8 +7,10 @@ async function global() {
 	await extractData(); //gets data from json
 	await buildTagNavBar(); //builds tag Nav bar
 	await clickOnNavTag(); //manages color
+	//	await findArtistFromClickOnTag('travel');
+
 	await getSelectedTags(); //assembles selected tags
-	await buildArtistsArticles(); //builds artists articles
+	await buildAllArtistsArticles(); //builds artists articles
 }
 global();
 
@@ -22,7 +24,7 @@ let filteredData = {};
 
 async function selectData() {}
 
-async function buildArtistsArticles() {
+async function buildAllArtistsArticles() {
 	dataFromJson.photographers.forEach((photographer) => {
 		newArtist(
 			photographer.name,
@@ -130,7 +132,7 @@ async function getSelectedTags() {}
 // 	currentTagSelection.selected.push(false);
 // }
 
-async function clickOnNavTag() {
+function clickOnNavTag() {
 	allNavBtn = document.querySelectorAll('#header__nav__ul button');
 	allArtistArticles = document.getElementsByClassName('photographer');
 	allNavBtn.forEach((btn) => {
@@ -138,14 +140,27 @@ async function clickOnNavTag() {
 		//console.log(removeHashTagsInString(btn.innerText));
 		btn.addEventListener('click', function (e) {
 			selected = changeBoolean(selected);
-			console.log(btn.innerText + ' ' + selected);
+			//console.log(btn.innerText + ' ' + selected);
 			if (selected === true) {
-				//managing tag button colors
-				//console.log(allNavBtn[i]);
 				btn.className = 'tag--On';
+				//console.log(removeHashTagsInString(btn.innerText));
+				//findArtistFromClickOnTag(removeHashTagsInString(btn.innerText));
+				findArtistFromClickOnTag(removeHashTagsInString(btn.innerText));
 			} else {
 				btn.className = 'tag--Off';
 			}
 		});
+	});
+}
+
+async function findArtistFromClickOnTag(tag) {
+	//console.log(dataFromJson);
+	dataFromJson.photographers.forEach((photographer) => {
+		//collect tags from photographers
+		for (var i = 0; i < photographer.tags.length; i++) {
+			if (photographer.tags[i] === tag) {
+				console.log(photographer.name);
+			}
+		}
 	});
 }
