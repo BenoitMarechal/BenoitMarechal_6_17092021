@@ -5,16 +5,22 @@ let dataFromJson = [];
 
 async function global() {
 	await extractData(); //gets data from json
+	await buildTagNavBar(); //builds tag Nav bar
+	await clickOnNavTag(); //manages color
+	await getSelectedTags(); //assembles selected tags
 	await buildArtistsArticles(); //builds artists articles
-	await getAllTags(); //builds tag Nav bar
 }
 global();
 
 async function extractData() {
 	let rep = await fetch('./public/dataBase.json');
 	dataFromJson = await rep.json();
-	return;
+	return dataFromJson;
 }
+
+let filteredData = {};
+
+async function selectData() {}
 
 async function buildArtistsArticles() {
 	dataFromJson.photographers.forEach((photographer) => {
@@ -94,88 +100,52 @@ function newArtist(name, city, country, tagline, price, tags) {
 ///////////////////////BUILDING TAG BUTTONS IN NAV BAR/////////////////////////
 //declare constants
 navBar = document.getElementById('header__nav__ul');
+
 let everyTagArray = [];
+let currentTagSelection = []; //creating array
 
-//filling nav bar with all tags found in media and photographers
-async function getAllTags() {
-	let rep = await fetch('./public/dataBase.json'); //fetch data
-	let dataFromJson = await rep.json();
-
+//BUILDING NAV BAR nav bar with all tags
+async function buildTagNavBar() {
 	dataFromJson.photographers.forEach((photographer) => {
 		//collect tags from photographers
 		for (var i = 0; i < photographer.tags.length; i++) {
 			everyTagArray.push(photographer.tags[i]);
 		}
 	});
-	dataFromJson.media.forEach((med) => {
-		//collect tags from media
-		for (var i = 0; i < med.tags.length; i++) {
-			//console.log(photographer.tags[i]);
-			everyTagArray.push(med.tags[i]);
-		}
-	});
-
 	everyTagArray = [...new Set(everyTagArray)]; //delete all duplicates in list of every tags
 	navBar.innerHTML = generateTagButtons(everyTagArray); //fill navbar with tag buttons
-	///////////////END OF BUILDING TAG BUTTONS IN NAV BAR////////////////
-	/////////MANAGE FILTER SELECTION//////////////////
-	let currentTagSelection = { tag: [], selected: [] }; //creating object
-	currentTagSelection.tag = everyTagArray;
-	//function initTags() {
-	for (var i = 0; i < currentTagSelection.tag.length; i++) {
-		currentTagSelection.selected.push(false);
-	}
-	//}
-	//initTags();
-	//console.log(currentTagSelection); //initializing object
+	console.log(everyTagArray);
+	return everyTagArray;
+}
 
+/////////END OF BUILDING NAV BAR nav bar with all tags
+
+/////////MANAGE FILTER SELECTION//////////////////
+async function getSelectedTags() {}
+
+// currentTagSelection.tag = everyTagArray;
+
+//function initTags() {
+// for (var i = 0; i < currentTagSelection.tag.length; i++) {
+// 	currentTagSelection.selected.push(false);
+// }
+
+async function clickOnNavTag() {
 	allNavBtn = document.querySelectorAll('#header__nav__ul button');
 	allArtistArticles = document.getElementsByClassName('photographer');
-	//eachArticleTagList = allArtistArticles.getElementsByClassName('tag');
-
-	//console.log(allNavBtn);
 	allNavBtn.forEach((btn) => {
+		let selected = false;
 		//console.log(removeHashTagsInString(btn.innerText));
 		btn.addEventListener('click', function (e) {
-			//console.log('click on ' + removeHashTagsInString(btn.innerText)); //detect click on individual tag btn
-
-			for (var i = 0; i < currentTagSelection.tag.length; i++) {
-				if (
-					removeHashTagsInString(btn.innerText) === currentTagSelection.tag[i]
-				) {
-					//console.log('added' + currentTagSelection.tag[i]);
-					currentTagSelection.selected[i] = changeBoolean(
-						currentTagSelection.selected[i]
-					);
-					console.log(currentTagSelection);
-				}
-
-				if (currentTagSelection.selected[i] === true) {
-					//managing tag button colors
-					console.log(allNavBtn[i]);
-					allNavBtn[i].className = 'tag--On';
-
-					// for (var i = 0; i < allArtistArticles.length; i++) {
-					// 	for (
-					// 		var i = 0;
-					// 		i < allArtistArticles[i].getElementsByClassName('tag').length;
-					// 		i++
-					// 	) {
-					// 		console.log(
-					// 			allArtistArticles[i].getElementsByClassName('tag')[i]
-					// 		);
-					// 	}
-					// }
-				} else allNavBtn[i].className = 'tag--Off';
+			selected = changeBoolean(selected);
+			console.log(btn.innerText + ' ' + selected);
+			if (selected === true) {
+				//managing tag button colors
+				//console.log(allNavBtn[i]);
+				btn.className = 'tag--On';
+			} else {
+				btn.className = 'tag--Off';
 			}
-			//console.log(
-			//allArtistArticles[2].getElementsByClassName('tag')[1].innerText
-			//);
-			//console.log(allArtistArticles.length);
-
-			//console.log(dataFromJson.photographers[1].tags[0]);
 		});
 	});
 }
-
-//getAllTags();
