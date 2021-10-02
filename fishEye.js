@@ -1,16 +1,14 @@
-//Generating all artists articles
-//fetch data
-//let dataFromJson = null;
 let dataFromJson = [];
 
 async function global() {
 	await extractData(); //gets data from json
-	await buildTagNavBar(); //builds tag Nav bar
-	await clickOnNavTag(); //manages color
+	await buildTagNavBar();
+	await buildAllArtistsArticles(); //builds tag Nav bar
+	clickOnNavTag(); //manages color
+	//builds ALL artists articles
 	//	await findArtistFromClickOnTag('travel');
 
-	await getSelectedTags(); //assembles selected tags
-	await buildAllArtistsArticles(); //builds artists articles
+	//await buildArtistsArticleByName('Mimi Keel');
 }
 global();
 
@@ -20,9 +18,20 @@ async function extractData() {
 	return dataFromJson;
 }
 
-let filteredData = {};
-
-async function selectData() {}
+async function buildArtistsArticleByName(name) {
+	dataFromJson.photographers.forEach((photographer) => {
+		if (photographer.name === name) {
+			newArtist(
+				photographer.name,
+				photographer.city,
+				photographer.country,
+				photographer.tagline,
+				photographer.price,
+				photographer.tags
+			);
+		}
+	});
+}
 
 async function buildAllArtistsArticles() {
 	dataFromJson.photographers.forEach((photographer) => {
@@ -92,9 +101,6 @@ function newArtist(name, city, country, tagline, price, tags) {
 	main.appendChild(photographerPresentation); //add the article to the bottom of the list
 }
 
-//calling
-//buildArtistsArticles();
-
 //////////////////////////////END OF CREATING ARTISTS ARTICLES///////////////////
 
 //////////////////////////////MANAGING FILTERS ///////////////////
@@ -116,14 +122,13 @@ async function buildTagNavBar() {
 	});
 	everyTagArray = [...new Set(everyTagArray)]; //delete all duplicates in list of every tags
 	navBar.innerHTML = generateTagButtons(everyTagArray); //fill navbar with tag buttons
-	console.log(everyTagArray);
+	//console.log(everyTagArray);
 	return everyTagArray;
 }
 
 /////////END OF BUILDING NAV BAR nav bar with all tags
 
 /////////MANAGE FILTER SELECTION//////////////////
-async function getSelectedTags() {}
 
 // currentTagSelection.tag = everyTagArray;
 
@@ -132,34 +137,58 @@ async function getSelectedTags() {}
 // 	currentTagSelection.selected.push(false);
 // }
 
+// element = document.getElementsByTagName('label');
+// for (index = 0; index < element.length; index++) {
+// 	element[index].parentNode.removeChild(element[index]);
+// }
+// function removeAllArticles() {
+// 	allArticles = document.getElementsByClassName('photographer');
+// 	console.log(allArticles);
+// 	allArticles.forEach((article) => {
+// 		main.removeChild(article);
+// 	});
+// 	console.log('fini ');
+// }
+
+function removeAllArticles() {
+	main.innerHTML = '<h1>Nos photographes</h1>';
+}
+
+let selectedTAgs = [];
+
 function clickOnNavTag() {
 	allNavBtn = document.querySelectorAll('#header__nav__ul button');
-	allArtistArticles = document.getElementsByClassName('photographer');
+	//allArtistArticles = document.getElementsByClassName('photographer');
 	allNavBtn.forEach((btn) => {
 		let selected = false;
-		//console.log(removeHashTagsInString(btn.innerText));
 		btn.addEventListener('click', function (e) {
-			selected = changeBoolean(selected);
-			//console.log(btn.innerText + ' ' + selected);
+			//looping through html buttons
+			removeAllArticles();
+			let selectedTAgs = [];
+
+			selected = changeBoolean(selected); //change state of individual buttons
+
 			if (selected === true) {
 				btn.className = 'tag--On';
-				//console.log(removeHashTagsInString(btn.innerText));
-				//findArtistFromClickOnTag(removeHashTagsInString(btn.innerText));
+				selectedTAgs.push('yep');
+				//console.log(selectedTAgs);
+
 				findArtistFromClickOnTag(removeHashTagsInString(btn.innerText));
 			} else {
 				btn.className = 'tag--Off';
 			}
+			console.log(selectedTAgs);
 		});
 	});
 }
 
-async function findArtistFromClickOnTag(tag) {
+function findArtistFromClickOnTag(tag) {
 	//console.log(dataFromJson);
 	dataFromJson.photographers.forEach((photographer) => {
-		//collect tags from photographers
 		for (var i = 0; i < photographer.tags.length; i++) {
 			if (photographer.tags[i] === tag) {
-				console.log(photographer.name);
+				//console.log(photographer.name);
+				buildArtistsArticleByName(photographer.name);
 			}
 		}
 	});
