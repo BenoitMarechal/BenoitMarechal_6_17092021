@@ -4,7 +4,7 @@ async function global() {
 	await extractData(); //gets data from json
 	await buildTagNavBar();
 	await buildAllArtistsArticles(); //builds tag Nav bar
-	clickOnNavTag(); //manages color
+	await clickOnNavTag(); //manages color
 	//builds ALL artists articles
 	//	await findArtistFromClickOnTag('travel');
 
@@ -154,42 +154,93 @@ function removeAllArticles() {
 	main.innerHTML = '<h1>Nos photographes</h1>';
 }
 
-let selectedTAgs = [];
+let selectedTags = [];
 
-function clickOnNavTag() {
+async function clickOnNavTag() {
 	allNavBtn = document.querySelectorAll('#header__nav__ul button');
 	//allArtistArticles = document.getElementsByClassName('photographer');
+
 	allNavBtn.forEach((btn) => {
 		let selected = false;
+		//let selectedTags = [];
 		btn.addEventListener('click', function (e) {
 			//looping through html buttons
 			removeAllArticles();
-			let selectedTAgs = [];
-
+			//let selectedTags = [];
 			selected = changeBoolean(selected); //change state of individual buttons
+			let currentTag = removeHashTagsInString(btn.innerText);
 
 			if (selected === true) {
 				btn.className = 'tag--On';
-				selectedTAgs.push('yep');
-				//console.log(selectedTAgs);
-
-				findArtistFromClickOnTag(removeHashTagsInString(btn.innerText));
+				selectedTags.push(currentTag);
+				//console.log(selectedTags);
+				//findArtistFromClickOnTag(currentTag);
 			} else {
 				btn.className = 'tag--Off';
+				removeElementFromArray(selectedTags, currentTag);
 			}
-			console.log(selectedTAgs);
+
+			if (selectedTags.length === 0) {
+				buildAllArtistsArticles();
+			}
+
+			findArtistFromClickOnTag(selectedTags);
+
+			return selectedTags;
 		});
 	});
 }
 
-function findArtistFromClickOnTag(tag) {
-	//console.log(dataFromJson);
-	dataFromJson.photographers.forEach((photographer) => {
-		for (var i = 0; i < photographer.tags.length; i++) {
-			if (photographer.tags[i] === tag) {
-				//console.log(photographer.name);
-				buildArtistsArticleByName(photographer.name);
+// function clickOnNavTag() {
+// 	allNavBtn = document.querySelectorAll('#header__nav__ul button');
+// 	//allArtistArticles = document.getElementsByClassName('photographer');
+// 	for (i = 0; i < allNavBtn.length; i++) {
+// 		selectedTags.push(allNavBtn[i].innerText);
+// 		allNavBtn[i].addEventListener('click', function (e) {
+
+// 		});
+// 	}
+// }
+
+function removeElementFromArray(array, element) {
+	for (i = 0; i < array.length; i++) {
+		if (array[i] === element) {
+			array = array.splice(i);
+		}
+	}
+	return array;
+}
+
+// function findArtistFromClickOnTag(array) {
+// 	console.log(dataFromJson);
+// 	console.log(selectedTags);
+// 	console.log(dataFromJson.photographers);
+// 	for (var a = 0; a < array.length; a++) {
+// 		//looping through selected tags
+// 		//dataFromJson.photographers.forEach((photographer) => {
+// 		for (var b = 0; b < dataFromJson.photographers.length; b++) {
+// 			//loop trough photograpahers
+// 			for (var i = 0; i < dataFromJson.photographers[b].tags.length; i++) {
+// 				//loop though photgrahper's tags
+// 				if (dataFromJson.photographers[b].tags[i] === array[a]) {
+// 					console.log(dataFromJson.photographers[b].name);
+// 					buildArtistsArticleByName(dataFromJson.photographers[b].name);
+// 					b = dataFromJson.photographers.length;
+// 				}
+// 			}
+// 		}
+// 	}
+// }
+
+function findArtistFromClickOnTag(array) {
+	for (var a = 0; a < dataFromJson.photographers.length; a++) {
+		for (var b = 0; b < dataFromJson.photographers[a].tags.length; b++) {
+			for (var c = 0; c < array.length; c++) {
+				if (dataFromJson.photographers[a].tags[b] === array[c]) {
+					buildArtistsArticleByName(dataFromJson.photographers[a].name);
+					b = dataFromJson.photographers[a].tags.length;
+				}
 			}
 		}
-	});
+	}
 }
