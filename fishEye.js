@@ -2,9 +2,10 @@ let dataFromJson = [];
 
 async function global() {
 	await extractData(); //gets data from json
-	await buildTagNavBar();
-	await buildAllArtistsArticles(); //builds tag Nav bar
-	await clickOnNavTag(); //manages color
+	//await buildTagNavBar();
+	//await buildAllArtistsArticles(); //builds tag Nav bar
+	//await clickOnNavTag(); //manages color
+	//await newArtist2(elementsOfArticle);
 	//builds ALL artists articles
 	//	await findArtistFromClickOnTag('travel');
 
@@ -88,19 +89,55 @@ let elementsOfArticle = {
 		'photographer__link__location__country',
 		'photographer__link__tagline',
 		'photographer__link__price',
+		'photographer__link__tags',
 	],
 	parentOfElement: [
-		'main',
-		'photographer',
-		'photographer__link',
-		'photographer__link',
-		'photographer__link',
-		'photographer__link__location',
-		'photographer__link__location',
-		'photographer__link',
-		'photographer__link',
+		'.main',
+		'.photographer',
+		'.photographer__link',
+		'.photographer__link',
+		'.photographer__link',
+		'.photographer__link__location',
+		'.photographer__link__location',
+		'.photographer__link',
+		'.photographer__link',
+		'.photographer__link',
 	],
 };
+let arrayOfElements = [];
+
+function newArtist2(object, name) {
+	for (let i = 0; i < object.typeOfElement.length; i++) {
+		let element = document.createElement(object.typeOfElement[i]);
+		element.classList.add(object.classOfElement[i]);
+		name = removeSpacesInString(name);
+		let tour = i;
+		if (tour === 0) {
+			console.log('yep');
+			element.id = name;
+		}
+
+		console.log(i);
+
+		console.log(element);
+		let parent = document.querySelector(object.parentOfElement[i]);
+		//console.log(parent);
+		parent.appendChild(element);
+		// if ((i = 0)) {
+		// 	console.log('yay');
+		// }
+		//elementsOfArticle.parentOfElement[i].appendChild(element);
+
+		// arrayOfElements.push(element);
+		// //main.appendChild(element);
+
+		// console.log(arrayOfElements);
+	}
+	console.log('loop finished');
+}
+
+newArtist2(elementsOfArticle, 'Mimi Keel');
+//newArtist2(elementsOfArticle);
 
 // <!-- <article class="photographer">
 // 				<a href="" class="photographer__link">
