@@ -76,6 +76,58 @@ function generateTagButtons(tagsArray) {
 	return resultString;
 }
 
+let elementsOfArticle = {
+	typeOfElement: ['article', 'a', 'img', 'h2', 'div', 'p', 'p', 'p', 'p', 'ul'],
+	classOfElement: [
+		'photographer',
+		'photographer__link',
+		'photographer__link__img',
+		'photographer__link__name',
+		'photographer__link__location',
+		'photographer__link__location__city',
+		'photographer__link__location__country',
+		'photographer__link__tagline',
+		'photographer__link__price',
+	],
+	parentOfElement: [
+		'main',
+		'photographer',
+		'photographer__link',
+		'photographer__link',
+		'photographer__link',
+		'photographer__link__location',
+		'photographer__link__location',
+		'photographer__link',
+		'photographer__link',
+	],
+};
+
+// <!-- <article class="photographer">
+// 				<a href="" class="photographer__link">
+// 					<img
+// 						class="photographer__link__img"
+// 						src="images\Photographers ID Photos\MimiKeel.jpg"
+// 						alt=""
+// 					/>
+// 					<h2 class="photographer__link__name">Mimi Keel</h2>
+// 					<div class="photographer__link__location">
+// 						<p class="photographer__link__location__city">London</p>
+// 						<p class="photographer__link__location__country">, UK</p>
+// 					</div>
+
+// 					<p class="photographer__link__tagline">
+// 						Voir le beau dans le quotidien
+// 					</p>
+// 					<p class="photographer__link__price">400€/jour</p>
+// 					<ul class="photographer__link__tags">
+// 						<li><button class="tag">#Portait</button></li>
+// 						<li><button class="tag">#Events</button></li>
+// 						<li><button class="tag">#Travel</button></li>
+// 						<li><button class="tag">#Animals</button></li>
+// 					</ul>
+// 				</a>
+// 			</article> -->
+
 function newArtist(name, city, country, tagline, price, tags) {
 	//faire plusieurs ajout d'elements plut^to qu'une grosse ligne
 
