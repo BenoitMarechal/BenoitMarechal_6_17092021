@@ -2,6 +2,8 @@
 function removeAllArticles() {
 	//used both in filter management and page initialisation, remove all photographer articles and sets up H1
 	main.innerHTML = '<h1>Nos photographes</h1>';
+	console.log('h1 added');
+	console.log('articles removed');
 }
 
 function changeBoolean(boolean) {

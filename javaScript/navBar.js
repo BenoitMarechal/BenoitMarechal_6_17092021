@@ -17,6 +17,7 @@ function generateTagButtons(tagsArray) {
 
 //BUILDING NAV BAR nav bar with all tags
 async function buildTagNavBar() {
+	console.log('build tag nav bar');
 	dataFromJson.photographers.forEach((photographer) => {
 		//collect tags from photographers
 		for (var i = 0; i < photographer.tags.length; i++) {

@@ -63,6 +63,9 @@ function newArtist(object, name, city, country, tagline, price, tags) {
 async function buildArtistArticleByName(name) {
 	dataFromJson.photographers.forEach((photographer) => {
 		if (photographer.name === name) {
+			console.log(photographer);
+			//photographer.create();
+
 			newArtist(
 				elementsOfArticle,
 				photographer.name,
@@ -76,18 +79,18 @@ async function buildArtistArticleByName(name) {
 	});
 }
 
-async function buildAllArtistsArticles() {
-	dataFromJson.photographers.forEach((photographer) => {
-		newArtist(
-			elementsOfArticle,
-			photographer.name,
-			photographer.city,
-			photographer.country,
-			photographer.tagline,
-			photographer.price,
-			photographer.tags
-		);
-	});
-}
+// async function buildAllArtistsArticles() {
+// 	dataFromJson.photographers.forEach((photographer) => {
+// 		newArtist(
+// 			elementsOfArticle,
+// 			photographer.name,
+// 			photographer.city,
+// 			photographer.country,
+// 			photographer.tagline,
+// 			photographer.price,
+// 			photographer.tags
+// 		);
+// 	});
+// }
 
 //////////////////////////////END OF CREATING ARTISTS ARTICLES///////////////////
