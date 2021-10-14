@@ -9,3 +9,5 @@
 //faire constructor
 //remanier en plusieurs fichiers
 //méthodes d'instance
+
+//mettre fonction newArtist dans la classe

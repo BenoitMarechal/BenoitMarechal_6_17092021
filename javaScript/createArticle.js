@@ -44,7 +44,7 @@ function newArtist(object, name, city, country, tagline, price, tags) {
 	articleToFill = document.getElementById(clearedName);
 	articleToFill.querySelector('.photographer__link').href = '';
 	articleToFill.querySelector('.photographer__link__img').src =
-		'images/Photographers ID Photos/' + removeSpacesInString(name) + '.jpg';
+		'images/Photographers ID Photos/' + clearedName + '.jpg';
 	articleToFill.querySelector('.photographer__link__img').alt = name;
 	articleToFill.querySelector('.photographer__link__name').innerText = name;
 	articleToFill.querySelector('.photographer__link__location__city').innerText =
@@ -60,24 +60,24 @@ function newArtist(object, name, city, country, tagline, price, tags) {
 		generateTagButtons(tags); //ARTICLE COMPLETED
 }
 
-async function buildArtistArticleByName(name) {
-	dataFromJson.photographers.forEach((photographer) => {
-		if (photographer.name === name) {
-			console.log(photographer);
-			//photographer.create();
+// async function buildArtistArticleByName(name) {
+// 	dataFromJson.photographers.forEach((photographer) => {
+// 		if (photographer.name === name) {
+// 			console.log(photographer);
+// 			//photographer.create();
 
-			newArtist(
-				elementsOfArticle,
-				photographer.name,
-				photographer.city,
-				photographer.country,
-				photographer.tagline,
-				photographer.price,
-				photographer.tags
-			);
-		}
-	});
-}
+// 			newArtist(
+// 				elementsOfArticle,
+// 				photographer.name,
+// 				photographer.city,
+// 				photographer.country,
+// 				photographer.tagline,
+// 				photographer.price,
+// 				photographer.tags
+// 			);
+// 		}
+// 	});
+// }
 
 // async function buildAllArtistsArticles() {
 // 	dataFromJson.photographers.forEach((photographer) => {

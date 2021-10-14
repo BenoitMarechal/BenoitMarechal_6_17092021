@@ -3,8 +3,8 @@ async function global() {
 	await extractData(); //gets data from json
 	await fillarrayOfArtists(); //generates array of artists
 	await buildTagNavBar(); //builds nav bar tags
-	await buildAllArtistsArticles(); //builds all artists articles
-	await clickOnNavTag(); //manages color
-	//await buildArtistArticleByName2(); ////builds selected artists articles
+	await createAllArtistsArticles(); //builds all artists articles
+	await clickOnNavTag2(); //manages color
+	//await hideOrShow();
 }
 global();
