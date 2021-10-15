@@ -165,7 +165,7 @@ class HomePage {
 }
 
 (async function launch() {
-	let homepage = new HomePage([], []);
+	let homepage = new HomePage();
 	await homepage.extractData();
 	await homepage.getAllTags();
 	await homepage.getPhotographers();
