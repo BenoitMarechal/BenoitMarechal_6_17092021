@@ -1,15 +1,5 @@
 class Photographer {
-	constructor(
-		name,
-		id,
-		city,
-		country,
-		tagline,
-		price,
-		tags,
-		visible = true,
-		clearedName = ''
-	) {
+	constructor(name, id, city, country, tagline, price, tags, visible = true) {
 		this.name = name;
 		this.id = id;
 		this.city = city;
@@ -18,18 +8,17 @@ class Photographer {
 		this.price = price;
 		this.tags = tags;
 		this.visible = visible;
-		clearedName = removeSpacesInString(this.name);
-		this.clearedName = clearedName;
 	}
 
 	createArticle() {
-		//let clearedName = removeSpacesInString(this.name);
+		let clearedName = removeSpacesInString(this.name);
 		for (let i = 0; i < elementsOfArticle.typeOfElement.length; i++) {
 			let element = document.createElement(elementsOfArticle.typeOfElement[i]);
 			element.classList.add(elementsOfArticle.classOfElement[i]);
 			let tour = i; //assigns photg name as article ID
 			if (tour === 0) {
-				element.id = this.clearedName;
+				// element.id = this.clearedName;
+				element.id = 'id' + this.id;
 			}
 			let byClass = document.getElementsByClassName(
 				elementsOfArticle.parentOfElement[i]
@@ -38,10 +27,10 @@ class Photographer {
 			parent.appendChild(element);
 		} //EMPTY ARTICLE CREATED
 		let articleToFill = '';
-		articleToFill = document.getElementById(this.clearedName);
+		articleToFill = document.getElementById('id' + this.id);
 		articleToFill.querySelector('.photographer__link').href = '';
 		articleToFill.querySelector('.photographer__link__img').src =
-			'images/Photographers ID Photos/' + this.clearedName + '.jpg';
+			'images/Photographers ID Photos/' + clearedName + '.jpg';
 		articleToFill.querySelector('.photographer__link__img').alt = this.name;
 		articleToFill.querySelector('.photographer__link__name').innerText =
 			this.name;
@@ -61,42 +50,13 @@ class Photographer {
 	}
 	hideArticle() {
 		//hides article
-		let cible = document.getElementById(this.clearedName);
+		let cible = document.getElementById('id' + this.id);
 		cible.style.display = 'none';
 	}
 
 	showArticle() {
 		//showns article
-		let cible = document.getElementById(this.clearedName);
+		let cible = document.getElementById('id' + this.id);
 		cible.style.display = 'block';
 	}
 }
-
-// async function updateAllVisibilities(array) {
-// 	if (array.length === 0) {
-// 		console.log('tableau vide');
-// 		setAllShown();
-// 	} else {
-// 		for (var a = 0; a < arrayOfArtists.length; a++) {
-// 			//loop trough  photographers
-// 			console.log(arrayOfArtists[a].name);
-// 			arrayOfArtists[a].visible = false;
-// 			for (var b = 0; b < arrayOfArtists[a].tags.length; b++) {
-// 				//loop trough photographers's tags
-// 				console.log(arrayOfArtists[a].name + '  ' + arrayOfArtists[a].tags[b]);
-// 				for (var c = 0; c < array.length; c++) {
-// 					console.log('looking for   ' + array[c]);
-// 					////loop trough array (which will be activeTags)
-// 					if (arrayOfArtists[a].tags[b] === array[c]) {
-// 						console.log('match found');
-// 						arrayOfArtists[a].visible = true;
-// 						b = arrayOfArtists[a].tags.length; //breaks the loop so a photographer can't be diplayed twice
-// 					} else {
-// 						//arrayOfArtists[a].hide();
-// 						console.log('No match');
-// 					}
-// 				}
-// 			}
-// 		}
-// 	}
-// }

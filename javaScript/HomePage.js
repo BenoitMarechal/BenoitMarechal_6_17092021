@@ -33,8 +33,8 @@ class HomePage {
 				photographer.tagline,
 				photographer.price,
 				photographer.tags,
-				photographer.visible,
-				photographer.clearedName
+				photographer.visible
+				//photographer.clearedName //will be used to access to photo
 			);
 
 			arrayOfArtists.push(artist);
@@ -100,44 +100,6 @@ class HomePage {
 		});
 		//hideOrShow();
 	}
-
-	// 	async filter() {
-	// 		//listends to click, manages button color, updates activeTags array, runs the array through article hide/show function
-	// 		console.log('listening with filter');
-	// 		allNavBtn = document.querySelectorAll('#header__nav__ul button');
-	// 		//allArtistArticles = document.getElementsByClassName('photographer');
-	// 		allNavBtn.forEach((btn) => {
-	// 			let selected = false;
-	// 			btn.addEventListener('click', function (e) {
-	// 				//looping through html buttons
-	// 				console.log('click');
-	// 				//hideAllArtistsArticles();
-	// 				selected = changeBoolean(selected); //change state of individual buttons
-	// 				let currentTag = removeHashTagsInString(btn.innerText);
-
-	// 				if (selected === true) {
-	// 					btn.className = 'tag--On';
-	// 					activeTags.push(currentTag);
-	// 				}
-	// 				if (selected === false) {
-	// 					btn.className = 'tag--Off';
-	// 					removeElementFromArray(activeTags, currentTag);
-	// 				}
-
-	// 				// if (activeTags.length === 0) {
-	// 				// 	console.log('selection nulle');
-	// 				// 	resetAllVisibles();
-	// 				// } else {
-	// 				// 	updateAllVisibilities(activeTags);
-	// 				// }
-
-	// 				console.log(activeTags);
-	// 				// updateAllVisibilities(activeTags);
-	// 				// hideOrShow();
-	// 			});
-	// 		});
-	// 	}
-	// }
 
 	async updateSelectionOnClick() {
 		//listends to click in the nav bar, updates values of "selected", hides/showns articles

@@ -14,11 +14,6 @@ function removeSpacesInString(string) {
 	return string.replace(reg, '');
 }
 
-function removeHashTagsInString(string) {
-	// var reg = /[ ,-]/g;
-	return string.replace('#', '');
-}
-
 function generateTagButtons(tagsArray) {
 	let resultString = '';
 	let firstHalfOfString = '<li><button class="tag">#';
