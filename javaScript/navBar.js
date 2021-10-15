@@ -3,7 +3,7 @@
 navBar = document.getElementById('header__nav__ul');
 
 let everyTagArray = [];
-let currentTagSelection = []; //creating array
+//let currentTagSelection = []; //creating array
 
 function generateTagButtons(tagsArray) {
 	let resultString = '';

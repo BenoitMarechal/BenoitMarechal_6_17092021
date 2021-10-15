@@ -10,7 +10,6 @@ async function clickOnNavTag2() {
 
 	allNavBtn.forEach((btn) => {
 		let selected = false;
-
 		btn.addEventListener('click', function (e) {
 			//looping through html buttons
 			console.log('click');

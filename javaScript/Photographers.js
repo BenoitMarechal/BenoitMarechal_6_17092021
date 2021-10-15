@@ -1,5 +1,15 @@
-class Photographers {
-	constructor(name, id, city, country, tagline, price, tags, visible = true) {
+class Photographer {
+	constructor(
+		name,
+		id,
+		city,
+		country,
+		tagline,
+		price,
+		tags,
+		visible = true,
+		clearedName = ''
+	) {
 		this.name = name;
 		this.id = id;
 		this.city = city;
@@ -8,65 +18,69 @@ class Photographers {
 		this.price = price;
 		this.tags = tags;
 		this.visible = visible;
+		clearedName = removeSpacesInString(this.name);
+		this.clearedName = clearedName;
 	}
 
-	create() {
-		newArtist(
-			elementsOfArticle,
-			this.name,
-			this.city,
-			this.country,
-			this.tagline,
-			this.price,
-			this.tags
-		);
-	}
+	// create() {
+	// 	newArtist(
+	// 		elementsOfArticle,
+	// 		this.name,
+	// 		this.city,
+	// 		this.country,
+	// 		this.tagline,
+	// 		this.price,
+	// 		this.tags
+	// 	);
+	// }
 
-	hide() {
-		let cible = document.getElementById(removeSpacesInString(this.name));
+	createArticle() {
+		//let clearedName = removeSpacesInString(this.name);
+		for (let i = 0; i < elementsOfArticle.typeOfElement.length; i++) {
+			let element = document.createElement(elementsOfArticle.typeOfElement[i]);
+			element.classList.add(elementsOfArticle.classOfElement[i]);
+			let tour = i; //assigns photg name as article ID
+			if (tour === 0) {
+				element.id = this.clearedName;
+			}
+			let byClass = document.getElementsByClassName(
+				elementsOfArticle.parentOfElement[i]
+			);
+			let parent = byClass.item(byClass.length - 1); //declares last element of collection as parent
+			parent.appendChild(element);
+		} //EMPTY ARTICLE CREATED
+		let articleToFill = '';
+		articleToFill = document.getElementById(this.clearedName);
+		articleToFill.querySelector('.photographer__link').href = '';
+		articleToFill.querySelector('.photographer__link__img').src =
+			'images/Photographers ID Photos/' + this.clearedName + '.jpg';
+		articleToFill.querySelector('.photographer__link__img').alt = this.name;
+		articleToFill.querySelector('.photographer__link__name').innerText =
+			this.name;
+		articleToFill.querySelector(
+			'.photographer__link__location__city'
+		).innerText = this.city + ', ';
+		articleToFill.querySelector(
+			'.photographer__link__location__country'
+		).innerText = this.country;
+		articleToFill.querySelector('.photographer__link__tagline').innerText =
+			this.tagline;
+		articleToFill.querySelector('.photographer__link__price').innerText =
+			this.price + ' €/jour';
+		articleToFill.querySelector('.photographer__link__tags').innerHTML =
+			generateTagButtons(this.tags); //ARTICLE COMPLETED
+		return articleToFill;
+	}
+	hideArticle() {
+		//hides article
+		let cible = document.getElementById(this.clearedName);
 		cible.style.display = 'none';
 	}
-	show() {
-		let cible = document.getElementById(removeSpacesInString(this.name));
+
+	showArticle() {
+		//showns article
+		let cible = document.getElementById(this.clearedName);
 		cible.style.display = 'block';
-	}
-}
-
-let arrayOfArtists = [];
-
-async function fillarrayOfArtists() {
-	//console.log('fillArray');
-
-	dataFromJson.photographers.forEach((photographer) => {
-		let artist = new Photographers(
-			photographer.name,
-			photographer.id,
-			photographer.city,
-			photographer.country,
-			photographer.tagline,
-			photographer.price,
-			photographer.tags
-		);
-
-		arrayOfArtists.push(artist);
-		//console.log(artist);
-		return arrayOfArtists;
-	});
-}
-
-async function createAllArtistsArticles() {
-	arrayOfArtists.forEach((artist) => {
-		artist.create();
-		console.log('all created');
-	});
-}
-async function hideOrShow() {
-	for (let i = 0; i < arrayOfArtists.length; i++) {
-		if (arrayOfArtists[i].visible === true) {
-			arrayOfArtists[i].show();
-		} else {
-			arrayOfArtists[i].hide();
-		}
 	}
 }
 
@@ -77,16 +91,24 @@ async function hideOrShow() {
 // 	console.log('all hidden');
 // }
 
-async function resetAllVisibles() {
+async function setAllShown() {
 	arrayOfArtists.forEach((artist) => {
 		artist.visible = true;
 	});
+	hideOrShow();
+}
+
+async function setAllHidden() {
+	arrayOfArtists.forEach((artist) => {
+		artist.visible = false;
+	});
+	hideOrShow();
 }
 
 async function updateAllVisibilities(array) {
 	if (array.length === 0) {
 		console.log('tableau vide');
-		resetAllVisibles();
+		setAllShown();
 	} else {
 		for (var a = 0; a < arrayOfArtists.length; a++) {
 			//loop trough  photographers
