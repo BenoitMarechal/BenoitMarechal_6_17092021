@@ -22,18 +22,6 @@ class Photographer {
 		this.clearedName = clearedName;
 	}
 
-	// create() {
-	// 	newArtist(
-	// 		elementsOfArticle,
-	// 		this.name,
-	// 		this.city,
-	// 		this.country,
-	// 		this.tagline,
-	// 		this.price,
-	// 		this.tags
-	// 	);
-	// }
-
 	createArticle() {
 		//let clearedName = removeSpacesInString(this.name);
 		for (let i = 0; i < elementsOfArticle.typeOfElement.length; i++) {
@@ -84,52 +72,31 @@ class Photographer {
 	}
 }
 
-// async function hideAllArtistsArticles() {
-// 	arrayOfArtists.forEach((artist) => {
-// 		artist.hide();
-// 	});
-// 	console.log('all hidden');
+// async function updateAllVisibilities(array) {
+// 	if (array.length === 0) {
+// 		console.log('tableau vide');
+// 		setAllShown();
+// 	} else {
+// 		for (var a = 0; a < arrayOfArtists.length; a++) {
+// 			//loop trough  photographers
+// 			console.log(arrayOfArtists[a].name);
+// 			arrayOfArtists[a].visible = false;
+// 			for (var b = 0; b < arrayOfArtists[a].tags.length; b++) {
+// 				//loop trough photographers's tags
+// 				console.log(arrayOfArtists[a].name + '  ' + arrayOfArtists[a].tags[b]);
+// 				for (var c = 0; c < array.length; c++) {
+// 					console.log('looking for   ' + array[c]);
+// 					////loop trough array (which will be activeTags)
+// 					if (arrayOfArtists[a].tags[b] === array[c]) {
+// 						console.log('match found');
+// 						arrayOfArtists[a].visible = true;
+// 						b = arrayOfArtists[a].tags.length; //breaks the loop so a photographer can't be diplayed twice
+// 					} else {
+// 						//arrayOfArtists[a].hide();
+// 						console.log('No match');
+// 					}
+// 				}
+// 			}
+// 		}
+// 	}
 // }
-
-async function setAllShown() {
-	arrayOfArtists.forEach((artist) => {
-		artist.visible = true;
-	});
-	hideOrShow();
-}
-
-async function setAllHidden() {
-	arrayOfArtists.forEach((artist) => {
-		artist.visible = false;
-	});
-	hideOrShow();
-}
-
-async function updateAllVisibilities(array) {
-	if (array.length === 0) {
-		console.log('tableau vide');
-		setAllShown();
-	} else {
-		for (var a = 0; a < arrayOfArtists.length; a++) {
-			//loop trough  photographers
-			console.log(arrayOfArtists[a].name);
-			arrayOfArtists[a].visible = false;
-			for (var b = 0; b < arrayOfArtists[a].tags.length; b++) {
-				//loop trough photographers's tags
-				console.log(arrayOfArtists[a].name + '  ' + arrayOfArtists[a].tags[b]);
-				for (var c = 0; c < array.length; c++) {
-					console.log('looking for   ' + array[c]);
-					////loop trough array (which will be activeTags)
-					if (arrayOfArtists[a].tags[b] === array[c]) {
-						console.log('match found');
-						arrayOfArtists[a].visible = true;
-						b = arrayOfArtists[a].tags.length; //breaks the loop so a photographer can't be diplayed twice
-					} else {
-						//arrayOfArtists[a].hide();
-						console.log('No match');
-					}
-				}
-			}
-		}
-	}
-}

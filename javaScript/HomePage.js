@@ -1,9 +1,9 @@
-//let dataFromJson = [];
+let dataFromJson = [];
 let navBar = document.getElementById('header__nav__ul');
 let arrayOfArtists = [];
-//let allNavBtn = [];
+let allNavBtn = [];
 let selected = [];
-// let everyTagArray = [];
+let everyTagArray = [];
 
 class HomePage {
 	constructor(photographers, tags, selected) {
@@ -59,7 +59,7 @@ class HomePage {
 		return everyTagArray;
 	}
 
-	async init() {
+	async initSelected() {
 		console.log('initialize selection');
 		//collect tags from photographers
 		for (var i = 0; i < this.tags.length; i++) {
@@ -140,17 +140,14 @@ class HomePage {
 	// }
 
 	async updateSelectionOnClick() {
-		//listends to click, manages button color, updates activeTags array, runs the array through article hide/show function
+		//listends to click in the nav bar, updates values of "selected", hides/showns articles
 		console.log('listening with filter');
 		let allNavBtn = document.querySelectorAll('#header__nav__ul button');
 		let homepage = this;
-		//let photographers = this.photographers;
-
-		//allArtistArticles = document.getElementsByClassName('photographer');
 		for (let i = 0; i < allNavBtn.length; i++) {
 			allNavBtn[i].addEventListener('click', function (e) {
 				let emptyBar = true;
-				let matches = 0;
+				//let matches = 0;
 				console.log('CLICK!');
 				homepage.setAllVisibleFalse();
 				selected[i] = changeBoolean(selected[i]);
@@ -176,19 +173,11 @@ class HomePage {
 									);
 									if (homepage.photographers[b].tags[c] === homepage.tags[a]) {
 										console.log('MATCH FOUND!!!');
-										matches++;
+										//matches++;
 										homepage.photographers[b].visible = true;
 										console.log('next photograpaher');
 										break;
 									}
-
-									// 	homepage.photographers[b].visible = true;
-									// 	c = homepage.photographers[b].tags.length;
-									// 	b = homepage.photographers.length;
-									// 	console.log('next artist');
-									// } else {
-									// 	homepage.photographers[b].visible = false;
-									// }
 								}
 							} else {
 								console.log('already selected');
@@ -201,12 +190,13 @@ class HomePage {
 				}
 				//console.log(emptyBar);
 				if (emptyBar === true) {
-					homepage.setAllVisibleTrue();
+					//case where 0 tags are selecteds
+					homepage.setAllVisibleTrue(); //all photographers become visible
 				}
 
-				homepage.hideOrShow();
-				console.log(matches + '  matches found');
-				//console.log(homepage);
+				homepage.hideOrShow(); //adapts visibility of all articles based on photographers "visible" value
+				//console.log(matches + '  matches found');
+				console.log(homepage);
 			});
 		}
 	}
@@ -217,10 +207,7 @@ class HomePage {
 	await homepage.extractData();
 	await homepage.getAllTags();
 	await homepage.getPhotographers();
-	await homepage.init();
+	await homepage.initSelected();
 	await homepage.writeAllArtistsArticles();
 	await homepage.updateSelectionOnClick();
-	//console.log(homepage.Photographers[2]);
-
-	//console.log(homepage);
 })();
