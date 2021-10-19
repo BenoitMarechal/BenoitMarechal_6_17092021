@@ -1,4 +1,27 @@
 ////////////////////UTILITARIES///////////////////////////////////////////////////
+function getPathFromName(name) {
+	name = replaceDashBySpaceInString(name);
+	console.log(name);
+	let array = [];
+	array = name.split(' ');
+	let folderTitle = array[0];
+	console.log(array);
+
+	if (array.length > 0) {
+		array.pop();
+		for (let i = 1; i < array.length; i++) {
+			removeSpacesInString(array[i]);
+			folderTitle = folderTitle + ' ' + array[i];
+		}
+	}
+	folderTitle = 'images/' + folderTitle;
+	console.log(folderTitle);
+	return folderTitle;
+}
+
+getPathFromName('Bob');
+getPathFromName('Jean mich dugenou');
+getPathFromName('Jean-Claude du genou');
 
 function changeBoolean(boolean) {
 	if (boolean === true) {
@@ -13,6 +36,13 @@ function removeSpacesInString(string) {
 	var reg = /[ ,-]/g;
 	return string.replace(reg, '');
 }
+
+function replaceDashBySpaceInString(string) {
+	var reg = /[-, ]/g;
+	return string.replace(reg, ' ');
+}
+
+console.log(replaceDashBySpaceInString('Jean-Jaques'));
 
 function generateTagButtons(tagsArray) {
 	let resultString = '';
