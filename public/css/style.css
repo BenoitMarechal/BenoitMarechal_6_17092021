@@ -78,6 +78,9 @@ button:hover {
   color: #fff;
 }
 
+.tag {
+  margin-right: 5px;
+}
 .tag--On {
   background: #901c1c;
   color: #fff;
