@@ -1,28 +1,3 @@
-// <header class="header">
-// 			<div id="content">
-// 				<a href="#" class="header__link">Passer au contenu</a>
-// 			</div>
-// 			<a class="header__logo" href="#"
-// 				>Fish<img
-// 					src="images/logo/logo.png"
-// 					alt="logo fisheye"
-// 					class="header__logo__img"
-// 				/>ye</a
-// 			>
-// 			<nav class="header__nav">
-// 				<ul class="header__nav__ul">
-// 					<li><button class="tag">#Portait</button></li>
-// 					<li><button class="tag">#Art</button></li>
-// 					<li><button class="tag">#Fashion</button></li>
-// 					<li><button class="tag">#Architecture</button></li>
-// 					<li><button class="tag">#Travel</button></li>
-// 					<li><button class="tag">#Sports</button></li>
-// 					<li><button class="tag">#Animals</button></li>
-// 					<li><button class="tag">#Events</button></li>
-// 				</ul>
-// 			</nav>
-// 		</header>
-
 .header {
 	display: flex;
 	justify-content: flex-start;
@@ -40,5 +15,9 @@
 			flex-direction: row;
 			border: 1px solid red;
 		}
+	}
+
+	&__gallery {
+		display: block;
 	}
 }

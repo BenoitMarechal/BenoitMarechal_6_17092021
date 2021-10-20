@@ -8,13 +8,15 @@
 			crossorigin="anonymous"
 		></script>
 
+		<!-- <link rel="stylesheet" href="public/css/style.css" /> -->
 		<link rel="stylesheet" href="public/css/style.css" />
+
 		<title>Fish Eye</title>
 	</head>
 	<body>
-		<header class="header">
-			<nav>
-				<a class="header__logo" href="index.html"
+		<header class="header__gallery">
+			<nav class="header__gallery__nav">
+				<a class="header__logo" href="index.html" alt="Fisheye home page"
 					>Fish<img
 						src="images/logo/logo.png"
 						alt="logo fisheye"
@@ -22,51 +24,176 @@
 					/>ye</a
 				>
 			</nav>
-			<nav class="header__nav">
-				<ul class="header__nav__ul" id="header__nav__ul">
-					<!-- <li><button class="tag">#Portait</button></li>
-					<li><button class="tag">#Art</button></li>
-					<li><button class="tag">#Fashion</button></li>
-					<li><button class="tag">#Architecture</button></li>
-					<li><button class="tag">#Travel</button></li>
-					<li><button class="tag">#Sports</button></li>
-					<li><button class="tag">#Animals</button></li>
-					<li><button class="tag">#Events</button></li> -->
-				</ul>
-			</nav>
+			<!-- <nav class="header__nav"></nav> -->
 		</header>
-		<main class="main" id="main">
-			<h1>Nos photographes</h1>
-			<!-- <article class="photographer">
-				<a href="" class="photographer__link">
-					<img
-						class="photographer__link__img"
-						src="images\Photographers ID Photos\MimiKeel.jpg"
-						alt=""
-					/>
-					<h2 class="photographer__link__name">Mimi Keel</h2>
-					<div class="photographer__link__location">
-						<p class="photographer__link__location__city">London</p>
-						<p class="photographer__link__location__country">, UK</p>
-					</div>
 
-					<p class="photographer__link__tagline">
+		<main class="gallery__main" id="gallery__MimiKeel">
+			<div class="gallery__main__presentation">
+				<div class="gallery__main__presentation__info">
+					<h1
+						class="
+							photographer__link__name
+							gallery__main__presentation__info__name
+						"
+					>
+						Mimi Keel
+					</h1>
+					<div
+						class="
+							photographer__link__location
+							gallery__main__presentation__info__location
+						"
+					>
+						<p
+							class="
+								photographer__link__location__city
+								gallery__main__presentation__info__location__city
+							"
+						>
+							London
+						</p>
+						<p
+							class="
+								photographer__link__location__country
+								gallery__main__presentation__info__location__country
+							"
+						>
+							, UK
+						</p>
+					</div>
+					<div
+						class="
+							photographer__link__tagline
+							gallery__main__presentation__info__tagline
+						"
+					>
 						Voir le beau dans le quotidien
-					</p>
-					<p class="photographer__link__price">400€/jour</p>
-					<ul class="photographer__link__tags">
+					</div>
+					<ul
+						class="
+							photographer__link__tags
+							gallery__main__presentation__info__tags
+						"
+					>
 						<li><button class="tag">#Portait</button></li>
 						<li><button class="tag">#Events</button></li>
 						<li><button class="tag">#Travel</button></li>
 						<li><button class="tag">#Animals</button></li>
 					</ul>
-				</a>
-			</article> -->
+				</div>
+				<button class="gallery__main__presentation__btn">Contactez-moi</button>
+				<!-- </div> -->
+
+				<img
+					class="photographer__link__img gallery__main__presentation__img"
+					src="images\Photographers ID Photos\MimiKeel.jpg"
+					alt=""
+				/>
+			</div>
+
+			<!-- <div class="filter">
+				<p class="filter__p">Trier par</p>
+				<div class="filter__combobox">
+					<div class="filter__combobox__option">Popularité</div>
+					<div class="filter__combobox__option">Date</div>
+					<div class="filter__combobox__option">Titre</div>
+				</div>
+			</div> -->
+
+			<label for="pet-select">Trier par:</label>
+
+			<select name="sortBy" id="filter">
+				<option value="Popularité">Popularité ^</option>
+				<option value="Date">Date</option>
+				<option value="Titre">Titre</option>
+			</select>
+
+			<div class="gallery">
+				<div class="gallery__container">
+					<img
+						src="images\Mimi\Animals_Rainbow.jpg"
+						alt="jkhg"
+						class="gallery__container__thumbnail"
+					/>
+				</div>
+
+				<div class="gallery__container">
+					<img
+						src="images\Mimi\Event_BenevidesWedding.jpg"
+						alt="jkhg"
+						class="gallery__container__thumbnail"
+					/>
+				</div>
+
+				<div class="gallery__container">
+					<img
+						src="images\Mimi\Event_PintoWedding.jpg"
+						alt="jkhg"
+						class="gallery__container__thumbnail"
+					/>
+				</div>
+
+				<div class="gallery__container">
+					<img
+						src="images\Mimi\Event_SeasideWedding.jpg"
+						alt="jkhg"
+						class="gallery__container__thumbnail"
+					/>
+				</div>
+
+				<div class="gallery__container">
+					<img
+						src="images\Mimi\Portrait_Background.jpg"
+						alt="jkhg"
+						class="gallery__container__thumbnail"
+					/>
+				</div>
+
+				<div class="gallery__container">
+					<img
+						src="images\Mimi\Animals_Rainbow.jpg"
+						alt="jkhg"
+						class="gallery__container__thumbnail"
+					/>
+				</div>
+
+				<div class="gallery__container">
+					<img
+						src="images\Mimi\Event_BenevidesWedding.jpg"
+						alt="jkhg"
+						class="gallery__container__thumbnail"
+					/>
+				</div>
+
+				<div class="gallery__container">
+					<img
+						src="images\Mimi\Event_PintoWedding.jpg"
+						alt="jkhg"
+						class="gallery__container__thumbnail"
+					/>
+				</div>
+
+				<div class="gallery__container">
+					<img
+						src="images\Mimi\Event_SeasideWedding.jpg"
+						alt="jkhg"
+						class="gallery__container__thumbnail"
+					/>
+				</div>
+
+				<div class="gallery__container">
+					<img
+						src="images\Mimi\Portrait_Background.jpg"
+						alt="jkhg"
+						class="gallery__container__thumbnail"
+					/>
+				</div>
+			</div>
 		</main>
 
 		<script src="javaScript/utilitaries.js"></script>
-		<script src="javaScript/Photographers.js"></script>
-		<script src="javaScript/HomePage.js"></script>
+		<!-- <script src="javaScript/Photographers.js"></script> -->
+		<!-- <script src="javaScript/HomePage.js"></script> -->
 		<script src="javaScript/Media.js"></script>
 	</body>
 </html>

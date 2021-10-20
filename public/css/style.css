@@ -43,12 +43,6 @@ li {
   list-style-type: none;
 }
 
-h5 {
-  width: 200px;
-  height: 200px;
-  background: blue;
-}
-
 .header {
   display: flex;
   justify-content: flex-start;
@@ -66,28 +60,8 @@ h5 {
   flex-direction: row;
   border: 1px solid red;
 }
-
-button {
-  border-radius: 11px;
-  border: 1px solid #901c1c;
-  color: #901c1c;
-  background: #fff;
-}
-button:hover {
-  background: #901c1c;
-  color: #fff;
-}
-
-.tag {
-  margin-right: 5px;
-}
-.tag--On {
-  background: #901c1c;
-  color: #fff;
-}
-.tag--Off {
-  color: #901c1c;
-  background: #fff;
+.header__gallery {
+  display: block;
 }
 
 .photographer {
@@ -124,6 +98,86 @@ button:hover {
 }
 .photographer__link__price {
   color: #525252;
+}
+
+.gallery__main {
+  display: block;
+}
+.gallery__main__presentation {
+  border: 1px solid red;
+  flex-direction: row;
+  display: flex;
+  justify-content: space-around;
+}
+.gallery__main__presentation__info {
+  border: 1px solid red;
+  display: flex;
+  flex-direction: column;
+}
+.gallery__main__presentation__info__name {
+  border: 1px solid red;
+  justify-content: flex-start;
+}
+.gallery__main__presentation__info__location {
+  border: 1px solid red;
+  flex-direction: row;
+}
+.gallery__main__presentation__info__location__city {
+  border: 1px solid red;
+}
+.gallery__main__presentation__info__location__country {
+  border: 1px solid red;
+}
+.gallery__main__presentation__info__tagline {
+  border: 1px solid red;
+}
+.gallery__main__presentation__info__tags {
+  border: 1px solid red;
+}
+
+.gallery {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  width: 100%;
+  height: 100%;
+  border: 1px solid blue;
+}
+.gallery__container {
+  margin: 15px;
+  display: flex;
+  height: 100%;
+  border: 1px solid green;
+}
+.gallery__container__thumbnail {
+  object-fit: cover;
+  width: 400px;
+  height: 400px;
+}
+
+button {
+  border-radius: 11px;
+  margin-right: 5px;
+  border: 1px solid #901c1c;
+  color: #901c1c;
+  background: #fff;
+}
+button:hover {
+  background: #901c1c;
+  color: #fff;
+}
+
+.tag--On {
+  background: #901c1c;
+  color: #fff;
+}
+.tag--Off {
+  color: #901c1c;
+  background: #fff;
+}
+
+.gallery__main__presentation__btn {
+  border-radius: 2px;
 }
 
 /*# sourceMappingURL=style.css.map */

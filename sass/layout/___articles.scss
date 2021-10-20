@@ -1,0 +1,41 @@
+.photographer {
+	width: 25%;
+	border: 1px solid blue;
+	margin: $margindefault;
+	padding: $margindefault;
+
+	&__link {
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+		//padding: $margindefault;
+
+		&__img {
+			object-fit: cover;
+			width: 300px;
+			height: 300px;
+			border-radius: 150px;
+		}
+		&__tags {
+			display: flex;
+			justify-content: center;
+		}
+		&__name {
+			color: $colour-primary;
+		}
+
+		&__location {
+			display: flex;
+			color: $colour-secondary;
+		}
+
+		&__tagline {
+			color: $colour-black;
+		}
+
+		&__price {
+			color: $colour-grey;
+		}
+	}
+}

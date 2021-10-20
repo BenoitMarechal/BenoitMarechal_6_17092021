@@ -1,5 +1,6 @@
 button {
 	border-radius: 11px;
+	margin-right: 5px;
 	border: 1px solid $colour-primary;
 	@include colorway-red-on-white;
 	&:hover {
@@ -8,7 +9,6 @@ button {
 }
 
 .tag {
-	margin-right: 5px;
 	&--On {
 		@include colorway-white-on-red;
 	}
@@ -17,4 +17,7 @@ button {
 		@include colorway-red-on-white;
 	}
 }
-// tag--Off
+
+.gallery__main__presentation__btn {
+	border-radius: 2px;
+}
