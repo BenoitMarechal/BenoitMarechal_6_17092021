@@ -1,5 +1,5 @@
 class Photographer {
-	constructor(name, id, city, country, tagline, price, tags, visible = true) {
+	constructor(name, id, city, country, tagline, price, tags) {
 		this.name = name;
 		this.id = id;
 		this.city = city;
@@ -7,7 +7,6 @@ class Photographer {
 		this.tagline = tagline;
 		this.price = price;
 		this.tags = tags;
-		this.visible = visible;
 	}
 
 	createArticle() {
@@ -51,13 +50,12 @@ class Photographer {
 	}
 	hideArticle() {
 		//hides article
-		let cible = document.getElementById('id' + this.id);
-		cible.style.display = 'none';
+		main.innerHTML = '<h1>Nos photographes</h1>';
 	}
 
-	showArticle() {
-		//showns article
-		let cible = document.getElementById('id' + this.id);
-		cible.style.display = 'block';
-	}
+	// showArticle() {
+	// 	//showns article
+	// 	let cible = document.getElementById('id' + this.id);
+	// 	cible.style.display = 'block';
+	// }
 }
