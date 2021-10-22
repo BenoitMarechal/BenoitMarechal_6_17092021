@@ -15,7 +15,7 @@ class HomePage {
 		console.log('extraction');
 		let rep = await fetch('./public/dataBase.json');
 		dataFromJson = await rep.json();
-		console.log(dataFromJson);
+		//console.log(dataFromJson);
 		dataFromJson.photographers.forEach((photographer) => {
 			let artist = new Photographer(
 				photographer.name,
@@ -50,15 +50,15 @@ class HomePage {
 		// return everyTagArray;
 	}
 
-	// async initSelected() {
-	// 	console.log('initialize selection');
-	// 	//collect tags from photographers
-	// 	for (var i = 0; i < this.tags.length; i++) {
-	// 		selected.push(false);
-	// 	}
-	// 	this.selected = selected;
-	// 	return selected;
-	// }
+	async initSelected() {
+		console.log('initialize selection');
+		//collect tags from photographers
+		for (var i = 0; i < this.tags.length; i++) {
+			selected.push(false);
+		}
+		this.selected = selected;
+		return selected;
+	}
 
 	async writeAllArtistsArticles() {
 		this.photographers.forEach((artist) => {
@@ -176,21 +176,62 @@ class HomePage {
 		console.log(allNavBtn);
 		let homepage = this;
 		let currentTag = '';
+		let emptySelection = true;
+		console.log('emptySelection  ' + emptySelection);
+
+		//essai
+		// for (let a = 0; a < allNavBtn.length; a++) {
+		// 	allNavBtn[a].addEventListener('click', function (e) {
+		// 		console.log('hello');
+		// 		selected[a] = changeBoolean(selected[a]);
+		// 		console.log(homepage.selected);
+		// 	});
+		// }
+
+		//essai
+
 		allNavBtn.forEach((btn) => {
 			btn.addEventListener('click', function (e) {
 				console.log('yo!');
-				//homepage.initSelected();
+				//	homepage.initSelected();
 				homepage.deleteAll();
+				console.log('emptySelection  ' + emptySelection);
+
+				if (
+					(currentTag === removeHasgTagInString(btn.innerText)) &
+					(emptySelection === false)
+				) {
+					btn.classList = 'tag--Off';
+					homepage.writeAllArtistsArticles();
+					emptySelection = true;
+					console.log('emptySelection  ' + emptySelection);
+					return;
+				}
 
 				currentTag = removeHasgTagInString(btn.innerText);
-				console.log(currentTag);
+				console.log('currentTag   ' + currentTag);
+				emptySelection = false;
+				console.log('emptySelection  ' + emptySelection);
+
 				for (let a = 0; a < homepage.photographers.length; a++) {
 					for (let b = 0; b < homepage.photographers[a].tags.length; b++) {
 						if (homepage.photographers[a].tags[b] === currentTag) {
-							console.log(homepage.photographers[a].name);
 							homepage.photographers[a].createArticle();
 							console.log('creation');
+							//break;
 						}
+						for (let b = 0; b < allNavBtn.length; b++) {
+							allNavBtn[b].classList = 'tag--Off';
+							if (
+								removeHasgTagInString(allNavBtn[b].innerText) === currentTag
+							) {
+								allNavBtn[b].classList = 'tag--On';
+							}
+
+							//if()
+						}
+
+						//btn.classList = 'tag--On';
 					}
 				}
 			});

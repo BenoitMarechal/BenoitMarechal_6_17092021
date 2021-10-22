@@ -7,6 +7,7 @@ class Photographer {
 		this.tagline = tagline;
 		this.price = price;
 		this.tags = tags;
+		//this.selected = selected;
 	}
 
 	createArticle() {

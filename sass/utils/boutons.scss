@@ -6,6 +6,9 @@ button {
 	&:hover {
 		@include colorway-white-on-red;
 	}
+	// &:focus {
+	// 	@include colorway-white-on-red;
+	// }
 }
 
 .tag {
