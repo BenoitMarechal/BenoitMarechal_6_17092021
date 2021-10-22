@@ -19,9 +19,9 @@ function getPathFromName(name) {
 	return folderTitle;
 }
 
-getPathFromName('Bob');
-getPathFromName('Jean mich dugenou');
-getPathFromName('Jean-Claude du genou');
+// getPathFromName('Bob');
+// getPathFromName('Jean mich dugenou');
+// getPathFromName('Jean-Claude du genou');
 
 function changeBoolean(boolean) {
 	if (boolean === true) {
@@ -30,6 +30,11 @@ function changeBoolean(boolean) {
 		boolean = true;
 	}
 	return boolean;
+}
+
+function removeHasgTagInString(string) {
+	var reg = /[#,-]/g;
+	return string.replace(reg, '');
 }
 
 function removeSpacesInString(string) {

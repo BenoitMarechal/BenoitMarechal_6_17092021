@@ -32,37 +32,37 @@ class Video extends Media {
 	}
 }
 
-let media1 = new Media(
-	'blah',
-	'blah',
-	'blah',
-	'blah',
-	'blah',
-	'jhg',
-	'50euros'
-);
-console.log(media1);
+// let media1 = new Media(
+// 	'blah',
+// 	'blah',
+// 	'blah',
+// 	'blah',
+// 	'blah',
+// 	'jhg',
+// 	'50euros'
+// );
+// console.log(media1);
 
-let image1 = new Photo(
-	'blah',
-	'blah',
-	'blah',
-	'blah',
-	'blah',
-	'jhg',
-	'50euros',
-	'image.jpg'
-);
-console.log(image1);
+// let image1 = new Photo(
+// 	'blah',
+// 	'blah',
+// 	'blah',
+// 	'blah',
+// 	'blah',
+// 	'jhg',
+// 	'50euros',
+// 	'image.jpg'
+// );
+// console.log(image1);
 
-let video1 = new Video(
-	'blah',
-	'blah',
-	'blah',
-	'blah',
-	'blah',
-	'jhg',
-	'50euros',
-	'video.mp4'
-);
-console.log(video1);
+// let video1 = new Video(
+// 	'blah',
+// 	'blah',
+// 	'blah',
+// 	'blah',
+// 	'blah',
+// 	'jhg',
+// 	'50euros',
+// 	'video.mp4'
+// );
+// console.log(video1);

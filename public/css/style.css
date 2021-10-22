@@ -146,6 +146,7 @@ li {
 .gallery__container {
   margin: 15px;
   display: flex;
+  flex-direction: column;
   height: 100%;
   border: 1px solid green;
 }
@@ -153,6 +154,19 @@ li {
   object-fit: cover;
   width: 400px;
   height: 400px;
+}
+.gallery__info {
+  color: #901c1c;
+  display: flex;
+  justify-content: space-between;
+  margin: 20px 15px 20px 15px;
+  font-size: 1.2rem;
+}
+.gallery__info__likes {
+  display: flex;
+}
+.gallery__info__likes__number {
+  margin-right: 5px;
 }
 
 button {

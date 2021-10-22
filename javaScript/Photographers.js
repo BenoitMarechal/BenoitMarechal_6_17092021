@@ -28,7 +28,8 @@ class Photographer {
 		} //EMPTY ARTICLE CREATED
 		let articleToFill = '';
 		articleToFill = document.getElementById('id' + this.id);
-		articleToFill.querySelector('.photographer__link').href = '';
+		articleToFill.querySelector('.photographer__link').href =
+			clearedName + '.html';
 		articleToFill.querySelector('.photographer__link__img').src =
 			'images/Photographers ID Photos/' + clearedName + '.jpg';
 		articleToFill.querySelector('.photographer__link__img').alt = this.name;

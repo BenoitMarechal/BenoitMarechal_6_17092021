@@ -63,6 +63,7 @@
 		margin: $marginH;
 		//height: 300px;
 		display: flex;
+		flex-direction: column;
 		height: 100%;
 		border: 1px solid green;
 
@@ -74,6 +75,36 @@
 			// width: 100%;
 			// height: 100%;
 			//	display: none;
+		}
+	}
+	// 	<div class="gallery__info">
+	// 	<div class="gallery__info__title">Ici, le titre</div>
+	// 	<div class="gallery__info__likes">
+	// 		<div class="gallery__info__likes__number">12</div>
+	// 		<div class="gallery__info__likes__heart">
+	// 			<i class="fas fa-heart"></i>
+	// 			<!-- <i class="far fa-heart"></i> -->
+	// 		</div>
+	// 	</div>
+	// </div>
+
+	&__info {
+		color: $colour-primary;
+		display: flex;
+		justify-content: space-between;
+		margin: $margindefault;
+		font-size: 1.2rem;
+
+		// &__title {
+		// }
+
+		&__likes {
+			display: flex;
+			&__number {
+				margin-right: 5px;
+			}
+			// &__heart {
+			// }
 		}
 	}
 }
