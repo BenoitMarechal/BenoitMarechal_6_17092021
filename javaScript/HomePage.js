@@ -1,14 +1,18 @@
 let dataFromJson = [];
-let navBar = document.getElementById('header__nav__ul');
-let arrayOfArtists = [];
-let allNavBtn = [];
-let selected = [];
+// let navBar = document.getElementById('header__nav__ul');
+// let arrayOfArtists = [];
+// let allNavBtn = [];
+// let selected = [];
 
 class HomePage {
-	constructor(photographers, tags, selected) {
+	constructor(
+		photographers,
+		tags
+		//selected
+	) {
 		this.photographers = [];
 		this.tags = [];
-		this.selected = [];
+		//this.selected = [];
 	}
 
 	async extractData() {
@@ -24,8 +28,8 @@ class HomePage {
 				photographer.country,
 				photographer.tagline,
 				photographer.price,
-				photographer.tags,
-				photographer.visible
+				photographer.tags
+				//photographer.visible
 				//photographer.clearedName //will be used to access to photo
 			);
 			this.photographers.push(artist);
@@ -34,6 +38,7 @@ class HomePage {
 	}
 
 	async getAllTags() {
+		let navBar = document.getElementById('header__nav__ul');
 		console.log('build tag nav bar');
 		//	let everyTagArray = [];
 		this.photographers.forEach((photographer) => {
@@ -44,166 +49,45 @@ class HomePage {
 		});
 		this.tags = [...new Set(this.tags)]; //delete all duplicates in list of every tags
 		//this.tags = everyTagArray;
-		navBar.innerHTML = generateTagButtons(this.tags); //fill navbar with tag buttons
-		//remplacer par appendChild
-
-		// return everyTagArray;
-	}
-
-	async initSelected() {
-		console.log('initialize selection');
-		//collect tags from photographers
-		for (var i = 0; i < this.tags.length; i++) {
-			selected.push(false);
-		}
-		this.selected = selected;
-		return selected;
+		navBar.innerHTML = generateTagButtons(this.tags); //fills navbar with tag buttons (function also used when building Artists Articles)
 	}
 
 	async writeAllArtistsArticles() {
 		this.photographers.forEach((artist) => {
 			artist.createArticle();
 		});
-		console.log('all created');
+		//console.log('all created');
 	}
 
-	async hideAllArtistArticles() {
-		this.photographers.forEach((artist) => {
-			artist.hideArticle();
-		});
-		console.log('all hidden');
-	}
-
-	// hideOrShow() {
-	// 	//reads photographers "visible" variable value and calls hide or show
-	// 	for (let i = 0; i < this.photographers.length; i++) {
-	// 		if (this.photographers[i].visible === true) {
-	// 			this.photographers[i].showArticle();
-	// 		} else {
-	// 			this.photographers[i].hideArticle();
-	// 		}
-	// 	}
-	// }
-
-	setAllVisibleTrue() {
-		this.photographers.forEach((photographer) => {
-			photographer.visible = true;
-		});
-		//hideOrShow();
-	}
-
-	setAllVisibleFalse() {
-		this.photographers.forEach((photographer) => {
-			photographer.visible = false;
-		});
-		//hideOrShow();
-	}
-
-	// async updateSelectionOnClick() {
-	// 	//A SIMPLIFIER
-	// 	//un seul tag à la fois
-	// 	//listends to click in the nav bar, updates values of "selected", hides/showns articles
-	// 	console.log('listening with filter');
-	// 	let allNavBtn = document.querySelectorAll('#header__nav__ul button');
-	// 	let homepage = this;
-	// 	for (let i = 0; i < allNavBtn.length; i++) {
-	// 		allNavBtn[i].addEventListener('click', function (e) {
-	// 			let emptyBar = true;
-	// 			//let matches = 0;
-	// 			console.log('CLICK!');
-	// 			homepage.setAllVisibleFalse();
-	// 			selected[i] = changeBoolean(selected[i]);
-	// 			this.selected = selected;
-
-	// 			for (let a = 0; a < homepage.selected.length; a++) {
-	// 				if (homepage.selected[a] === true) {
-	// 					emptyBar = false;
-	// 					//only looking for seletected tags
-	// 					allNavBtn[a].className = 'tag--On';
-	// 					//console.log('allumé');
-	// 					console.log('looking for ' + homepage.tags[a]);
-	// 					for (let b = 0; b < homepage.photographers.length; b++) {
-	// 						console.log(homepage.photographers[b].name);
-	// 						if (homepage.photographers[b].visible === false) {
-	// 							//only looking for unselected photograpahers
-	// 							for (
-	// 								let c = 0;
-	// 								c < homepage.photographers[b].tags.length;
-	// 								c++
-	// 							) {
-	// 								console.log(
-	// 									'scanning....    ' + homepage.photographers[b].tags[c]
-	// 								);
-	// 								if (homepage.photographers[b].tags[c] === homepage.tags[a]) {
-	// 									console.log('MATCH FOUND!!!');
-	// 									//matches++;
-	// 									homepage.photographers[b].visible = true;
-	// 									console.log('next photograpaher');
-	// 									break;
-	// 								}
-	// 							}
-	// 						} else {
-	// 							console.log('already selected');
-	// 						}
-	// 					}
-	// 				} else {
-	// 					//console.log('eteint');
-	// 					allNavBtn[a].className = 'tag--Off';
-	// 				}
-	// 			}
-	// 			//console.log(emptyBar);
-	// 			if (emptyBar === true) {
-	// 				//case where 0 tags are selecteds
-	// 				homepage.setAllVisibleTrue(); //all photographers become visible
-	// 			}
-
-	// 			homepage.hideOrShow(); //adapts visibility of all articles based on photographers "visible" value
-	// 			//console.log(matches + '  matches found');
-	// 			console.log(homepage);
-	// 		});
-	// 	}
-	// }
 	deleteAll() {
 		main.innerHTML = '<h1>Nos photographes</h1>';
 	}
 
 	async updateSelectionOnClick2() {
-		//A SIMPLIFIER
-		//un seul tag à la fois
-		//listends to click in the nav bar, updates values of "selected", hides/showns articles
 		console.log('listening2');
 		let allNavBtn = document.querySelectorAll('#header__nav__ul button');
-		console.log(allNavBtn);
-		let homepage = this;
-		let currentTag = '';
+
+		let homepage = this; //otherwise, "this" will refer to the buttons once inside the "foreach" loop
+		// let currentTag = '';
 		let emptySelection = true;
-		console.log('emptySelection  ' + emptySelection);
-
-		//essai
-		// for (let a = 0; a < allNavBtn.length; a++) {
-		// 	allNavBtn[a].addEventListener('click', function (e) {
-		// 		console.log('hello');
-		// 		selected[a] = changeBoolean(selected[a]);
-		// 		console.log(homepage.selected);
-		// 	});
-		// }
-
-		//essai
+		// console.log(allNavBtn);
+		// console.log('emptySelection  ' + emptySelection);
 
 		allNavBtn.forEach((btn) => {
+			let currentTag = ''; //will store the value of selected tag, empty at first
 			btn.addEventListener('click', function (e) {
-				console.log('yo!');
-				//	homepage.initSelected();
-				homepage.deleteAll();
-				console.log('emptySelection  ' + emptySelection);
+				//listens to click
+				homepage.deleteAll(); //deletes all articles
+				// console.log('emptySelection  ' + emptySelection);
 
 				if (
+					//if click happens on the same tag that was already selected at the previous click
 					(currentTag === removeHasgTagInString(btn.innerText)) &
-					(emptySelection === false)
+					(emptySelection === false) //a button button is selected
 				) {
-					btn.classList = 'tag--Off';
-					homepage.writeAllArtistsArticles();
-					emptySelection = true;
+					btn.classList = 'tag--Off'; //de-select tag button
+					homepage.writeAllArtistsArticles(); //display all artists
+					emptySelection = true; //state that no button is selected
 					console.log('emptySelection  ' + emptySelection);
 					return;
 				}
@@ -218,7 +102,7 @@ class HomePage {
 						if (homepage.photographers[a].tags[b] === currentTag) {
 							homepage.photographers[a].createArticle();
 							console.log('creation');
-							//break;
+							break;
 						}
 						for (let b = 0; b < allNavBtn.length; b++) {
 							allNavBtn[b].classList = 'tag--Off';
@@ -227,11 +111,7 @@ class HomePage {
 							) {
 								allNavBtn[b].classList = 'tag--On';
 							}
-
-							//if()
 						}
-
-						//btn.classList = 'tag--On';
 					}
 				}
 			});
@@ -243,8 +123,6 @@ class HomePage {
 	let homepage = new HomePage();
 	await homepage.extractData();
 	await homepage.getAllTags();
-	//await homepage.getPhotographers();
-	//await homepage.initSelected();
 	await homepage.writeAllArtistsArticles();
 	await homepage.updateSelectionOnClick2();
 })();
