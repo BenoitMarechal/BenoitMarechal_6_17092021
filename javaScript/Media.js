@@ -17,6 +17,10 @@ class Media {
 		this.likes = likes;
 		this.price = price;
 	}
+
+	display() {
+		//ici, function pour faire un article par media
+	}
 }
 
 class Photo extends Media {
