@@ -25,10 +25,11 @@ class Photographer {
 			let parent = byClass.item(byClass.length - 1); //declares last element of collection as parent
 			parent.appendChild(element);
 		} //EMPTY ARTICLE CREATED
-		let articleToFill = '';
-		articleToFill = document.getElementById('id' + this.id);
+		//let articleToFill = '';
+		let articleToFill = document.getElementById('id' + this.id);
 		articleToFill.querySelector('.photographer__link').href =
 			clearedName + '.html';
+
 		articleToFill.querySelector('.photographer__link__img').src =
 			'images/Photographers ID Photos/' + clearedName + '.jpg';
 		articleToFill.querySelector('.photographer__link__img').alt = this.name;
@@ -47,9 +48,5 @@ class Photographer {
 		articleToFill.querySelector('.photographer__link__tags').innerHTML =
 			generateTagButtons(this.tags); //ARTICLE COMPLETED
 		return articleToFill;
-	}
-	hideArticle() {
-		//hides article
-		main.innerHTML = '<h1>Nos photographes</h1>';
 	}
 }

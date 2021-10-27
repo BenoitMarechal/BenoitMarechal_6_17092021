@@ -18,7 +18,7 @@ class Media {
 		this.price = price;
 	}
 
-	display() {
+	createMediaArticle() {
 		//ici, function pour faire un article par media
 	}
 }
