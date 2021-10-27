@@ -7,9 +7,10 @@ class HomePage {
 	}
 
 	async extractData() {
-		console.log('extraction');
 		let rep = await fetch('./public/dataBase.json');
+
 		dataFromJson = await rep.json();
+		console.log(dataFromJson);
 		dataFromJson.photographers.forEach((photographer) => {
 			let artist = new Photographer(
 				photographer.name,
@@ -22,12 +23,12 @@ class HomePage {
 			);
 			this.photographers.push(artist);
 		});
-		console.log(this.photographers);
+		//console.log(this.photographers);
 	}
 
 	async getAllTags() {
 		let navBar = document.getElementById('header__nav__ul');
-		console.log('build tag nav bar');
+		//	console.log('build tag nav bar');
 		this.photographers.forEach((photographer) => {
 			//collect tags from photographers
 			for (var i = 0; i < photographer.tags.length; i++) {
@@ -101,11 +102,40 @@ class HomePage {
 			});
 		});
 	}
+
+	async getAllMedia() {
+		dataFromJson.media.forEach((media) => {
+			// new Media();
+			// medias.push(this);
+			//console.log(media);
+			media = new Media(
+				media.id,
+				media.photographerId,
+				media.title,
+				media.image,
+				media.video,
+				media.tags,
+				media.likes,
+				media.date,
+				media.price,
+				media.type
+			);
+
+			medias.push(media);
+		});
+		console.log(medias);
+		for (let a = 0; a < medias.length; a++) {
+			console.log(medias[a].title);
+			medias[a].defineType();
+		}
+		console.log(medias);
+	}
 }
 
 (async function launch() {
 	let homepage = new HomePage();
 	await homepage.extractData();
+	await homepage.getAllMedia();
 	await homepage.getAllTags();
 	await homepage.writeAllArtistsArticles();
 	await homepage.updateSelectionOnClick();

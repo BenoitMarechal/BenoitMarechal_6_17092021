@@ -47,8 +47,6 @@ function replaceDashBySpaceInString(string) {
 	return string.replace(reg, ' ');
 }
 
-console.log(replaceDashBySpaceInString('Jean-Jaques'));
-
 function generateTagButtons(tagsArray) {
 	let resultString = '';
 	let firstHalfOfString = '<li><button class="tag">#';
