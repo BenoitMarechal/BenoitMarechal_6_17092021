@@ -1,9 +1,10 @@
 let dataFromJson = [];
 
 class HomePage {
-	constructor(photographers, tags) {
+	constructor(photographers, tags, media) {
 		this.photographers = [];
 		this.tags = [];
+		this.media = [];
 	}
 
 	async extractData() {
@@ -108,6 +109,7 @@ class HomePage {
 			// new Media();
 			// medias.push(this);
 			//console.log(media);
+
 			media = new Media(
 				media.id,
 				media.photographerId,
@@ -117,18 +119,18 @@ class HomePage {
 				media.tags,
 				media.likes,
 				media.date,
-				media.price,
-				media.type
+				media.price
+				//media.type
 			);
 
-			medias.push(media);
+			this.media.push(media);
 		});
-		console.log(medias);
-		for (let a = 0; a < medias.length; a++) {
-			console.log(medias[a].title);
-			medias[a].defineType();
+		console.log(this.media);
+		for (let a = 0; a < this.media.length; a++) {
+			//console.log(this.media[a].title);
+			this.media[a] = await this.media[a].defineType();
 		}
-		console.log(medias);
+		console.log(this.media);
 	}
 }
 
@@ -139,4 +141,5 @@ class HomePage {
 	await homepage.getAllTags();
 	await homepage.writeAllArtistsArticles();
 	await homepage.updateSelectionOnClick();
+	console.log(homepage);
 })();
