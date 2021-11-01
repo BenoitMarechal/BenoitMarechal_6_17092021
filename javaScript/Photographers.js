@@ -9,18 +9,20 @@ class Photographer {
 		this.tags = tags;
 	}
 
-	createArticle() {
+	createArtistArticle() {
 		let clearedName = removeSpacesInString(this.name);
-		for (let i = 0; i < elementsOfArticle.typeOfElement.length; i++) {
-			let element = document.createElement(elementsOfArticle.typeOfElement[i]);
-			element.classList.add(elementsOfArticle.classOfElement[i]);
+		for (let i = 0; i < elementsOfArtistArticle.typeOfElement.length; i++) {
+			let element = document.createElement(
+				elementsOfArtistArticle.typeOfElement[i]
+			);
+			element.classList.add(elementsOfArtistArticle.classOfElement[i]);
 			let tour = i; //assigns photg name as article ID
 			if (tour === 0) {
 				// element.id = this.clearedName;
 				element.id = 'id' + this.id;
 			}
 			let byClass = document.getElementsByClassName(
-				elementsOfArticle.parentOfElement[i]
+				elementsOfArtistArticle.parentOfElement[i]
 			);
 			let parent = byClass.item(byClass.length - 1); //declares last element of collection as parent
 			parent.appendChild(element);

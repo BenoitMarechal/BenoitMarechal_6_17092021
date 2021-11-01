@@ -43,7 +43,7 @@ class HomePage {
 	// displays all artists
 	async writeAllArtistsArticles() {
 		this.photographers.forEach((artist) => {
-			artist.createArticle();
+			artist.createArtistArticle();
 		});
 	}
 
@@ -85,7 +85,7 @@ class HomePage {
 						//looop through photographers' tags
 						if (homepage.photographers[a].tags[b] === currentTag) {
 							//if tag matches selection
-							homepage.photographers[a].createArticle(); //display artist
+							homepage.photographers[a].createArtistArticle(); //display artist
 							break; //stop looping through their tags and move on to next artist
 						}
 						//management of ON/OFF state of btns
@@ -106,10 +106,6 @@ class HomePage {
 
 	async getAllMedia() {
 		dataFromJson.media.forEach((media) => {
-			// new Media();
-			// medias.push(this);
-			//console.log(media);
-
 			media = new Media(
 				media.id,
 				media.photographerId,
@@ -120,12 +116,11 @@ class HomePage {
 				media.likes,
 				media.date,
 				media.price
-				//media.type
 			);
-
+			console.log(media); //correct
 			this.media.push(media);
 		});
-		console.log(this.media);
+		// console.log(this.media);
 		for (let a = 0; a < this.media.length; a++) {
 			//console.log(this.media[a].title);
 			this.media[a] = await this.media[a].defineType();
@@ -141,5 +136,8 @@ class HomePage {
 	await homepage.getAllTags();
 	await homepage.writeAllArtistsArticles();
 	await homepage.updateSelectionOnClick();
+
+	//await homepage.media[2].createMediaArticle2();
 	console.log(homepage);
+	console.log(homepage.media[2]);
 })();
