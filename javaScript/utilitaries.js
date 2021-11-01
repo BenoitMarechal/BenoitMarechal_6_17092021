@@ -9,6 +9,10 @@ function changeBoolean(boolean) {
 	return boolean;
 }
 
+// function lowercase(string) {
+
+// }
+
 function removeHasgTagInString(string) {
 	var reg = /[#,-]/g;
 	return string.replace(reg, '');
