@@ -136,5 +136,5 @@ class HomePage {
 	await homepage.getAllTags();
 	await homepage.writeAllArtistsArticles();
 	await homepage.updateSelectionOnClick();
-	await homepage.media[2].createMediaArticle2();
+	// await homepage.media[2].createMediaArticle2();
 })();
