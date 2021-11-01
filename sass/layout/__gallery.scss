@@ -76,6 +76,26 @@
 			// height: 100%;
 			//	display: none;
 		}
+
+		&__info {
+			color: $colour-primary;
+			display: flex;
+			justify-content: space-between;
+			margin: $margindefault;
+			font-size: 1.2rem;
+
+			// &__title {
+			// }
+
+			&__likes {
+				display: flex;
+				&__number {
+					margin-right: 5px;
+				}
+				// &__heart {
+				// }
+			}
+		}
 	}
 	// 	<div class="gallery__info">
 	// 	<div class="gallery__info__title">Ici, le titre</div>
@@ -87,24 +107,4 @@
 	// 		</div>
 	// 	</div>
 	// </div>
-
-	&__info {
-		color: $colour-primary;
-		display: flex;
-		justify-content: space-between;
-		margin: $margindefault;
-		font-size: 1.2rem;
-
-		// &__title {
-		// }
-
-		&__likes {
-			display: flex;
-			&__number {
-				margin-right: 5px;
-			}
-			// &__heart {
-			// }
-		}
-	}
 }

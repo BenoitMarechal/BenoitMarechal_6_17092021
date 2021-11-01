@@ -1,12 +1,3 @@
-// "id": 8520927,
-// 			"photographerId": 82,
-// 			"title": "Fashion Urban Jungle",
-// 			"image": "Fashion_Urban_Jungle.jpg",
-// 			"tags": ["fashion"],
-// 			"likes": 11,
-// 			"date": "2011-11-06",
-// 			"price": 55
-
 class Media {
 	constructor(
 		id,
@@ -31,12 +22,12 @@ class Media {
 	}
 
 	async defineType() {
-		console.log('check type of  ');
+		//console.log('check type of  ');
 		let newObject = {};
 		// console.log(this.image);
 		// console.log(this.video);
 		if (this.image !== undefined) {
-			console.log(this.title + ' is an image');
+			//console.log(this.title + ' is an image');
 			//this.type = 'photo';
 			newObject = new Photo(
 				this.id,
@@ -49,10 +40,10 @@ class Media {
 				this.date,
 				this.price
 			);
-			console.log(newObject);
+			//console.log(newObject);
 		}
 		if (this.video !== undefined) {
-			console.log(this.title + ' is a video');
+			//	console.log(this.title + ' is a video');
 			//this.type = 'video';
 			newObject = new Video(
 				this.id,
@@ -69,12 +60,43 @@ class Media {
 		}
 		return newObject;
 	}
+
+	getPath() {
+		//console.log('getPath ' + this.title);
+		//	console.log(this.photographerId);
+		for (let i = 0; i < dataFromJson.photographers.length; i++) {
+			if (dataFromJson.photographers[i].id == this.photographerId) {
+				let name = replaceDashBySpaceInString(
+					dataFromJson.photographers[i].name
+				);
+				//console.log('name  ' + name);
+				let array = [];
+				array = name.split(' ');
+				let path = array[0];
+				//	console.log(array);
+
+				if (array.length > 0) {
+					array.pop();
+					for (let i = 1; i < array.length; i++) {
+						removeSpacesInString(array[i]);
+						path = path + ' ' + array[i];
+					}
+				}
+				path = 'images/' + path + '/' + this.image;
+				//	console.log(folderTitle);
+				return path;
+			}
+		}
+	}
+
 	async createMediaArticle2() {
+		this.getPath();
 		for (let i = 0; i < elementsOfMediaArticle.typeOfElement.length; i++) {
 			let element = document.createElement(
 				elementsOfMediaArticle.typeOfElement[i]
 			);
 			element.classList.add(elementsOfMediaArticle.classOfElement[i]);
+			//	console.log(element);
 			let tour = i; //assigns media ID as article ID
 			if (tour === 0) {
 				// element.id = this.clearedName;
@@ -84,51 +106,30 @@ class Media {
 				elementsOfMediaArticle.parentOfElement[i]
 			);
 			let parent = byClass.item(byClass.length - 1); //declares last element of collection as parent
+			//	console.log('parent  ' + parent);
+			//	console.log('element   ' + element);
+
 			parent.appendChild(element);
 		} //EMPTY ARTICLE CREATED
-		//let articleToFill = '';
-		let articleToFill = document.getElementById('id' + this.id);
-		console.log(articleToFill);
-		// 	articleToFill.querySelector('.photographer__link').href =
-		// 		clearedName + '.html';
+		let articleToFill = '';
+		articleToFill = document.getElementById('id' + this.id);
+		//	console.log(articleToFill);
+		//	console.log(this.photographerId);
 
-		// 	articleToFill.querySelector('.photographer__link__img').src =
-		// 		'images/Photographers ID Photos/' + clearedName + '.jpg';
-		// 	articleToFill.querySelector('.photographer__link__img').alt = this.name;
-		// 	articleToFill.querySelector('.photographer__link__name').innerText =
-		// 		this.name;
-		// 	articleToFill.querySelector('.photographer__link__location__city').innerText =
-		// 		this.city + ', ';
-		// 	articleToFill.querySelector(
-		// 		'.photographer__link__location__country'
-		// 	).innerText = this.country;
-		// 	articleToFill.querySelector('.photographer__link__tagline').innerText =
-		// 		this.tagline;
-		// 	articleToFill.querySelector('.photographer__link__price').innerText =
-		// 		this.price + ' €/jour';
-		// 	articleToFill.querySelector('.photographer__link__tags').innerHTML =
-		// 		generateTagButtons(this.tags); //ARTICLE COMPLETED
-		// 	return articleToFill;
+		articleToFill.querySelector('.gallery__container__thumbnail').src =
+			this.getPath();
+		articleToFill.querySelector('.gallery__container__thumbnail').alt =
+			this.title;
+		articleToFill.querySelector('.gallery__container__info__title').innerText =
+			this.title;
+		articleToFill.querySelector(
+			'.gallery__container__info__likes__number'
+		).innerText = this.likes;
+		articleToFill.querySelector(
+			'.gallery__container__info__likes__heart'
+		).innerHTML = '<i class="fas fa-heart"></i>';
 	}
 }
-
-// <article class="gallery__container">
-// 				<img
-// 					src="images\Mimi\Animals_Rainbow.jpg"
-// 					alt="jkhg"
-// 					class="gallery__container__thumbnail"
-// 				/>
-// 				<div class="gallery__info">
-// 					<div class="gallery__info__title">Ici, le titre</div>
-// 					<div class="gallery__info__likes">
-// 						<div class="gallery__info__likes__number">12</div>
-// 						<div class="gallery__info__likes__heart">
-// 							<i class="fas fa-heart"></i>
-// 							<!-- <i class="far fa-heart"></i> -->
-// 						</div>
-// 					</div>
-// 				</div>
-// </article>
 
 class Photo extends Media {
 	constructor(
@@ -165,50 +166,24 @@ class Video extends Media {
 	generateThumbNail() {}
 }
 
-function createMediaArticle() {
-	//Creating elements
-
-	let gallery__container = document.createElement('article');
-	gallery__container.classList.add('gallery__container');
-	let gallery__container__thumbnail = document.createElement('img');
-	let galery__info = document.createElement('div');
-	let gallery__info__title = document.createElement('div');
-	let gallery__info__likes = document.createElement('div');
-	let gallery__info__likes__number = document.createElement('div');
-	let gallery__info__likes__heart = document.createElement('div');
-
-	let array = [
-		gallery__container,
-		gallery__container__thumbnail,
-		galery__info,
-		gallery__info__title,
-		gallery__info__likes,
-		gallery__info__likes__number,
-		gallery__info__likes__heart,
-	];
-	console.log(array[0]);
-}
-
-//createMediaArticle();
-
 let elementsOfMediaArticle = {
 	typeOfElement: ['article', 'img', 'div', 'div', 'div', 'div', 'div'],
 	classOfElement: [
 		'gallery__container',
 		'gallery__container__thumbnail',
-		'gallery__info',
-		'gallery__info__title',
-		'gallery__info__likes',
-		'gallery__info__likes__number',
-		'gallery__info__likes__heart',
+		'gallery__container__info',
+		'gallery__container__info__title',
+		'gallery__container__info__likes',
+		'gallery__container__info__likes__number',
+		'gallery__container__info__likes__heart',
 	],
 	parentOfElement: [
 		'gallery',
 		'gallery__container',
-		'gallery',
-		'gallery__info',
-		'gallery__info',
-		'gallery__info',
-		'gallery__info',
+		'gallery__container',
+		'gallery__container__info',
+		'gallery__container__info',
+		'gallery__container__info',
+		'gallery__container__info',
 	],
 };

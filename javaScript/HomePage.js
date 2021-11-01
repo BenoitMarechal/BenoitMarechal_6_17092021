@@ -117,7 +117,7 @@ class HomePage {
 				media.date,
 				media.price
 			);
-			console.log(media); //correct
+			//	console.log(media); //correct
 			this.media.push(media);
 		});
 		// console.log(this.media);
@@ -136,8 +136,5 @@ class HomePage {
 	await homepage.getAllTags();
 	await homepage.writeAllArtistsArticles();
 	await homepage.updateSelectionOnClick();
-
-	//await homepage.media[2].createMediaArticle2();
-	console.log(homepage);
-	console.log(homepage.media[2]);
+	await homepage.media[2].createMediaArticle2();
 })();
