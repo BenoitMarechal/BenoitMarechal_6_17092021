@@ -82,7 +82,11 @@ class Media {
 						path = path + ' ' + array[i];
 					}
 				}
-				path = 'images/' + path + '/' + this.image;
+				if (this.image !== undefined) {
+					path = 'images/' + path + '/' + this.image;
+				} else {
+					path = 'images/' + path + '/' + this.video;
+				}
 				//	console.log(folderTitle);
 				return path;
 			}
@@ -90,7 +94,7 @@ class Media {
 	}
 
 	async createMediaArticle2() {
-		this.getPath();
+		//this.getPath();
 		for (let i = 0; i < elementsOfMediaArticle.typeOfElement.length; i++) {
 			let element = document.createElement(
 				elementsOfMediaArticle.typeOfElement[i]
@@ -115,13 +119,32 @@ class Media {
 		articleToFill = document.getElementById('id' + this.id);
 		//	console.log(articleToFill);
 		//	console.log(this.photographerId);
+		if (this.image !== undefined) {
+			console.log('image');
+			articleToFill.querySelector(
+				'.gallery__main__gallery__container__thumbnail'
+			).src = this.getPath();
+			articleToFill.querySelector(
+				'.gallery__main__gallery__container__thumbnail'
+			).alt = this.title;
+		} else {
+			console.log('video');
+			let target = articleToFill.querySelector(
+				'.gallery__main__gallery__container__thumbnail'
+			);
+			let newElement = document.createElement('video');
+			newElement.classList.add('gallery__main__gallery__container__thumbnail');
+			newElement.src = this.getPath();
+			newElement.setAttribute('controls', 'controls');
+			let parentDiv = target.parentNode;
+			console.log(target);
+			console.log(newElement);
+			console.log(parentDiv);
+			//"photographer__link__img gallery__main__presentation__img"
+			// Remplacer le noeud existant sp2 par le nouvel élément span sp1
+			parentDiv.replaceChild(newElement, target);
+		}
 
-		articleToFill.querySelector(
-			'.gallery__main__gallery__container__thumbnail'
-		).src = this.getPath();
-		articleToFill.querySelector(
-			'.gallery__main__gallery__container__thumbnail'
-		).alt = this.title;
 		articleToFill.querySelector(
 			'.gallery__main__gallery__container__info__title'
 		).innerText = this.title;
