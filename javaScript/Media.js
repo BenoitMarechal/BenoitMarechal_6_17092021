@@ -165,25 +165,3 @@ class Video extends Media {
 	}
 	generateThumbNail() {}
 }
-
-let elementsOfMediaArticle = {
-	typeOfElement: ['article', 'img', 'div', 'div', 'div', 'div', 'div'],
-	classOfElement: [
-		'gallery__container',
-		'gallery__container__thumbnail',
-		'gallery__container__info',
-		'gallery__container__info__title',
-		'gallery__container__info__likes',
-		'gallery__container__info__likes__number',
-		'gallery__container__info__likes__heart',
-	],
-	parentOfElement: [
-		'gallery',
-		'gallery__container',
-		'gallery__container',
-		'gallery__container__info',
-		'gallery__container__info',
-		'gallery__container__info',
-		'gallery__container__info',
-	],
-};

@@ -134,7 +134,6 @@ li {
 .gallery__main__presentation__info__tags {
   border: 1px solid red;
 }
-
 .gallery {
   display: flex;
   flex-wrap: wrap;

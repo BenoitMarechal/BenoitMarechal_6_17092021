@@ -30,7 +30,8 @@ class Photographer {
 		//let articleToFill = '';
 		let articleToFill = document.getElementById('id' + this.id);
 		articleToFill.querySelector('.photographer__link').href =
-			clearedName.toLowerCase() + '.html';
+			//clearedName.toLowerCase() +
+			'gallery.html' + '?id=' + this.id;
 
 		articleToFill.querySelector('.photographer__link__img').src =
 			'images/Photographers ID Photos/' + clearedName + '.jpg';
