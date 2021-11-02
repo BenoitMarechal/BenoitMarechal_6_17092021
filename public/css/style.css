@@ -134,7 +134,7 @@ li {
 .gallery__main__presentation__info__tags {
   border: 1px solid red;
 }
-.gallery {
+.gallery__main__gallery {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
@@ -142,29 +142,29 @@ li {
   height: 100%;
   border: 1px solid blue;
 }
-.gallery__container {
+.gallery__main__gallery__container {
   margin: 15px;
   display: flex;
   flex-direction: column;
   height: 100%;
   border: 1px solid green;
 }
-.gallery__container__thumbnail {
+.gallery__main__gallery__container__thumbnail {
   object-fit: cover;
   width: 400px;
   height: 400px;
 }
-.gallery__container__info {
+.gallery__main__gallery__container__info {
   color: #901c1c;
   display: flex;
   justify-content: space-between;
   margin: 20px 15px 20px 15px;
   font-size: 1.2rem;
 }
-.gallery__container__info__likes {
+.gallery__main__gallery__container__info__likes {
   display: flex;
 }
-.gallery__container__info__likes__number {
+.gallery__main__gallery__container__info__likes__number {
   margin-right: 5px;
 }
 

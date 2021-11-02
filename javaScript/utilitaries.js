@@ -9,10 +9,6 @@ function changeBoolean(boolean) {
 	return boolean;
 }
 
-// function lowercase(string) {
-
-// }
-
 function removeHasgTagInString(string) {
 	var reg = /[#,-]/g;
 	return string.replace(reg, '');
@@ -73,22 +69,22 @@ let elementsOfArtistArticle = {
 let elementsOfMediaArticle = {
 	typeOfElement: ['article', 'img', 'div', 'div', 'div', 'div', 'div'],
 	classOfElement: [
-		'gallery__container',
-		'gallery__container__thumbnail',
-		'gallery__container__info',
-		'gallery__container__info__title',
-		'gallery__container__info__likes',
-		'gallery__container__info__likes__number',
-		'gallery__container__info__likes__heart',
+		'gallery__main__gallery__container',
+		'gallery__main__gallery__container__thumbnail',
+		'gallery__main__gallery__container__info',
+		'gallery__main__gallery__container__info__title',
+		'gallery__main__gallery__container__info__likes',
+		'gallery__main__gallery__container__info__likes__number',
+		'gallery__main__gallery__container__info__likes__heart',
 	],
 	parentOfElement: [
 		'gallery__main__gallery',
-		'gallery__container',
-		'gallery__container',
-		'gallery__container__info',
-		'gallery__container__info',
-		'gallery__container__info',
-		'gallery__container__info',
+		'gallery__main__gallery__container',
+		'gallery__main__gallery__container',
+		'gallery__main__gallery__container__info',
+		'gallery__main__gallery__container__info',
+		'gallery__main__gallery__container__info',
+		'gallery__main__gallery__container__info',
 	],
 };
 
@@ -146,69 +142,6 @@ let elementsOfGalleryPresentation = {
 		'gallery__main__presentation',
 	],
 };
-
-/* <div class="gallery__main__presentation">
-				<div class="gallery__main__presentation__info">
-					<h1
-						class="
-							photographer__link__name
-							gallery__main__presentation__info__name
-						"
-					>
-						Mimi Keel
-					</h1>
-					<div
-						class="
-							photographer__link__location
-							gallery__main__presentation__info__location
-						"
-					>
-						<p
-							class="
-								photographer__link__location__city
-								gallery__main__presentation__info__location__city
-							"
-						>
-							London
-						</p>
-						<p
-							class="
-								photographer__link__location__country
-								gallery__main__presentation__info__location__country
-							"
-						>
-							, UK
-						</p>
-					</div>
-					<div
-						class="
-							photographer__link__tagline
-							gallery__main__presentation__info__tagline
-						"
-					>
-						Voir le beau dans le quotidien
-					</div>
-					<ul
-						class="
-							photographer__link__tags
-							gallery__main__presentation__info__tags
-						"
-					>
-						<li><button class="tag">#Portait</button></li>
-						<li><button class="tag">#Events</button></li>
-						<li><button class="tag">#Travel</button></li>
-						<li><button class="tag">#Animals</button></li>
-					</ul>
-				</div>
-				<button class="gallery__main__presentation__btn">Contactez-moi</button>
-				<!-- </div> -->
-
-				<img
-					class="photographer__link__img gallery__main__presentation__img"
-					src="images\Photographers ID Photos\MimiKeel.jpg"
-					alt=""
-				/>
-			</div> */
 
 //////////////////////////////CREATING MEDIA ARTICLES///////////////////
 

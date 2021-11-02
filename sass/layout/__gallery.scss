@@ -38,76 +38,84 @@
 	}
 
 	&__gallery {
-	}
-}
-
-//--------------------------------------------------------------------------
-// <div class="gallery">
-// 				<div class="gallery__container">
-// 					<img
-// 						src="images\Mimi\Animals_Rainbow.jpg"
-// 						alt="jkhg"
-// 						class="gallery__container__thumbnail"
-// 					/>
-// 				</div>
-// 			</div>
-
-.gallery {
-	display: flex;
-	flex-wrap: wrap;
-	justify-content: space-around;
-
-	width: 100%;
-	height: 100%;
-	border: 1px solid blue;
-	&__container {
-		// width: $gallery_container_dim;
-		// height: $gallery_container_dim;
-		margin: $marginH;
-		//height: 300px;
 		display: flex;
-		flex-direction: column;
+		flex-wrap: wrap;
+		justify-content: space-around;
+
+		width: 100%;
 		height: 100%;
-		border: 1px solid green;
+		border: 1px solid blue;
 
-		&__thumbnail {
-			//display: flex;
-			object-fit: cover;
-			width: $gallery_container_dim;
-			height: $gallery_container_dim;
-			// width: 100%;
-			// height: 100%;
-			//	display: none;
-		}
-
-		&__info {
-			color: $colour-primary;
+		&__container {
+			// width: $gallery_container_dim;
+			// height: $gallery_container_dim;
+			margin: $marginH;
+			//height: 300px;
 			display: flex;
-			justify-content: space-between;
-			margin: $margindefault;
-			font-size: 1.2rem;
+			flex-direction: column;
+			height: 100%;
+			border: 1px solid green;
 
-			// &__title {
-			// }
+			&__thumbnail {
+				//display: flex;
+				object-fit: cover;
+				width: $gallery_container_dim;
+				height: $gallery_container_dim;
+				// width: 100%;
+				// height: 100%;
+				//	display: none;
+			}
 
-			&__likes {
+			&__info {
+				color: $colour-primary;
 				display: flex;
-				&__number {
-					margin-right: 5px;
-				}
-				// &__heart {
+				justify-content: space-between;
+				margin: $margindefault;
+				font-size: 1.2rem;
+
+				// &__title {
 				// }
+
+				&__likes {
+					display: flex;
+					&__number {
+						margin-right: 5px;
+					}
+					// &__heart {
+					// }
+				}
 			}
 		}
 	}
-	// 	<div class="gallery__info">
-	// 	<div class="gallery__info__title">Ici, le titre</div>
-	// 	<div class="gallery__info__likes">
-	// 		<div class="gallery__info__likes__number">12</div>
-	// 		<div class="gallery__info__likes__heart">
-	// 			<i class="fas fa-heart"></i>
-	// 			<!-- <i class="far fa-heart"></i> -->
-	// 		</div>
-	// 	</div>
-	// </div>
+
+	//--------------------------------------------------------------------------
+	// <div class="gallery">
+	// 				<div class="gallery__container">
+	// 					<img
+	// 						src="images\Mimi\Animals_Rainbow.jpg"
+	// 						alt="jkhg"
+	// 						class="gallery__container__thumbnail"
+	// 					/>
+	// 				</div>
+	// 			</div>
 }
+
+// .gallery {
+// 	display: flex;
+// 	flex-wrap: wrap;
+// 	justify-content: space-around;
+
+// 	width: 100%;
+// 	height: 100%;
+// 	border: 1px solid blue;
+// }
+// 	<div class="gallery__info">
+// 	<div class="gallery__info__title">Ici, le titre</div>
+// 	<div class="gallery__info__likes">
+// 		<div class="gallery__info__likes__number">12</div>
+// 		<div class="gallery__info__likes__heart">
+// 			<i class="fas fa-heart"></i>
+// 			<!-- <i class="far fa-heart"></i> -->
+// 		</div>
+// 	</div>
+// </div>

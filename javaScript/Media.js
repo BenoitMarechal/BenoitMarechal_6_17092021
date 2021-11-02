@@ -116,17 +116,20 @@ class Media {
 		//	console.log(articleToFill);
 		//	console.log(this.photographerId);
 
-		articleToFill.querySelector('.gallery__container__thumbnail').src =
-			this.getPath();
-		articleToFill.querySelector('.gallery__container__thumbnail').alt =
-			this.title;
-		articleToFill.querySelector('.gallery__container__info__title').innerText =
-			this.title;
 		articleToFill.querySelector(
-			'.gallery__container__info__likes__number'
+			'.gallery__main__gallery__container__thumbnail'
+		).src = this.getPath();
+		articleToFill.querySelector(
+			'.gallery__main__gallery__container__thumbnail'
+		).alt = this.title;
+		articleToFill.querySelector(
+			'.gallery__main__gallery__container__info__title'
+		).innerText = this.title;
+		articleToFill.querySelector(
+			'.gallery__main__gallery__container__info__likes__number'
 		).innerText = this.likes;
 		articleToFill.querySelector(
-			'.gallery__container__info__likes__heart'
+			'.gallery__main__gallery__container__info__likes__heart'
 		).innerHTML = '<i class="fas fa-heart"></i>';
 	}
 }
