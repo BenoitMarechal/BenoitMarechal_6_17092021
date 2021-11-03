@@ -120,7 +120,7 @@ class Media {
 		//	console.log(articleToFill);
 		//	console.log(this.photographerId);
 		if (this.image !== undefined) {
-			console.log('image');
+			//console.log('image');
 			articleToFill.querySelector(
 				'.gallery__main__gallery__container__thumbnail'
 			).src = this.getPath();
@@ -128,7 +128,7 @@ class Media {
 				'.gallery__main__gallery__container__thumbnail'
 			).alt = this.title;
 		} else {
-			console.log('video');
+			//console.log('video');
 			let target = articleToFill.querySelector(
 				'.gallery__main__gallery__container__thumbnail'
 			);
@@ -137,9 +137,9 @@ class Media {
 			newElement.src = this.getPath();
 			newElement.setAttribute('controls', 'controls');
 			let parentDiv = target.parentNode;
-			console.log(target);
-			console.log(newElement);
-			console.log(parentDiv);
+			// console.log(target);
+			// console.log(newElement);
+			// console.log(parentDiv);
 			//"photographer__link__img gallery__main__presentation__img"
 			// Remplacer le noeud existant sp2 par le nouvel élément span sp1
 			parentDiv.replaceChild(newElement, target);
@@ -147,7 +147,7 @@ class Media {
 
 		articleToFill.querySelector(
 			'.gallery__main__gallery__container__info__title'
-		).innerText = this.title;
+		).innerText = this.title + '  ' + this.date;
 		articleToFill.querySelector(
 			'.gallery__main__gallery__container__info__likes__number'
 		).innerText = this.likes;

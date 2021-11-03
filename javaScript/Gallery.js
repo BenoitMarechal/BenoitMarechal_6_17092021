@@ -106,84 +106,6 @@ class Gallery {
 		//articleToFill.querySelector.src = path;
 		articleToFill.querySelector('.photographer__link__img').src = path;
 		// 	'images/Photographers ID Photos/' + clearedName + '.jpg';
-
-		//ARTICLE COMPLETED
-
-		//	console.log(this.photographerId);
-
-		// 	articleToFill.querySelector('.gallery__container__thumbnail').src =
-		// 		this.getPath();
-		// 	articleToFill.querySelector('.gallery__container__thumbnail').alt =
-		// 		this.title;
-		// 	articleToFill.querySelector('.gallery__container__info__title').innerText =
-		// 		this.title;
-		// 	articleToFill.querySelector(
-		// 		'.gallery__container__info__likes__number'
-		// 	).innerText = this.likes;
-		// 	articleToFill.querySelector(
-		// 		'.gallery__container__info__likes__heart'
-		// 	).innerHTML = '<i class="fas fa-heart"></i>';
-		// }
-
-		// <!-- <div class="gallery__main__presentation__info">
-		// 			<h1
-		// 				class="
-		// 					photographer__link__name
-		// 					gallery__main__presentation__info__name
-		// 				"
-		// 			>
-		// 				Mimi Keel
-		// 			</h1>
-		// 			<div
-		// 				class="
-		// 					photographer__link__location
-		// 					gallery__main__presentation__info__location
-		// 				"
-		// 			>
-		// 				<p
-		// 					class="
-		// 						photographer__link__location__city
-		// 						gallery__main__presentation__info__location__city
-		// 					"
-		// 				>
-		// 					London
-		// 				</p>
-		// 				<p
-		// 					class="
-		// 						photographer__link__location__country
-		// 						gallery__main__presentation__info__location__country
-		// 					"
-		// 				>
-		// 					, UK
-		// 				</p>
-		// 			</div>
-		// 			<div
-		// 				class="
-		// 					photographer__link__tagline
-		// 					gallery__main__presentation__info__tagline
-		// 				"
-		// 			>
-		// 				Voir le beau dans le quotidien
-		// 			</div>
-		// 			<ul
-		// 				class="
-		// 					photographer__link__tags
-		// 					gallery__main__presentation__info__tags
-		// 				"
-		// 			>
-		// 				<li><button class="tag">#Portait</button></li>
-		// 				<li><button class="tag">#Events</button></li>
-		// 				<li><button class="tag">#Travel</button></li>
-		// 				<li><button class="tag">#Animals</button></li>
-		// 			</ul>
-		// 		</div>
-		// 		<button class="gallery__main__presentation__btn">Contactez-moi</button>
-
-		// 		<img
-		// 			class="photographer__link__img gallery__main__presentation__img"
-		// 			src="images\Photographers ID Photos\MimiKeel.jpg"
-		// 			alt=""
-		// 		/> -->
 	}
 
 	async getGalleryMedia() {
@@ -216,6 +138,41 @@ class Gallery {
 	async writeAllMediaArticles() {
 		this.media.forEach((media) => {
 			media.createMediaArticle2();
+			console.log('tout écrit');
+		});
+	}
+	delete() {
+		document.querySelector('.gallery__main__gallery').innerHTML = '';
+	}
+	sortMediaBy(value) {
+		if (value == 'likes') {
+			this.media.sort(function (a, b) {
+				return a.likes - b.likes;
+			});
+		}
+
+		if (value == 'date') {
+			this.media.sort(function (a, b) {
+				return removeHasgTagInString(a.date) - removeHasgTagInString(b.date);
+			});
+		}
+
+		if (value == 'title') {
+			this.media.sort(function (a, b) {
+				return a.title.localeCompare(b.title);
+			});
+		}
+
+		this.writeAllMediaArticles();
+	}
+
+	async listenToBox() {
+		let gallery = this;
+		let box = document.getElementById('filter');
+		box.addEventListener('change', function (e) {
+			gallery.delete();
+			console.log('effacé');
+			gallery.sortMediaBy(box.value);
 		});
 	}
 }
@@ -227,6 +184,6 @@ class Gallery {
 	await gallery.getPhotographer();
 	await gallery.writePresentation();
 	await gallery.getGalleryMedia();
-
 	await gallery.writeAllMediaArticles();
+	await gallery.listenToBox();
 })();
