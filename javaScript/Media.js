@@ -147,7 +147,8 @@ class Media {
 
 		articleToFill.querySelector(
 			'.gallery__main__gallery__container__info__title'
-		).innerText = this.title + '  ' + this.date;
+		).innerText = this.title;
+		// + '  ' + this.date;
 		articleToFill.querySelector(
 			'.gallery__main__gallery__container__info__likes__number'
 		).innerText = this.likes;
