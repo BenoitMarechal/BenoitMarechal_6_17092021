@@ -93,7 +93,7 @@ class Media {
 		}
 	}
 
-	async createMediaArticle2() {
+	async createMediaArticle() {
 		//this.getPath();
 		for (let i = 0; i < elementsOfMediaArticle.typeOfElement.length; i++) {
 			let element = document.createElement(
@@ -148,7 +148,7 @@ class Media {
 		articleToFill.querySelector(
 			'.gallery__main__gallery__container__info__title'
 		).innerText = this.title;
-		// + '  ' + this.date;
+		// + '  ' + this.date;// developpment option
 		articleToFill.querySelector(
 			'.gallery__main__gallery__container__info__likes__number'
 		).innerText = this.likes;

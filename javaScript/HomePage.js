@@ -11,7 +11,7 @@ class HomePage {
 		let rep = await fetch('./public/dataBase.json');
 
 		dataFromJson = await rep.json();
-		console.log(dataFromJson);
+		//console.log(dataFromJson);
 		dataFromJson.photographers.forEach((photographer) => {
 			let artist = new Photographer(
 				photographer.name,
@@ -55,14 +55,15 @@ class HomePage {
 	//filters
 	async updateSelectionOnClick() {
 		let allNavBtn = document.querySelectorAll('#header__nav__ul button');
-		let homepage = this; //otherwise, "this" will refer to the buttons once inside the "foreach" loop
+		//console.log(allNavBtn);
+		let page = this; //otherwise, "this" will refer to the buttons once inside the "foreach" loop
 		let currentTag = '';
 		let emptySelection = true;
 
 		allNavBtn.forEach((btn) => {
 			btn.addEventListener('click', function (e) {
 				//listens to click
-				homepage.deleteAll(); //deletes all articles at click
+				page.deleteAll(); //deletes all articles at click
 
 				// particular case: if click happens on the same tag that was already selected at the previous click
 				if (
@@ -70,7 +71,7 @@ class HomePage {
 					(emptySelection === false) //and a button is selected ie not coming from an "empty bar" (which happens if 3 clicks on the same button, then regular behaviour is needed)
 				) {
 					btn.classList = 'tag--Off'; //de-select tag button
-					homepage.writeAllArtistsArticles(); //display all artists
+					page.writeAllArtistsArticles(); //display all artists
 					emptySelection = true; //state that no button is selected
 					return;
 				}
@@ -79,13 +80,13 @@ class HomePage {
 				currentTag = removeHasgTagInString(btn.innerText); //sets the value of currentTag
 				emptySelection = false; //state that selection is not empty
 
-				for (let a = 0; a < homepage.photographers.length; a++) {
+				for (let a = 0; a < page.photographers.length; a++) {
 					//loop through photographers of homepage
-					for (let b = 0; b < homepage.photographers[a].tags.length; b++) {
+					for (let b = 0; b < page.photographers[a].tags.length; b++) {
 						//looop through photographers' tags
-						if (homepage.photographers[a].tags[b] === currentTag) {
+						if (page.photographers[a].tags[b] === currentTag) {
 							//if tag matches selection
-							homepage.photographers[a].createArtistArticle(); //display artist
+							page.photographers[a].createArtistArticle(); //display artist
 							break; //stop looping through their tags and move on to next artist
 						}
 						//management of ON/OFF state of btns
@@ -125,7 +126,7 @@ class HomePage {
 			//console.log(this.media[a].title);
 			this.media[a] = await this.media[a].defineType();
 		}
-		console.log(this.media);
+		//console.log(this.media);
 	}
 }
 
