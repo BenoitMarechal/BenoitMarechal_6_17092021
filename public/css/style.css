@@ -154,6 +154,30 @@ li {
   margin-right: 5px;
 }
 
+.bottom {
+  background-color: #db8876;
+  border-radius: 5px 5px 0px 0px;
+  position: fixed;
+  bottom: 0px;
+  right: 30px;
+  font-size: 1.2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0px 30px;
+  padding: 20px;
+  width: auto;
+}
+.bottom__likes {
+  display: flex;
+}
+.bottom__likes__heart {
+  margin-left: 5px;
+}
+.bottom__price {
+  margin-left: 30px;
+}
+
 button {
   border-radius: 11px;
   margin-right: 5px;

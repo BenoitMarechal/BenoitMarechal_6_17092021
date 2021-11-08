@@ -97,6 +97,9 @@ class Gallery {
 		//this.photographer.price + ' €/jour';
 		articleToFill.querySelector('.photographer__link__tags').innerHTML =
 			generateTagButtons(this.photographer.tags);
+		// <button class="gallery__main__presentation__btn">Contactez-moi</button>
+		articleToFill.querySelector('.gallery__main__presentation__btn').innerText =
+			'Contactez moi';
 
 		let clearedName = removeSpacesInString(this.photographer.name);
 		let path = 'images/Photographers ID Photos/' + clearedName + '.jpg';
@@ -232,6 +235,27 @@ class Gallery {
 			});
 		});
 	}
+	countAllLikes() {
+		let totalOfLikes = 0;
+		for (let a = 0; a < this.media.length; a++) {
+			totalOfLikes = totalOfLikes + this.media[a].likes;
+		}
+		console.log(totalOfLikes);
+		return totalOfLikes;
+	}
+	fillBottomLikes() {
+		let target = document.querySelector('.bottom__likes__score');
+		//let space = ' ';
+		//let icon="<i class="fas fa-heart"></i>";
+		target.innerText = this.countAllLikes();
+		// this.countAllLikes() + ' yeah yeah yeah' +
+		//icon;
+	}
+
+	fillBottomPrice() {
+		let target = document.querySelector('.bottom__price');
+		target.innerText = this.photographer.price + '€ par jour';
+	}
 }
 
 (async function launchGallery() {
@@ -241,7 +265,21 @@ class Gallery {
 	await gallery.getPhotographer();
 	await gallery.writePresentation();
 	await gallery.getGalleryMedia();
+	gallery.fillBottomLikes();
+	gallery.fillBottomPrice();
 	await gallery.updateArticles(currentTag);
 	await gallery.listenToBox();
 	await gallery.updateSelectionOnClick();
 })();
+
+//lightbox: cadre avec plusieurs media, capacité à changer de média
+//position par défaut (courant) incrémentée/décré suivant actions
+//exceptions: début et fin de tableau
+//ouverture sur le média clické
+
+//formulaire de contact
+//bouton de contact
+
+//compter les likes
+
+//accessibilité à voir après

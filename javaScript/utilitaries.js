@@ -100,7 +100,7 @@ let elementsOfGalleryPresentation = {
 		'p',
 		'div',
 		'ul',
-		'btn',
+		'button',
 		'img',
 	],
 	classOfElement: [

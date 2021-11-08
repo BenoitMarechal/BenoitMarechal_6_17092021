@@ -137,11 +137,7 @@ class Media {
 			newElement.src = this.getPath();
 			newElement.setAttribute('controls', 'controls');
 			let parentDiv = target.parentNode;
-			// console.log(target);
-			// console.log(newElement);
-			// console.log(parentDiv);
-			//"photographer__link__img gallery__main__presentation__img"
-			// Remplacer le noeud existant sp2 par le nouvel élément span sp1
+
 			parentDiv.replaceChild(newElement, target);
 		}
 
