@@ -81,8 +81,9 @@
 					&__number {
 						margin-right: 5px;
 					}
-					// &__heart {
-					// }
+					&__heart {
+						cursor: pointer;
+					}
 				}
 			}
 		}

@@ -153,6 +153,9 @@ li {
 .gallery__main__gallery__container__info__likes__number {
   margin-right: 5px;
 }
+.gallery__main__gallery__container__info__likes__heart {
+  cursor: pointer;
+}
 
 .bottom {
   background-color: #db8876;

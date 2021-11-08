@@ -152,6 +152,11 @@ class Media {
 			'.gallery__main__gallery__container__info__likes__heart'
 		).innerHTML = '<i class="fas fa-heart"></i>';
 	}
+
+	// addLike() {
+	// 	this.like = this.like++;
+	// 	//		console.log(this.like);
+	// }
 }
 
 class Photo extends Media {

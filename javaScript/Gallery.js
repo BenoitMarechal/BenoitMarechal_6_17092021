@@ -256,6 +256,36 @@ class Gallery {
 		let target = document.querySelector('.bottom__price');
 		target.innerText = this.photographer.price + '€ par jour';
 	}
+
+	mediaLikes() {
+		let gallery = this;
+		let hearts = document.querySelectorAll(
+			'.gallery__main__gallery__container__info__likes__heart'
+		);
+		let articles = document.querySelectorAll(
+			'.gallery__main__gallery__container'
+		);
+		const arr = Array.from(hearts);
+		console.log(arr);		
+		arr.forEach((heart) => {
+			heart.addEventListener('click', function (e) {
+				console.log('coucou');				
+				let number = arr.indexOf(heart);
+				let targetMedia = gallery.media[number];
+				let targetArticle = articles[number];
+				let targetLikes = targetArticle.querySelector(
+					'.gallery__main__gallery__container__info__likes__number'
+				);
+				console.log(targetLikes);
+
+
+				targetMedia.like = targetMedia.likes++;
+				targetLikes.innerText = targetMedia.likes;
+				gallery.fillBottomLikes();
+			
+			});
+		});
+	}
 }
 
 (async function launchGallery() {
@@ -270,6 +300,7 @@ class Gallery {
 	await gallery.updateArticles(currentTag);
 	await gallery.listenToBox();
 	await gallery.updateSelectionOnClick();
+	gallery.mediaLikes();
 })();
 
 //lightbox: cadre avec plusieurs media, capacité à changer de média
