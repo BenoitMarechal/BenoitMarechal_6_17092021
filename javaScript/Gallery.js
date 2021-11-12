@@ -263,19 +263,33 @@ class Gallery {
 		let articles = document.querySelectorAll(
 			'.gallery__main__gallery__container'
 		);
-		const arr = Array.from(hearts);
+		let arr = Array.from(hearts);
+
 		console.log(arr);
 		arr.forEach((heart) => {
+			let liked = false;
 			heart.addEventListener('click', function (e) {
+				// console.log(liked);
 				let number = arr.indexOf(heart);
 				let targetMedia = gallery.media[number];
 				let targetArticle = articles[number];
 				let targetLikes = targetArticle.querySelector(
 					'.gallery__main__gallery__container__info__likes__number'
 				);
-				// console.log(targetLikes);
 
-				targetMedia.like = targetMedia.likes++;
+				// console.log(targetLikes);
+				if (liked == false) {
+					liked = true;
+					console.log(liked);
+					targetMedia.like = targetMedia.likes++;
+					heart.innerHTML = '<i class="fas fa-heart"></i>';
+				} else {
+					liked = false;
+					targetMedia.like = targetMedia.likes--;
+					heart.innerHTML = '<i class="far fa-heart"></i>';
+				}
+
+				console.log(liked);
 				targetLikes.innerText = targetMedia.likes;
 				gallery.fillBottomLikes();
 			});

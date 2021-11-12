@@ -150,7 +150,7 @@ class Media {
 		).innerText = this.likes;
 		articleToFill.querySelector(
 			'.gallery__main__gallery__container__info__likes__heart'
-		).innerHTML = '<i class="fas fa-heart"></i>';
+		).innerHTML = '<i class="far fa-heart"></i>';
 	}
 
 	// addLike() {
