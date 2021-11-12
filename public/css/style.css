@@ -1,6 +1,7 @@
 @charset "UTF-8";
 /*Couleurs*/
 /*valeurs de marges les plus utilisées*/
+/*Radii*/
 html,
 body {
   margin: 0px;
@@ -60,6 +61,7 @@ li {
 .header__logo {
   color: #901c1c;
   font-size: 2rem;
+  font-weight: bolder;
 }
 .header__nav__ul {
   display: flex;
@@ -91,11 +93,11 @@ li {
   justify-content: center;
 }
 .photographer__link__name {
-  color: #901c1c;
+  color: #db8876;
 }
 .photographer__link__location {
   display: flex;
-  color: #db8876;
+  color: #901c1c;
 }
 .photographer__link__tagline {
   color: #000000;
@@ -108,9 +110,10 @@ li {
   display: block;
 }
 .gallery__main__presentation {
-  flex-direction: row;
   display: flex;
+  flex-direction: row;
   justify-content: space-around;
+  align-items: center;
 }
 .gallery__main__presentation__info {
   display: flex;
@@ -158,7 +161,8 @@ li {
 }
 
 .bottom {
-  background-color: #db8876;
+  color: #000000;
+  background: #db8876;
   border-radius: 5px 5px 0px 0px;
   position: fixed;
   bottom: 0px;
@@ -181,16 +185,72 @@ li {
   margin-left: 30px;
 }
 
+.modal {
+  display: none;
+}
+.modal__bground {
+  position: fixed;
+  top: 0px;
+  bottom: 0px;
+  left: 0px;
+  right: 0px;
+  background-color: #c4c4c4;
+  opacity: 0.5;
+  z-index: 1;
+  animation-name: modalopen;
+  animation-duration: 5s;
+}
+.modal__form {
+  background-color: #db8876;
+  overflow: hidden;
+  z-index: 2;
+  position: fixed;
+  top: 0px;
+  bottom: 30px;
+  left: 0px;
+  right: 0px;
+  margin-top: 30px;
+  margin-bottom: 30px;
+  margin-left: 30%;
+  margin-right: 30%;
+  height: auto;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  border: 1px solid green;
+  font-size: 1.5rem;
+}
+.modal__form__head {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  border: 1px solid blue;
+}
+.modal__form__name {
+  border: 1px solid red;
+}
+
+#message {
+  height: 200px;
+}
+
+#btnClose {
+  cursor: pointer;
+}
+
 button {
   border-radius: 11px;
   margin-right: 5px;
-  border: 1px solid #901c1c;
+  border: 1px solid #c4c4c4;
   color: #901c1c;
   background: #fff;
 }
 button:hover {
   background: #901c1c;
   color: #fff;
+  border: 1px solid #901c1c;
 }
 
 .tag--On {
@@ -202,8 +262,21 @@ button:hover {
   background: #fff;
 }
 
+.pointer {
+  cursor: pointer;
+}
+
 .gallery__main__presentation__btn {
-  border-radius: 2px;
+  background: #901c1c;
+  color: #fff;
+  border-radius: 5px;
+  border: none;
+  height: 50px;
+}
+.gallery__main__presentation__btn:hover {
+  color: #000000;
+  background: #db8876;
+  border: none;
 }
 
 /*# sourceMappingURL=style.css.map */

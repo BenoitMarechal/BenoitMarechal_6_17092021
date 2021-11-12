@@ -22,12 +22,12 @@
 			justify-content: center;
 		}
 		&__name {
-			color: $colour-primary;
+			color: $colour-secondary;
 		}
 
 		&__location {
 			display: flex;
-			color: $colour-secondary;
+			color: $colour-primary;
 		}
 
 		&__tagline {

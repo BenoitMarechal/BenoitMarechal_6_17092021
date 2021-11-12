@@ -124,6 +124,8 @@
 					</div>
 				</article> FIN EXEMPLE-->
 			<!-- </div> -->
+
+			<!-- Bottom zone -->
 			<div class="bottom">
 				<div class="bottom__likes">
 					<div class="bottom__likes__score"></div>
@@ -131,6 +133,75 @@
 				</div>
 				<div class="bottom__price"></div>
 			</div>
+			<!-- END Bottom zone -->
+
+			<!-- COntact Modal -->
+			<div class="modal">
+				<div class="modal__bground"></div>
+				<div class="modal__form">
+					<div class="modal__form__head">
+						<div class="modal__form__head__contact">Contactez-moi</div>
+						<span class="close pointer" id="btnClose">X</span>
+					</div>
+					<div class="modal__form__name"></div>
+					<div class="modal__form__fields">
+						<form
+							name="contact"
+							id="contactForm"
+							method="get"
+							action="gallery.html"
+						>
+							<div class="formData">
+								<label for="first">Prénom</label><br />
+								<input
+									class="text-control"
+									type="text"
+									id="first"
+									name="first"
+									minlength="2"
+								/><br />
+							</div>
+							<div class="formData" id="nom">
+								<label for="last">Nom</label><br />
+								<input
+									class="text-control"
+									type="text"
+									id="last"
+									name="last"
+								/><br />
+							</div>
+							<div class="formData">
+								<label for="email">E-mail</label><br />
+								<input
+									class="text-control"
+									type="email"
+									id="email"
+									name="email"
+								/><br />
+							</div>
+
+							<div class="formData">
+								<label for="message">Votre message</label><br />
+								<textarea
+									class="text-control"
+									type="message"
+									id="message"
+									name="message"
+								></textarea>
+							</div>
+
+							<input
+								class="btn-submit"
+								type="submit"
+								class="button"
+								id="submit"
+								value="Envoyer"
+							/>
+						</form>
+					</div>
+				</div>
+			</div>
+			<!-- END COntact Modal -->
 		</main>
 
 		<script src="javaScript/utilitaries.js"></script>

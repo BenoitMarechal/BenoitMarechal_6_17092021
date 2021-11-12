@@ -2,9 +2,10 @@
 	display: block;
 	&__presentation {
 		//border: 1px solid red;
-		flex-direction: row;
 		display: flex;
+		flex-direction: row;
 		justify-content: space-around;
+		align-items: center;
 
 		&__info {
 			//	border: 1px solid red;
@@ -91,8 +92,8 @@
 }
 
 .bottom {
-	background-color: $colour-secondary;
-	border-radius: 5px 5px 0px 0px;
+	@include colorway-black-on-salmon;
+	border-radius: $radius-small $radius-small 0px 0px;
 
 	position: fixed;
 	bottom: 0px;
@@ -120,3 +121,134 @@
 		margin-left: 30px;
 	}
 }
+
+.modal {
+	display: none;
+	&__bground {
+		position: fixed;
+		top: 0px;
+		bottom: 0px;
+		left: 0px;
+		right: 0px;
+		background-color: $colour-light-grey;
+		opacity: 0.5;
+		z-index: 1;
+		animation-name: modalopen;
+		animation-duration: $modal-duration;
+	}
+
+	&__form {
+		// animation-name: modalopen;
+		// animation-duration: $modal-duration;
+		background-color: $colour-secondary;
+		overflow: hidden;
+		z-index: 2;
+		position: fixed;
+		top: 0px;
+		bottom: 30px;
+		left: 0px;
+		right: 0px;
+		margin-top: 30px;
+		margin-bottom: 30px;
+		margin-left: 30%;
+		margin-right: 30%;
+		height: auto;
+		//background: #232323;
+		border-radius: 10px;
+		display: flex;
+		flex-direction: column;
+		justify-content: flex-start;
+		align-items: flex-start;
+
+		border: 1px solid green;
+
+		font-size: 1.5rem;
+
+		&__head {
+			display: flex;
+			width: 100%;
+			justify-content: space-between;
+			border: 1px solid blue;
+		}
+		&__name {
+			border: 1px solid red;
+			//width: 100%;
+		}
+		// &__fields {
+		// 	//	width: 100%;
+		// }
+	}
+}
+
+#message {
+	height: 200px;
+}
+
+#btnClose {
+	cursor: pointer;
+}
+
+// <div class="modal__bground">
+// <div class="modal__form">
+// 	<div class="modal__form__head">
+// 		<div class="modal__form__head__contact">Contactez-moi</div>
+// 		<span class="close" id="btnClose">X</span>
+// 	</div>
+// 	<div class="modal__form__name">Nom Photographers</div>
+// 	<div class="modal__form__fields">
+// 		<form
+// 			name="contact"
+// 			id="contactForm"
+// 			method="get"
+// 			action="gallery.html"
+// 		>
+// 			<div class="formData">
+// 				<label for="first">Prénom</label><br />
+// 				<input
+// 					class="text-control"
+// 					type="text"
+// 					id="first"
+// 					name="first"
+// 					minlength="2"
+// 				/><br />
+// 			</div>
+// 			<div class="formData" id="nom">
+// 				<label for="last">Nom</label><br />
+// 				<input
+// 					class="text-control"
+// 					type="text"
+// 					id="last"
+// 					name="last"
+// 				/><br />
+// 			</div>
+// 			<div class="formData">
+// 				<label for="email">E-mail</label><br />
+// 				<input
+// 					class="text-control"
+// 					type="email"
+// 					id="email"
+// 					name="email"
+// 				/><br />
+// 			</div>
+
+// 			<div class="formData">
+// 				<label for="message">Votre message</label><br />
+// 				<input
+// 					class="text-control"
+// 					type="email"
+// 					id="message"
+// 					name="message"
+// 				/><br />
+// 			</div>
+
+// 			<input
+// 				class="btn-submit"
+// 				type="submit"
+// 				class="button"
+// 				id="submit"
+// 				value="Envoyer"
+// 			/>
+// 		</form>
+// 	</div>
+// </div>
+// </div>

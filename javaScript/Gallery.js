@@ -100,6 +100,9 @@ class Gallery {
 		// <button class="gallery__main__presentation__btn">Contactez-moi</button>
 		articleToFill.querySelector('.gallery__main__presentation__btn').innerText =
 			'Contactez moi';
+		articleToFill
+			.querySelector('.gallery__main__presentation__btn')
+			.classList.add('pointer');
 
 		let clearedName = removeSpacesInString(this.photographer.name);
 		let path = 'images/Photographers ID Photos/' + clearedName + '.jpg';
@@ -240,7 +243,7 @@ class Gallery {
 		for (let a = 0; a < this.media.length; a++) {
 			totalOfLikes = totalOfLikes + this.media[a].likes;
 		}
-		console.log(totalOfLikes);
+		//	console.log(totalOfLikes);
 		return totalOfLikes;
 	}
 	fillBottomLikes() {
@@ -252,11 +255,6 @@ class Gallery {
 		//icon;
 	}
 
-	fillBottomPrice() {
-		let target = document.querySelector('.bottom__price');
-		target.innerText = this.photographer.price + '€ par jour';
-	}
-
 	mediaLikes() {
 		let gallery = this;
 		let hearts = document.querySelectorAll(
@@ -266,25 +264,54 @@ class Gallery {
 			'.gallery__main__gallery__container'
 		);
 		const arr = Array.from(hearts);
-		console.log(arr);		
+		console.log(arr);
 		arr.forEach((heart) => {
 			heart.addEventListener('click', function (e) {
-				console.log('coucou');				
 				let number = arr.indexOf(heart);
 				let targetMedia = gallery.media[number];
 				let targetArticle = articles[number];
 				let targetLikes = targetArticle.querySelector(
 					'.gallery__main__gallery__container__info__likes__number'
 				);
-				console.log(targetLikes);
-
+				// console.log(targetLikes);
 
 				targetMedia.like = targetMedia.likes++;
 				targetLikes.innerText = targetMedia.likes;
 				gallery.fillBottomLikes();
-			
 			});
 		});
+	}
+
+	fillBottomPrice() {
+		let target = document.querySelector('.bottom__price');
+		target.innerText = this.photographer.price + '€ par jour';
+	}
+
+	async openCloseContact() {
+		let modal = document.querySelector('.modal');
+		let btnLaunch = document.querySelector('.gallery__main__presentation__btn'); //gets the "contact" button
+		let btnClose = document.getElementById('btnClose'); //gets the "close" button
+		// launch modal event
+		btnLaunch.addEventListener('click', function (e) {
+			modal.style.display = 'block';
+		});
+		//close modal event
+		btnClose.addEventListener('click', function (e) {
+			modal.style.display = 'none';
+		});
+	}
+
+	// async closeContact() {
+	// 	let modal = document.querySelector('.modal');
+
+	// 	//	let btnLaunch = document.querySelector('.gallery__main__presentation__btn'); //gets the "contact" button
+	// 	// close modal event
+
+	// }
+
+	async fillContact() {
+		let name = document.querySelector('.modal__form__name');
+		name.innerText = this.photographer.name;
 	}
 }
 
@@ -301,7 +328,16 @@ class Gallery {
 	await gallery.listenToBox();
 	await gallery.updateSelectionOnClick();
 	gallery.mediaLikes();
+	await gallery.fillContact();
+	await gallery.openCloseContact();
+	// await gallery.closeContact();
 })();
+
+/////////////contact modal
+let modal = document.querySelector('.modal');
+modal.addEventListener('submit', function (e) {});
+
+////////////////end contact modal
 
 //lightbox: cadre avec plusieurs media, capacité à changer de média
 //position par défaut (courant) incrémentée/décré suivant actions
@@ -310,6 +346,12 @@ class Gallery {
 
 //formulaire de contact
 //bouton de contact
+//cleaner le code
+//modal dans un autre fichier JS
+//import-export JS
+//definir classe dans un fichier
+//submit: afficher les infos dans la console
+//finir de travailler sur les likes
 
 //compter les likes
 
