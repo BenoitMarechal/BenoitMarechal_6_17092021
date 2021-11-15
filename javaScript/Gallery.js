@@ -265,7 +265,7 @@ class Gallery {
 		);
 		let arr = Array.from(hearts);
 
-		console.log(arr);
+		//console.log(arr);
 		arr.forEach((heart) => {
 			let liked = false;
 			heart.addEventListener('click', function (e) {
@@ -302,7 +302,7 @@ class Gallery {
 	}
 
 	async openCloseContact() {
-		let modal = document.querySelector('.modal');
+		let modal = document.querySelector('.contact__modal');
 		let btnLaunch = document.querySelector('.gallery__main__presentation__btn'); //gets the "contact" button
 		let btnClose = document.getElementById('btnClose'); //gets the "close" button
 		// launch modal event
@@ -324,7 +324,7 @@ class Gallery {
 	// }
 
 	async fillContact() {
-		let name = document.querySelector('.modal__form__name');
+		let name = document.querySelector('.modal__container__name');
 		name.innerText = this.photographer.name;
 	}
 }
@@ -344,12 +344,55 @@ class Gallery {
 	gallery.mediaLikes();
 	await gallery.fillContact();
 	await gallery.openCloseContact();
+	//export default Gallery;
 	// await gallery.closeContact();
 })();
+//get data from form
+let contactForm = {
+	id: ['first', 'last', 'email', 'message'],
+	value: ['none', 'none', 'none', 'none'],
+};
+console.log(contactForm.id.length);
 
-/////////////contact modal
+for (let i = 0; i < contactForm.id.length; i++) {
+	document
+		.getElementById(contactForm.id[i])
+		.addEventListener('input', function (e) {
+			contactForm.value[i] = this.value;
+		});
+}
+
+// .addEventListener('input', function (e) {
+// 	console.log(this.value);
+// });
+//}
+
+// let contactFormFields = ['first', 'last', 'email', 'message'];
+// 	contactFormFields.forEach((field) => {
+// 		field.addEventListener("input", function(e){
+
+// 		})
+// 	});
+
 let modal = document.querySelector('.modal');
-modal.addEventListener('submit', function (e) {});
+modal.addEventListener('submit', function (e) {
+	e.preventDefault();
+	for (let i = 0; i < contactForm.id.length; i++) {
+		console.log(contactForm.id[i] + ' ' + contactForm.value[i]);
+	}
+});
+
+// class Field {
+// 	constructor(title, validityValue, errorMessage)
+// 	{
+// 		this.title = title;
+// 		this.validityValue = validityValue;
+// 		this.errorMessage = errorMessage;
+// 	}
+// }
+
+// export default Gallery;
+/////////////contact modal
 
 ////////////////end contact modal
 
@@ -359,9 +402,9 @@ modal.addEventListener('submit', function (e) {});
 //ouverture sur le média clické
 
 //formulaire de contact
-//bouton de contact
+//bouton de contact --> OK
 //cleaner le code
-//modal dans un autre fichier JS
+//modal contact dans un autre fichier JS
 //import-export JS
 //definir classe dans un fichier
 //submit: afficher les infos dans la console

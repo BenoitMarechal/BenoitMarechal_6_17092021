@@ -122,8 +122,11 @@
 	}
 }
 
-.modal {
+.contact__modal {
 	display: none;
+}
+.modal {
+	//	display: none;
 	&__bground {
 		position: fixed;
 		top: 0px;
@@ -137,7 +140,7 @@
 		animation-duration: $modal-duration;
 	}
 
-	&__form {
+	&__container {
 		// animation-name: modalopen;
 		// animation-duration: $modal-duration;
 		background-color: $colour-secondary;
@@ -152,7 +155,7 @@
 		margin-bottom: 30px;
 		margin-left: 30%;
 		margin-right: 30%;
-		height: auto;
+		//height: auto;
 		//background: #232323;
 		border-radius: 10px;
 		display: flex;
@@ -160,7 +163,7 @@
 		justify-content: flex-start;
 		align-items: flex-start;
 
-		border: 1px solid green;
+		//border: 1px solid green;
 
 		font-size: 1.5rem;
 
@@ -168,11 +171,11 @@
 			display: flex;
 			width: 100%;
 			justify-content: space-between;
-			border: 1px solid blue;
+			//border: 1px solid blue;
 		}
 		&__name {
-			border: 1px solid red;
-			//width: 100%;
+			//border: 1px solid red;
+			width: 100%;
 		}
 		// &__fields {
 		// 	//	width: 100%;
@@ -184,71 +187,86 @@
 	height: 200px;
 }
 
-#btnClose {
-	cursor: pointer;
+///////////////////////////////lightBox modal
+.lightboxBtn {
+	position: absolute;
+	margin: $lightbox-btn-margin;
+	font-size: 3rem;
+	width: $lightbox-btn-size;
+	height: $lightbox-btn-size;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	overflow: visible;
+	//margin: $lightbox-side-padding;
+}
+.prev {
+	left: 0px;
+	//top: 40%;
+}
+.next {
+	right: 0px;
+	//top: 40%;
+}
+.close {
+	top: 0px;
+	right: 0px;
+}
+.lightbox__modal {
+	color: $colour-primary;
+	display: block;
+	&__container {
+		z-index: 2;
+		opacity: 1;
+		margin: 0px;
+		top: 0px;
+		bottom: 0px;
+		left: 0px;
+		right: 0px;
+		// margin-top: 10px;
+		// margin-bottom: 10px;
+		// margin-left: 10px;
+		// margin-right: 10px;
+		width: auto;
+		height: auto;
+		//height: auto;
+		//background-: #232323;
+		border-radius: 0px;
+		background-color: white;
+
+		display: flex;
+		justify-content: center;
+
+		&__img {
+			//display: flex;
+			margin: 10px auto;
+			border: 1px solid green;
+			object-fit: contain;
+			//object-fit: cover;
+			//max-height: 100%;
+
+			width: 1050px;
+			height: 900px;
+		}
+	}
 }
 
-// <div class="modal__bground">
-// <div class="modal__form">
-// 	<div class="modal__form__head">
-// 		<div class="modal__form__head__contact">Contactez-moi</div>
-// 		<span class="close" id="btnClose">X</span>
-// 	</div>
-// 	<div class="modal__form__name">Nom Photographers</div>
-// 	<div class="modal__form__fields">
-// 		<form
-// 			name="contact"
-// 			id="contactForm"
-// 			method="get"
-// 			action="gallery.html"
+// <div class="modal lightbox__modal">
+// 	<div class="modal__bground lightbox__modal__bground"></div>
+// 	<div class="modal__container lightbox__modal__container">
+// 		<span class="close pointer lightboxBtn" id="btnCloseLightbox"
+// 			>&times;</span
 // 		>
-// 			<div class="formData">
-// 				<label for="first">Prénom</label><br />
-// 				<input
-// 					class="text-control"
-// 					type="text"
-// 					id="first"
-// 					name="first"
-// 					minlength="2"
-// 				/><br />
-// 			</div>
-// 			<div class="formData" id="nom">
-// 				<label for="last">Nom</label><br />
-// 				<input
-// 					class="text-control"
-// 					type="text"
-// 					id="last"
-// 					name="last"
-// 				/><br />
-// 			</div>
-// 			<div class="formData">
-// 				<label for="email">E-mail</label><br />
-// 				<input
-// 					class="text-control"
-// 					type="email"
-// 					id="email"
-// 					name="email"
-// 				/><br />
-// 			</div>
-
-// 			<div class="formData">
-// 				<label for="message">Votre message</label><br />
-// 				<input
-// 					class="text-control"
-// 					type="email"
-// 					id="message"
-// 					name="message"
-// 				/><br />
-// 			</div>
-
-// 			<input
-// 				class="btn-submit"
-// 				type="submit"
-// 				class="button"
-// 				id="submit"
-// 				value="Envoyer"
-// 			/>
-// 		</form>
+// 		<span class="prev pointer lightboxBtn" id="btnPrevLightbox"
+// 			>&times;</span
+// 		>
+// 		<span class="next pointer lightboxBtn" id="btnNextLightbox"
+// 			>&times;</span
+// 		>
+// 		<div class="lightbox__modal__imgContainer">
+// 			<img src="images\Mimi\Event_BenevidesWedding.jpg" alt="" />
+// 		</div>
 // 	</div>
 // </div>
-// </div>
+
+///////////////////////////////END lightBox modal

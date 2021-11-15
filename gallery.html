@@ -136,15 +136,15 @@
 			<!-- END Bottom zone -->
 
 			<!-- COntact Modal -->
-			<div class="modal">
+			<div class="modal contact__modal">
 				<div class="modal__bground"></div>
-				<div class="modal__form">
-					<div class="modal__form__head">
-						<div class="modal__form__head__contact">Contactez-moi</div>
-						<span class="close pointer" id="btnClose">X</span>
+				<div class="modal__container modal__form">
+					<div class="modal__container__head">
+						<div class="modal__container__head__contact">Contactez-moi</div>
+						<span class="close pointer" id="btnClose">&times;</span>
 					</div>
-					<div class="modal__form__name"></div>
-					<div class="modal__form__fields">
+					<div class="modal__container__name"></div>
+					<div class="modal__container__fields">
 						<form
 							name="contact"
 							id="contactForm"
@@ -202,10 +202,34 @@
 				</div>
 			</div>
 			<!-- END COntact Modal -->
-		</main>
 
+			<!-- Lightbox modal -->
+			<div class="modal lightbox__modal">
+				<div class="modal__bground lightbox__modal__bground"></div>
+				<div class="modal__container lightbox__modal__container">
+					<span class="close pointer lightboxBtn" id="btnCloseLightbox"
+						><i class="fas fa-times"></i
+					></span>
+					<span class="prev pointer lightboxBtn" id="btnPrevLightbox"
+						><i class="fas fa-chevron-left"></i
+					></span>
+					<span class="next pointer lightboxBtn" id="btnNextLightbox"
+						><i class="fas fa-chevron-right"></i
+					></span>
+
+					<img
+						class="lightbox__modal__container__img"
+						src="images\Mimi\Event_BenevidesWedding.jpg"
+						alt=""
+					/>
+				</div>
+			</div>
+			<!-- END lighbox modal -->
+		</main>
+		<!-- <script src="javaScript/main.js" type="module"></script> -->
 		<script src="javaScript/utilitaries.js"></script>
-		<script src="javaScript/Gallery.js"></script>
+		<script src="./javaScript/Gallery.js"></script>
+		<script src="javaScript/contactModal.js"></script>
 		<!-- <script src="javaScript/Photographers.js"></script> -->
 		<!-- <script src="javaScript/HomePage.js"></script> -->
 		<script src="javaScript/Media.js"></script>

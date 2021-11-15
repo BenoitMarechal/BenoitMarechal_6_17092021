@@ -185,9 +185,10 @@ li {
   margin-left: 30px;
 }
 
-.modal {
+.contact__modal {
   display: none;
 }
+
 .modal__bground {
   position: fixed;
   top: 0px;
@@ -200,7 +201,7 @@ li {
   animation-name: modalopen;
   animation-duration: 5s;
 }
-.modal__form {
+.modal__container {
   background-color: #db8876;
   overflow: hidden;
   z-index: 2;
@@ -213,31 +214,76 @@ li {
   margin-bottom: 30px;
   margin-left: 30%;
   margin-right: 30%;
-  height: auto;
   border-radius: 10px;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   align-items: flex-start;
-  border: 1px solid green;
   font-size: 1.5rem;
 }
-.modal__form__head {
+.modal__container__head {
   display: flex;
   width: 100%;
   justify-content: space-between;
-  border: 1px solid blue;
 }
-.modal__form__name {
-  border: 1px solid red;
+.modal__container__name {
+  width: 100%;
 }
 
 #message {
   height: 200px;
 }
 
-#btnClose {
-  cursor: pointer;
+.lightboxBtn {
+  position: absolute;
+  margin: 100px 300px 100px 300px;
+  font-size: 3rem;
+  width: 20px;
+  height: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: visible;
+}
+
+.prev {
+  left: 0px;
+}
+
+.next {
+  right: 0px;
+}
+
+.close {
+  top: 0px;
+  right: 0px;
+}
+
+.lightbox__modal {
+  color: #901c1c;
+  display: block;
+}
+.lightbox__modal__container {
+  z-index: 2;
+  opacity: 1;
+  margin: 0px;
+  top: 0px;
+  bottom: 0px;
+  left: 0px;
+  right: 0px;
+  width: auto;
+  height: auto;
+  border-radius: 0px;
+  background-color: white;
+  display: flex;
+  justify-content: center;
+}
+.lightbox__modal__container__img {
+  margin: 10px auto;
+  border: 1px solid green;
+  object-fit: contain;
+  width: 1050px;
+  height: 900px;
 }
 
 button {
