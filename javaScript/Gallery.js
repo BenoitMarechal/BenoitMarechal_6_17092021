@@ -1,5 +1,6 @@
 let dataFromJson = [];
 let currentTag = '';
+let index = 0;
 
 class Gallery {
 	constructor(pageId, photographer, media) {
@@ -335,21 +336,18 @@ class Gallery {
 
 	async openLightbox() {
 		let modal = document.querySelector('.lightbox__modal');
-		let btnLaunch = document.querySelectorAll(
-			'.gallery__main__gallery__container'
+		let thumbnails = document.querySelectorAll(
+			'.gallery__main__gallery__container__thumbnail'
 		);
-		let arrayOfArticles = Array.from(btnLaunch);
+		let arrayOfthumbnails = Array.from(thumbnails);
 		let gallery = this;
-		console.log(arrayOfArticles);
+		//console.log(arrayOfArticles);
 		//console.log(btnLaunch);
-		arrayOfArticles.forEach((article) => {
-			article.addEventListener('click', function (e) {
+		arrayOfthumbnails.forEach((thumbnail) => {
+			thumbnail.addEventListener('click', function (e) {
 				modal.style.display = 'block';
-				// console.log(btnLaunch);
-				// console.log(btn);
-				// console.log(btnLaunch[2]);
-				let index = arrayOfArticles.indexOf(article);
-				console.log(index);
+				index = arrayOfthumbnails.indexOf(thumbnail);
+				//console.log(index);
 				gallery.lightBoxDisplay(index);
 				//return index;
 			});
@@ -371,10 +369,51 @@ class Gallery {
 		child.classList.add('lightbox__modal__container__mediaContainer__media');
 		child.src = media.getPath();
 		child.alt = media.getPath();
-		console.log(child);
+		//console.log(child);
 		//console.log(parent);
 		parent.innerHTML = '';
 		parent.appendChild(child);
+		console.log('index vaut maintenant ' + index);
+		//return index;
+	}
+	correctIndex() {
+		console.log('correct index');
+		let min = 0;
+		let max = this.media.length;
+		console.log('index au départ ' + index);
+		console.log('min ' + min);
+		console.log('max ' + max);
+		if (index > max - 1) {
+			console.log('max attenint');
+			index = min;
+		}
+		if (index < min) {
+			console.log('min atteint');
+			index = max - 1;
+		}
+		console.log('apres traitement ' + index);
+		return index;
+	}
+
+	async navigateLightBox() {
+		let next = document.getElementById('btnNextLightbox');
+		let prev = document.getElementById('btnPrevLightbox');
+		let gallery = this;
+		prev.addEventListener('click', function (e) {
+			console.log('prev');
+			index = index - 1;
+			console.log(index);
+			gallery.correctIndex();
+			gallery.lightBoxDisplay(index);
+		});
+		next.addEventListener('click', function (e) {
+			console.log('next');
+			index = index + 1;
+			gallery.correctIndex();
+			console.log(index);
+
+			gallery.lightBoxDisplay(index);
+		});
 	}
 }
 
@@ -395,6 +434,7 @@ class Gallery {
 	await gallery.openCloseContact();
 	await gallery.closeLightbox();
 	await gallery.openLightbox();
+	await gallery.navigateLightBox();
 	//export default Gallery;
 })();
 //get data from form
