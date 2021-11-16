@@ -339,6 +339,7 @@ class Gallery {
 			'.gallery__main__gallery__container'
 		);
 		let arrayOfArticles = Array.from(btnLaunch);
+		let gallery = this;
 		console.log(arrayOfArticles);
 		//console.log(btnLaunch);
 		arrayOfArticles.forEach((article) => {
@@ -349,9 +350,31 @@ class Gallery {
 				// console.log(btnLaunch[2]);
 				let index = arrayOfArticles.indexOf(article);
 				console.log(index);
-				return index;
+				gallery.lightBoxDisplay(index);
+				//return index;
 			});
 		});
+	}
+	lightBoxDisplay(index) {
+		let parent = document.querySelector(
+			'.lightbox__modal__container__mediaContainer'
+		);
+		// console.log(parent);
+		let media = this.media[index];
+		let child = '';
+		if (media.image !== undefined) {
+			child = document.createElement('img');
+		} else {
+			child = document.createElement('video');
+			child.setAttribute('controls', 'controls');
+		}
+		child.classList.add('lightbox__modal__container__mediaContainer__media');
+		child.src = media.getPath();
+		child.alt = media.getPath();
+		console.log(child);
+		//console.log(parent);
+		parent.innerHTML = '';
+		parent.appendChild(child);
 	}
 }
 
@@ -373,7 +396,6 @@ class Gallery {
 	await gallery.closeLightbox();
 	await gallery.openLightbox();
 	//export default Gallery;
-	// await gallery.closeContact();
 })();
 //get data from form
 let contactForm = {

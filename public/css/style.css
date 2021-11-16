@@ -262,7 +262,7 @@ li {
 
 .lightbox__modal {
   color: #901c1c;
-  display: block;
+  display: none;
 }
 .lightbox__modal__container {
   z-index: 2;
@@ -277,14 +277,21 @@ li {
   border-radius: 0px;
   background-color: white;
   display: flex;
+  align-items: center;
   justify-content: center;
 }
-.lightbox__modal__container__img {
-  margin: 10px auto;
-  border: 1px solid green;
-  object-fit: contain;
+.lightbox__modal__container__mediaContainer {
+  border: 1px solid red;
   width: 1050px;
   height: 900px;
+}
+.lightbox__modal__container__mediaContainer__media {
+  border: 1px solid green;
+  object-fit: contain;
+  width: 100%;
+  height: 100%;
+  max-width: 1050px;
+  max-height: 900px;
 }
 
 button {
