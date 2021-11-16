@@ -314,8 +314,12 @@ class Gallery {
 			modal.style.display = 'none';
 		});
 	}
+	async fillContact() {
+		let name = document.querySelector('.modal__container__name');
+		name.innerText = this.photographer.name;
+	}
 
-	async CloseLightbox() {
+	async closeLightbox() {
 		let modal = document.querySelector('.lightbox__modal');
 		//let btnLaunch = document.querySelector('.gallery__main__presentation__btn'); //gets the "contact" button
 		let btnClose = document.getElementById('btnCloseLightbox'); //gets the "close" button
@@ -329,9 +333,25 @@ class Gallery {
 		});
 	}
 
-	async fillContact() {
-		let name = document.querySelector('.modal__container__name');
-		name.innerText = this.photographer.name;
+	async openLightbox() {
+		let modal = document.querySelector('.lightbox__modal');
+		let btnLaunch = document.querySelectorAll(
+			'.gallery__main__gallery__container'
+		);
+		let arrayOfArticles = Array.from(btnLaunch);
+		console.log(arrayOfArticles);
+		//console.log(btnLaunch);
+		arrayOfArticles.forEach((article) => {
+			article.addEventListener('click', function (e) {
+				modal.style.display = 'block';
+				// console.log(btnLaunch);
+				// console.log(btn);
+				// console.log(btnLaunch[2]);
+				let index = arrayOfArticles.indexOf(article);
+				console.log(index);
+				return index;
+			});
+		});
 	}
 }
 
@@ -350,7 +370,8 @@ class Gallery {
 	gallery.mediaLikes();
 	await gallery.fillContact();
 	await gallery.openCloseContact();
-	await gallery.CloseLightbox();
+	await gallery.closeLightbox();
+	await gallery.openLightbox();
 	//export default Gallery;
 	// await gallery.closeContact();
 })();
@@ -359,7 +380,6 @@ let contactForm = {
 	id: ['first', 'last', 'email', 'message'],
 	value: ['none', 'none', 'none', 'none'],
 };
-console.log(contactForm.id.length);
 
 for (let i = 0; i < contactForm.id.length; i++) {
 	document
