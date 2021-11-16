@@ -315,13 +315,19 @@ class Gallery {
 		});
 	}
 
-	// async closeContact() {
-	// 	let modal = document.querySelector('.modal');
-
-	// 	//	let btnLaunch = document.querySelector('.gallery__main__presentation__btn'); //gets the "contact" button
-	// 	// close modal event
-
-	// }
+	async CloseLightbox() {
+		let modal = document.querySelector('.lightbox__modal');
+		//let btnLaunch = document.querySelector('.gallery__main__presentation__btn'); //gets the "contact" button
+		let btnClose = document.getElementById('btnCloseLightbox'); //gets the "close" button
+		// launch modal event
+		// btnLaunch.addEventListener('click', function (e) {
+		// 	modal.style.display = 'block';
+		// });
+		//close modal event
+		btnClose.addEventListener('click', function (e) {
+			modal.style.display = 'none';
+		});
+	}
 
 	async fillContact() {
 		let name = document.querySelector('.modal__container__name');
@@ -344,6 +350,7 @@ class Gallery {
 	gallery.mediaLikes();
 	await gallery.fillContact();
 	await gallery.openCloseContact();
+	await gallery.CloseLightbox();
 	//export default Gallery;
 	// await gallery.closeContact();
 })();
@@ -362,18 +369,6 @@ for (let i = 0; i < contactForm.id.length; i++) {
 		});
 }
 
-// .addEventListener('input', function (e) {
-// 	console.log(this.value);
-// });
-//}
-
-// let contactFormFields = ['first', 'last', 'email', 'message'];
-// 	contactFormFields.forEach((field) => {
-// 		field.addEventListener("input", function(e){
-
-// 		})
-// 	});
-
 let modal = document.querySelector('.modal');
 modal.addEventListener('submit', function (e) {
 	e.preventDefault();
@@ -381,15 +376,6 @@ modal.addEventListener('submit', function (e) {
 		console.log(contactForm.id[i] + ' ' + contactForm.value[i]);
 	}
 });
-
-// class Field {
-// 	constructor(title, validityValue, errorMessage)
-// 	{
-// 		this.title = title;
-// 		this.validityValue = validityValue;
-// 		this.errorMessage = errorMessage;
-// 	}
-// }
 
 // export default Gallery;
 /////////////contact modal
