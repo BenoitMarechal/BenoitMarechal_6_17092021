@@ -3,10 +3,11 @@ let currentTag = '';
 let index = 0;
 
 class Gallery {
-	constructor(pageId, photographer, media) {
+	constructor(pageId, photographer, media, visibleMedia) {
 		this.pageId = [];
 		this.photographer = [];
 		this.media = [];
+		this.visibleMedia = [];
 	}
 	async getId() {
 		//extracts id from url
@@ -104,13 +105,35 @@ class Gallery {
 		for (let a = 0; a < this.media.length; a++) {
 			this.media[a] = await this.media[a].defineType();
 		}
+		this.visibleMedia = this.media;
+		console.log(this);
+	}
+	async writeAllArticles() {
+		console.log('called writeAllArticles');
+		this.media.forEach((media) => {
+			media.createMediaArticle();
+		});
+	}
+
+	hideAllArticles() {
+		console.log('called hideAllArticles');
+		this.visibleMedia.forEach((media) => {
+			media.hideArticle();
+		});
+	}
+	displayVisibleArticles() {
+		console.log('called displayVisibleArticles');
+		this.visibleMedia.forEach((media) => {
+			media.displayArticle();
+		});
 	}
 
 	async updateArticles(tag) {
+		this.hideAllArticles();
+		this.visibleMedia = [];
 		if (tag == '') {
-			this.media.forEach((media) => {
-				media.createMediaArticle();
-			});
+			console.log('no tag selected');
+			this.visibleMedia = this.media;
 		} else {
 			//loop through medias
 			for (let a = 0; a < this.media.length; a++) {
@@ -118,54 +141,88 @@ class Gallery {
 				for (let b = 0; b < this.media[a].tags.length; b++) {
 					if (this.media[a].tags[b] === currentTag) {
 						//if tag matches selection
-						this.media[a].createMediaArticle(); //display media
+						this.visibleMedia.push(this.media[a]); //display media
 						break; //stop looping through their tags and move on to next media
 					}
+					// else {
+					// 	this.media[a].hideArticle();
+					// }
 				}
 			}
 			//END of Filtering
 		}
-		//this.mediaLikes(); //problème: on peut additionner les likes à l'infini car le like redevient
-		// possible après chaque tri. Idée: Prendre la partie de remplissage de like de la methode createMediaArticle et la passer ici
-		this.openLightbox();
+		this.displayVisibleArticles();
+		console.log(this);
 	}
 
-	deleteAll() {
-		document.querySelector('.gallery__main__gallery').innerHTML = '';
-	}
-	sortMediaBy(value) {
+	// deleteAll() {
+	// 	document.querySelector('.gallery__main__gallery').innerHTML = '';
+	// }
+	// sortMediaBy(value) {
+	// 	if (value == 'likes') {
+	// 		this.media.sort(function (a, b) {
+	// 			return a.likes - b.likes;
+	// 		});
+	// 	}
+
+	// 	if (value == 'date') {
+	// 		this.media.sort(function (a, b) {
+	// 			return removeHasgTagInString(a.date) - removeHasgTagInString(b.date);
+	// 		});
+	// 	}
+	// 	if (value == 'title') {
+	// 		this.media.sort(function (a, b) {
+	// 			return a.title.localeCompare(b.title);
+	// 		});
+	// 	}
+	// 	console.log(this.media);
+	// 	this.updateArticles(currentTag);
+	// 	this.openLightbox();
+	// }
+
+	sortMediaBy2(value) {
+		//sorting visible media
+
 		if (value == 'likes') {
-			this.media.sort(function (a, b) {
+			this.visibleMedia.sort(function (a, b) {
 				return a.likes - b.likes;
 			});
 		}
-
 		if (value == 'date') {
-			this.media.sort(function (a, b) {
+			this.visibleMedia.sort(function (a, b) {
 				return removeHasgTagInString(a.date) - removeHasgTagInString(b.date);
 			});
 		}
 		if (value == 'title') {
-			this.media.sort(function (a, b) {
+			this.visibleMedia.sort(function (a, b) {
 				return a.title.localeCompare(b.title);
 			});
 		}
-		this.updateArticles(currentTag);
-		this.openLightbox();
+		//end ofsorting visible media
+		let parentDiv = document.querySelector('.gallery__main__gallery');
+		let sortedArr = [];
+		for (let a = 0; a < this.visibleMedia.length; a++) {
+			sortedArr.push(this.visibleMedia[a].returnArticle()); //push article in sorted array
+		}
+		console.log(sortedArr);
+		for (let a = 0; a < sortedArr.length; a++) {
+			parentDiv.appendChild(sortedArr[a]);
+		}
 	}
 
 	async listenToBox() {
 		let gallery = this;
 		let box = document.getElementById('filter');
 		box.addEventListener('change', function (e) {
-			gallery.deleteAll();
-			//console.log('effacé');
-			gallery.sortMediaBy(box.value);
+			console.log('box was changed');
+			//gallery.hideAllArticles();
+			//	console.log('effacé');
+			gallery.sortMediaBy2(box.value);
 		});
 	}
 	///////////////////////////
 	async updateSelectionOnClick() {
-		//manages click on tag
+		//manages click on NAvtag
 		let allNavBtn = document.querySelectorAll('.tag');
 		//console.log(allNavBtn);
 		let page = this; //otherwise, "this" will refer to the buttons once inside the "foreach" loop
@@ -175,14 +232,14 @@ class Gallery {
 			btn.addEventListener('click', function (e) {
 				//listens to click
 				//console.log(btn.innerText);
-				page.deleteAll(); //deletes all articles at click
+				//page.deleteAll(); //deletes all articles at click
 
 				// particular case: if click happens on the same tag that was already selected at the previous click
 				if (
 					(currentTag === removeHasgTagInString(btn.innerText)) &
 					(emptySelection === false) //and a button is selected ie not coming from an "empty bar" (which happens if 3 clicks on the same button, then regular behaviour is needed)
 				) {
-					btn.classList = 'tag--Off'; //de-select tag button
+					btn.classList = 'tag--Off'; //set btn off
 					currentTag = '';
 					emptySelection = true; //state that no button is selected
 				}
@@ -193,7 +250,7 @@ class Gallery {
 					emptySelection = false; //state that selection is not empty
 				}
 				console.log('currentTag=  ' + currentTag);
-				page.updateArticles(currentTag);
+				page.updateArticles(currentTag); //calls update method
 
 				//management of ON/OFF state of btns
 				for (let b = 0; b < allNavBtn.length; b++) {
@@ -230,18 +287,29 @@ class Gallery {
 		let hearts = document.querySelectorAll(
 			'.gallery__main__gallery__container__info__likes__heart'
 		);
-		let articles = document.querySelectorAll(
-			'.gallery__main__gallery__container'
-		);
+		// let articles = document.querySelectorAll(
+		// 	'.gallery__main__gallery__container'
+		// );
 		let arr = Array.from(hearts);
-
 		//console.log(arr);
 		arr.forEach((heart) => {
 			let liked = false;
 			heart.addEventListener('click', function (e) {
+				//////essai refresh
+				hearts = document.querySelectorAll(
+					'.gallery__main__gallery__container__info__likes__heart'
+				);
+				arr = Array.from(hearts);
+				let articles = document.querySelectorAll(
+					'.gallery__main__gallery__container'
+				);
+
+				//////fin essai refresh
 				// console.log(liked);
 				let number = arr.indexOf(heart);
+				console.log('article numero' + number);
 				let targetMedia = gallery.media[number];
+				console.log(targetMedia);
 				let targetArticle = articles[number];
 				let targetLikes = targetArticle.querySelector(
 					'.gallery__main__gallery__container__info__likes__number'
@@ -250,7 +318,7 @@ class Gallery {
 				// console.log(targetLikes);
 				if (liked == false) {
 					liked = true;
-					console.log(liked);
+					//console.log(liked);
 					targetMedia.like = targetMedia.likes++;
 					heart.innerHTML = '<i class="fas fa-heart"></i>';
 				} else {
@@ -259,7 +327,7 @@ class Gallery {
 					heart.innerHTML = '<i class="far fa-heart"></i>';
 				}
 
-				console.log(liked);
+				//console.log(liked);
 				targetLikes.innerText = targetMedia.likes;
 				gallery.fillBottomLikes();
 			});
@@ -291,13 +359,7 @@ class Gallery {
 
 	async closeLightbox() {
 		let modal = document.querySelector('.lightbox__modal');
-		//let btnLaunch = document.querySelector('.gallery__main__presentation__btn'); //gets the "contact" button
 		let btnClose = document.getElementById('btnCloseLightbox'); //gets the "close" button
-		// launch modal event
-		// btnLaunch.addEventListener('click', function (e) {
-		// 	modal.style.display = 'block';
-		// });
-		//close modal event
 		btnClose.addEventListener('click', function (e) {
 			modal.style.display = 'none';
 		});
@@ -308,44 +370,60 @@ class Gallery {
 		let thumbnails = document.querySelectorAll(
 			'.gallery__main__gallery__container__thumbnail'
 		);
+		console.log('thumbnails');
+		console.log(thumbnails);
 		let arrayOfthumbnails = Array.from(thumbnails);
 		let gallery = this;
-		//console.log(arrayOfArticles);
-		//console.log(btnLaunch);
 		arrayOfthumbnails.forEach((thumbnail) => {
 			thumbnail.addEventListener('click', function (e) {
+				console.log('click');
+				////essai refresh
+				let articles = document.querySelectorAll(
+					'.gallery__main__gallery__container'
+				);
+
+				let arrayOfArticles = Array.from(articles);
+				console.log(articles);
+				console.log(arrayOfArticles);
+				//////fin essai refresh
+
 				modal.style.display = 'block';
 				index = arrayOfthumbnails.indexOf(thumbnail);
-				//console.log(index);
-				gallery.lightBoxDisplay(index);
+				console.log('index article cliqué' + index);
+
+				gallery.lightBoxDisplay(index); //index de l'article cliqué
+
 				//return index;
 			});
 		});
 	}
 	lightBoxDisplay(index) {
-		let parent = document.querySelector(
+		//index de l'article cliqué
+		//va voir l'index dans gallery.visibleMedia
+		let container = document.querySelector(
 			'.lightbox__modal__container__mediaContainer'
 		);
-		// console.log(parent);
-		let media = this.media[index];
-		let child = '';
+		let media = this.visibleMedia[index];
+		console.log(media);
+		let child = ''; //html eleemnt to be inserted
 		if (media.image !== undefined) {
+			//case of photo
 			child = document.createElement('img');
 		} else {
+			//case of video
 			child = document.createElement('video');
 			child.setAttribute('controls', 'controls');
 		}
-		child.classList.add('lightbox__modal__container__mediaContainer__media');
+		child.classList.add('lightbox__modal__container__mediaContainer__media'); //filling element
 		child.src = media.getPath();
 		child.alt = media.getPath();
-		//console.log(child);
-		//console.log(parent);
-		parent.innerHTML = '';
-		parent.appendChild(child);
+		container.innerHTML = ''; //delete previous picture
+		container.appendChild(child); //filling container
 		console.log('index vaut maintenant ' + index);
 		//return index;
 	}
 	correctIndex() {
+		//limit conditions
 		console.log('correct index');
 		let min = 0;
 		let max = this.media.length;
@@ -368,11 +446,12 @@ class Gallery {
 		let next = document.getElementById('btnNextLightbox');
 		let prev = document.getElementById('btnPrevLightbox');
 		let gallery = this;
+
 		prev.addEventListener('click', function (e) {
 			console.log('prev');
 			index = index - 1;
 			console.log(index);
-			gallery.correctIndex();
+			gallery.correctIndex(); //manages limit conditions
 			gallery.lightBoxDisplay(index);
 		});
 		next.addEventListener('click', function (e) {
@@ -380,7 +459,6 @@ class Gallery {
 			index = index + 1;
 			gallery.correctIndex();
 			console.log(index);
-
 			gallery.lightBoxDisplay(index);
 		});
 	}
@@ -393,18 +471,19 @@ class Gallery {
 	await gallery.getPhotographer();
 	await gallery.writePresentation();
 	await gallery.getGalleryMedia();
+	await gallery.writeAllArticles();
+	//await updateArticles('');
+	//await gallery.displayVisibleArticles();
 	gallery.fillBottomLikes();
 	gallery.fillBottomPrice();
-	await gallery.updateArticles(currentTag);
 	await gallery.listenToBox();
 	await gallery.updateSelectionOnClick();
 	await gallery.fillContact();
 	await gallery.openCloseContact();
 	await gallery.closeLightbox();
-	await gallery.openLightbox();
+	//await gallery.openLightbox();
 	await gallery.navigateLightBox();
 	await gallery.mediaLikes();
-	await gallery.media[2].displayArticle();
 
 	//export default Gallery;
 })();

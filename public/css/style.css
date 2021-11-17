@@ -135,7 +135,6 @@ li {
 }
 .gallery__main__gallery__container {
   margin: 15px;
-  display: flex;
   flex-direction: column;
   height: 100%;
 }

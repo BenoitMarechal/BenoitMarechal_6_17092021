@@ -91,6 +91,7 @@ class Media {
 
 			if (i === 0) {
 				element.id = 'id' + this.id;
+				element.style.display = 'block';
 			}
 			let byClass = document.getElementsByClassName(
 				elementsOfMediaArticle.parentOfElement[i]
@@ -135,14 +136,22 @@ class Media {
 
 	async displayArticle() {
 		let articleOfMedia = document.getElementById('id' + this.id);
-		console.log(articleOfMedia);
-		articleOfMedia.style.display = 'flex';
+		//console.log(articleOfMedia);
+		articleOfMedia.style.display = 'block';
+		//articleOfMedia.style.opacity = '1';
 	}
 
 	async hideArticle() {
 		let articleOfMedia = document.getElementById('id' + this.id);
-		console.log(articleOfMedia);
+		//console.log(articleOfMedia);
+		//articleOfMedia.style.opacity = '0.5';
 		articleOfMedia.style.display = 'none';
+	}
+	returnArticle() {
+		let article = document.getElementById('id' + this.id);
+		//console.log(article);
+		//console.log(article.style.display);
+		return article;
 	}
 }
 
