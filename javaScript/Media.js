@@ -22,13 +22,9 @@ class Media {
 	}
 
 	async defineType() {
-		//console.log('check type of  ');
+		//checks if photo or video
 		let newObject = {};
-		// console.log(this.image);
-		// console.log(this.video);
 		if (this.image !== undefined) {
-			//console.log(this.title + ' is an image');
-			//this.type = 'photo';
 			newObject = new Photo(
 				this.id,
 				this.photographerId,
@@ -40,11 +36,8 @@ class Media {
 				this.date,
 				this.price
 			);
-			//console.log(newObject);
 		}
 		if (this.video !== undefined) {
-			//	console.log(this.title + ' is a video');
-			//this.type = 'video';
 			newObject = new Video(
 				this.id,
 				this.photographerId,
@@ -56,24 +49,20 @@ class Media {
 				this.date,
 				this.price
 			);
-			//console.log(newObject);
 		}
 		return newObject;
 	}
 
 	getPath() {
-		//console.log('getPath ' + this.title);
-		//	console.log(this.photographerId);
+		//generates acces path for media
 		for (let i = 0; i < dataFromJson.photographers.length; i++) {
 			if (dataFromJson.photographers[i].id == this.photographerId) {
 				let name = replaceDashBySpaceInString(
 					dataFromJson.photographers[i].name
 				);
-				//console.log('name  ' + name);
 				let array = [];
 				array = name.split(' ');
 				let path = array[0];
-				//	console.log(array);
 
 				if (array.length > 0) {
 					array.pop();
@@ -87,40 +76,32 @@ class Media {
 				} else {
 					path = 'images/' + path + '/' + this.video;
 				}
-				//	console.log(folderTitle);
 				return path;
 			}
 		}
 	}
 
 	async createMediaArticle() {
-		//this.getPath();
+		//writes media article in gallery page
 		for (let i = 0; i < elementsOfMediaArticle.typeOfElement.length; i++) {
 			let element = document.createElement(
 				elementsOfMediaArticle.typeOfElement[i]
 			);
 			element.classList.add(elementsOfMediaArticle.classOfElement[i]);
-			//	console.log(element);
-			let tour = i; //assigns media ID as article ID
-			if (tour === 0) {
-				// element.id = this.clearedName;
+
+			if (i === 0) {
 				element.id = 'id' + this.id;
 			}
 			let byClass = document.getElementsByClassName(
 				elementsOfMediaArticle.parentOfElement[i]
 			);
 			let parent = byClass.item(byClass.length - 1); //declares last element of collection as parent
-			//	console.log('parent  ' + parent);
-			//	console.log('element   ' + element);
 
 			parent.appendChild(element);
 		} //EMPTY ARTICLE CREATED
 		let articleToFill = '';
 		articleToFill = document.getElementById('id' + this.id);
-		//	console.log(articleToFill);
-		//	console.log(this.photographerId);
 		if (this.image !== undefined) {
-			//console.log('image');
 			articleToFill.querySelector(
 				'.gallery__main__gallery__container__thumbnail'
 			).src = this.getPath();
@@ -128,7 +109,6 @@ class Media {
 				'.gallery__main__gallery__container__thumbnail'
 			).alt = this.title;
 		} else {
-			//console.log('video');
 			let target = articleToFill.querySelector(
 				'.gallery__main__gallery__container__thumbnail'
 			);
@@ -137,26 +117,33 @@ class Media {
 			newElement.src = this.getPath();
 			newElement.setAttribute('controls', 'controls');
 			let parentDiv = target.parentNode;
-
 			parentDiv.replaceChild(newElement, target);
 		}
 
 		articleToFill.querySelector(
 			'.gallery__main__gallery__container__info__title'
 		).innerText = this.title;
-		// + '  ' + this.date;// developpment option
 		articleToFill.querySelector(
 			'.gallery__main__gallery__container__info__likes__number'
 		).innerText = this.likes;
+
 		articleToFill.querySelector(
+			//has to be managed from somewhere elese, refresh problem
 			'.gallery__main__gallery__container__info__likes__heart'
 		).innerHTML = '<i class="far fa-heart"></i>';
 	}
 
-	// addLike() {
-	// 	this.like = this.like++;
-	// 	//		console.log(this.like);
-	// }
+	async displayArticle() {
+		let articleOfMedia = document.getElementById('id' + this.id);
+		console.log(articleOfMedia);
+		articleOfMedia.style.display = 'flex';
+	}
+
+	async hideArticle() {
+		let articleOfMedia = document.getElementById('id' + this.id);
+		console.log(articleOfMedia);
+		articleOfMedia.style.display = 'none';
+	}
 }
 
 class Photo extends Media {
@@ -172,7 +159,6 @@ class Photo extends Media {
 		price
 	) {
 		super(id, photographerId, title, image, video, tags, likes, date, price);
-		//this.image = image;
 	}
 }
 
@@ -189,7 +175,5 @@ class Video extends Media {
 		price
 	) {
 		super(id, photographerId, title, image, video, tags, likes, date, price);
-		//this.video = video;
 	}
-	generateThumbNail() {}
 }

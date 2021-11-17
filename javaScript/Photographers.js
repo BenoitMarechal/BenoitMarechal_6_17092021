@@ -10,14 +10,15 @@ class Photographer {
 	}
 
 	createArtistArticle() {
+		//write an article for a photographer
 		let clearedName = removeSpacesInString(this.name);
 		for (let i = 0; i < elementsOfArtistArticle.typeOfElement.length; i++) {
 			let element = document.createElement(
 				elementsOfArtistArticle.typeOfElement[i]
 			);
 			element.classList.add(elementsOfArtistArticle.classOfElement[i]);
-			let tour = i; //assigns photg name as article ID
-			if (tour === 0) {
+
+			if (i === 0) {
 				// element.id = this.clearedName;
 				element.id = 'id' + this.id;
 			}

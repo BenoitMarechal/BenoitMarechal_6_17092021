@@ -138,12 +138,12 @@ li {
   display: flex;
   flex-direction: column;
   height: 100%;
-  cursor: pointer;
 }
 .gallery__main__gallery__container__thumbnail {
   object-fit: cover;
   width: 400px;
   height: 400px;
+  cursor: pointer;
 }
 .gallery__main__gallery__container__info {
   color: #901c1c;
