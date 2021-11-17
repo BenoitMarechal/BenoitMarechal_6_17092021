@@ -1,6 +1,7 @@
 let dataFromJson = [];
 let currentTag = '';
 let index = 0;
+let visibleArticles = [];
 
 class Gallery {
 	constructor(pageId, photographer, media, visibleMedia) {
@@ -381,6 +382,16 @@ class Gallery {
 				let articles = document.querySelectorAll(
 					'.gallery__main__gallery__container'
 				);
+				let articlesArr = Array.from(articles);
+
+				visibleArticles = [];
+				for (let i = 0; i < articlesArr.length; i++) {
+					if (articlesArr[i].style.display == 'block') {
+						visibleArticles.push(articlesArr[i]);
+					}
+				}
+				console.log('visible');
+				console.log(visibleArticles);
 
 				let arrayOfArticles = Array.from(articles);
 				console.log(articles);
@@ -481,7 +492,7 @@ class Gallery {
 	await gallery.fillContact();
 	await gallery.openCloseContact();
 	await gallery.closeLightbox();
-	//await gallery.openLightbox();
+	await gallery.openLightbox();
 	await gallery.navigateLightBox();
 	await gallery.mediaLikes();
 
