@@ -65,10 +65,10 @@ class Gallery {
 			this.photographer.name;
 		articleToFill.querySelector(
 			'.photographer__link__location__city'
-		).innerText = this.photographer.city + ', ';
+		).innerText = this.photographer.city + ',';
 		articleToFill.querySelector(
 			'.photographer__link__location__country'
-		).innerText = this.photographer.country;
+		).innerText = '\u00A0' + this.photographer.country;
 		articleToFill.querySelector('.photographer__link__tagline').innerText =
 			this.photographer.tagline;
 		articleToFill.querySelector('.photographer__link__tags').innerHTML =
@@ -561,6 +561,7 @@ modal.addEventListener('submit', function (e) {
 	for (let i = 0; i < contactForm.id.length; i++) {
 		console.log(contactForm.id[i] + ' ' + contactForm.value[i]);
 	}
+	modal.style.display = 'none';
 });
 
 // export default Gallery;

@@ -41,7 +41,7 @@ class Photographer {
 			this.name;
 		articleToFill.querySelector(
 			'.photographer__link__location__city'
-		).innerText = this.city + ', ';
+		).innerText = this.city + ', ' + '\u00A0';
 		articleToFill.querySelector(
 			'.photographer__link__location__country'
 		).innerText = this.country;
