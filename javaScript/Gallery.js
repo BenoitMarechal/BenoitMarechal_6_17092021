@@ -128,7 +128,23 @@ class Gallery {
 		});
 	}
 
-	//////////navBar Tags
+	fillBottomPrice() {
+		let target = document.querySelector('.bottom__price');
+		target.innerText = this.photographer.price + '€ par jour';
+	}
+
+	countAllLikes() {
+		let totalOfLikes = 0;
+		for (let a = 0; a < this.media.length; a++) {
+			totalOfLikes = totalOfLikes + this.media[a].likes;
+		}
+		return totalOfLikes;
+	}
+	fillBottomLikes() {
+		let target = document.querySelector('.bottom__likes__score');
+		target.innerText = this.countAllLikes();
+	}
+
 	///listening
 	async updateSelectionOnClick() {
 		//fonction OK, gets currentTag
@@ -192,10 +208,75 @@ class Gallery {
 		}
 	}
 	////End of hide/show
+	//////////END of navBar Tags
+
+	/////LIKES
+
+	async mediaLikes2() {
+		let page = this;
+		this.media.forEach((media) => {
+			let liked = false;
+			let heart = media.returnHeart();
+			let likeCount = media.returnLikeCount();
+			heart.addEventListener('click', function (e) {
+				console.log('click ' + media.title);
+				if (liked == false) {
+					liked = true;
+					media.like = media.likes++;
+					heart.innerHTML = '<i class="fas fa-heart"></i>';
+				} else {
+					liked = false;
+					media.like = media.likes--;
+					heart.innerHTML = '<i class="far fa-heart"></i>';
+				}
+				likeCount.innerHTML = media.likes;
+				page.fillBottomLikes();
+			});
+		});
+
+		// let gallery = this;
+		// let hearts = document.querySelectorAll(
+		// 	'.gallery__main__gallery__container__info__likes__heart'
+		// );
+		// let arr = Array.from(hearts);
+		// arr.forEach((heart) => {
+		// 	let liked = false;
+		// 	heart.addEventListener('click', function (e) {
+		// 		gallery.refreshVisibleArticlesArray();
+		// 		let targetArticle = heart.parentNode.parentNode;
+		// 		let numero = visibleArticles.indexOf(targetArticle);
+		// 		console.log('numero ' + numero);
+		// 		console.log('media cible');
+		// 		let targetMedia = gallery.visibleMedia[numero];
+		// 		console.log(targetMedia);
+		// 		//let targetArticle = articles[number];
+		// 		let targetLikes = targetArticle.querySelector(
+		// 			'.gallery__main__gallery__container__info__likes__number'
+		// 		);
+
+		// 		// console.log(targetLikes);
+
+		// 		if (liked == false) {
+		// 			liked = true;
+		// 			//console.log(liked);
+		// 			targetMedia.like = targetMedia.likes++;
+		// 			heart.innerHTML = '<i class="fas fa-heart"></i>';
+		// 		} else {
+		// 			liked = false;
+		// 			targetMedia.like = targetMedia.likes--;
+		// 			heart.innerHTML = '<i class="far fa-heart"></i>';
+		// 		}
+		// 		//console.log(liked);
+
+		// 		targetLikes.innerText = targetMedia.likes;
+		// 		gallery.fillBottomLikes();
+		// 	});
+		// });
+	}
+
+	/////end of LIKES
 
 	///////////////FIN REFACTORING//////////////////////////////////////
-
-	//fin refacto tags
 
 	// displayVisibleArticles() {
 	// 	//Displays articles depending on this.visibleMedia (used for tags only)
@@ -275,18 +356,6 @@ class Gallery {
 	}
 	///////////////////////////
 
-	countAllLikes() {
-		let totalOfLikes = 0;
-		for (let a = 0; a < this.media.length; a++) {
-			totalOfLikes = totalOfLikes + this.media[a].likes;
-		}
-		return totalOfLikes;
-	}
-	fillBottomLikes() {
-		let target = document.querySelector('.bottom__likes__score');
-		target.innerText = this.countAllLikes();
-	}
-
 	mediaLikes() {
 		let gallery = this;
 		let hearts = document.querySelectorAll(
@@ -325,11 +394,6 @@ class Gallery {
 				gallery.fillBottomLikes();
 			});
 		});
-	}
-
-	fillBottomPrice() {
-		let target = document.querySelector('.bottom__price');
-		target.innerText = this.photographer.price + '€ par jour';
 	}
 
 	async openCloseContact() {
@@ -459,7 +523,7 @@ class Gallery {
 	await gallery.closeLightbox();
 	await gallery.openLightbox();
 	await gallery.navigateLightBox();
-	await gallery.mediaLikes();
+	await gallery.mediaLikes2();
 })();
 
 //cleaner le code

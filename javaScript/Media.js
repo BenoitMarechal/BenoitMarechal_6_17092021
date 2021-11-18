@@ -148,8 +148,27 @@ class Media {
 		return article;
 	}
 	returnThumbnail() {
+		//	let article = document.getElementById('id' + this.id);
+		let thumbnail = this.returnArticle().querySelector(
+			'.gallery__main__gallery__container__thumbnail'
+		);
+		return thumbnail;
+	}
+
+	returnHeart() {
 		let article = document.getElementById('id' + this.id);
-		return article;
+		let heart = article.querySelector(
+			'.gallery__main__gallery__container__info__likes__heart'
+		);
+		return heart;
+	}
+
+	returnLikeCount() {
+		let article = document.getElementById('id' + this.id);
+		let number = article.querySelector(
+			'.gallery__main__gallery__container__info__likes__number'
+		);
+		return number;
 	}
 }
 
