@@ -107,23 +107,23 @@ class Gallery {
 			this.media[a] = await this.media[a].defineType();
 		}
 		this.visibleMedia = this.media;
-		console.log(this);
+		//	console.log(this);
 	}
 	async writeAllArticles() {
-		console.log('called writeAllArticles');
+		//	console.log('called writeAllArticles');
 		this.media.forEach((media) => {
 			media.createMediaArticle();
 		});
 	}
 
 	hideAllArticles() {
-		console.log('called hideAllArticles');
+		//console.log('called hideAllArticles');
 		this.visibleMedia.forEach((media) => {
 			media.hideArticle();
 		});
 	}
 	displayVisibleArticles() {
-		console.log('called displayVisibleArticles');
+		//console.log('called displayVisibleArticles');
 		this.visibleMedia.forEach((media) => {
 			media.displayArticle();
 		});
@@ -133,7 +133,7 @@ class Gallery {
 		this.hideAllArticles();
 		this.visibleMedia = [];
 		if (tag == '') {
-			console.log('no tag selected');
+			//console.log('no tag selected');
 			this.visibleMedia = this.media;
 		} else {
 			//loop through medias
@@ -153,7 +153,7 @@ class Gallery {
 			//END of Filtering
 		}
 		this.displayVisibleArticles();
-		console.log(this);
+		//console.log(this);
 	}
 
 	// deleteAll() {
@@ -205,7 +205,7 @@ class Gallery {
 		for (let a = 0; a < this.visibleMedia.length; a++) {
 			sortedArr.push(this.visibleMedia[a].returnArticle()); //push article in sorted array
 		}
-		console.log(sortedArr);
+		//console.log(sortedArr);
 		for (let a = 0; a < sortedArr.length; a++) {
 			parentDiv.appendChild(sortedArr[a]);
 		}
@@ -215,7 +215,7 @@ class Gallery {
 		let gallery = this;
 		let box = document.getElementById('filter');
 		box.addEventListener('change', function (e) {
-			console.log('box was changed');
+			//	console.log('box was changed');
 			//gallery.hideAllArticles();
 			//	console.log('effacé');
 			gallery.sortMediaBy2(box.value);
@@ -250,7 +250,7 @@ class Gallery {
 					currentTag = removeHasgTagInString(btn.innerText); //sets the value of currentTag
 					emptySelection = false; //state that selection is not empty
 				}
-				console.log('currentTag=  ' + currentTag);
+				//console.log('currentTag=  ' + currentTag);
 				page.updateArticles(currentTag); //calls update method
 
 				//management of ON/OFF state of btns
@@ -370,36 +370,47 @@ class Gallery {
 		let modal = document.querySelector('.lightbox__modal');
 		let thumbnails = document.querySelectorAll(
 			'.gallery__main__gallery__container__thumbnail'
-		);
-		console.log('thumbnails');
-		console.log(thumbnails);
+		); //images ou videos (pour detection clic)
+		// let visibleThumnails = [];
+		// for (let i = 0; i < thumbnails.length; i++) {
+		// 	console.log(thumbnails[i].parentNode.style.display);
+		// }
+		//console.log('thumbnails');
+		//console.log(thumbnails);
 		let arrayOfthumbnails = Array.from(thumbnails);
 		let gallery = this;
+
+		////////detection
 		arrayOfthumbnails.forEach((thumbnail) => {
 			thumbnail.addEventListener('click', function (e) {
 				console.log('click');
 				////essai refresh
 				let articles = document.querySelectorAll(
+					//tous les articles
 					'.gallery__main__gallery__container'
 				);
 				let articlesArr = Array.from(articles);
-
 				visibleArticles = [];
 				for (let i = 0; i < articlesArr.length; i++) {
 					if (articlesArr[i].style.display == 'block') {
 						visibleArticles.push(articlesArr[i]);
 					}
 				}
-				console.log('visible');
-				console.log(visibleArticles);
+				console.log('visible' + visibleArticles.length);
+				console.log(visibleArticles); //tous les articles visibles
+				console.log('parent');
+				console.log(thumbnail.parentNode);
 
-				let arrayOfArticles = Array.from(articles);
-				console.log(articles);
-				console.log(arrayOfArticles);
+				index = visibleArticles.indexOf(thumbnail.parentNode);
+				//console.log('index ' + index);
+				// let arrayOfArticles = Array.from(articles);
+				// console.log(articles);
+				// console.log(arrayOfArticles);
 				//////fin essai refresh
-
 				modal.style.display = 'block';
-				index = arrayOfthumbnails.indexOf(thumbnail);
+				//index = 0;
+
+				//index = arrayOfthumbnails.indexOf(thumbnail);
 				console.log('index article cliqué' + index);
 
 				gallery.lightBoxDisplay(index); //index de l'article cliqué
@@ -437,7 +448,7 @@ class Gallery {
 		//limit conditions
 		console.log('correct index');
 		let min = 0;
-		let max = this.media.length;
+		let max = this.visibleMedia.length;
 		console.log('index au départ ' + index);
 		console.log('min ' + min);
 		console.log('max ' + max);
