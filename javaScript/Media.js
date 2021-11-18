@@ -134,41 +134,34 @@ class Media {
 		return articleToFill;
 	}
 
+	returnArticle() {
+		return document.getElementById('id' + this.id);
+	}
+
 	displayArticle() {
-		let articleOfMedia = document.getElementById('id' + this.id);
-		articleOfMedia.style.display = 'block';
+		this.returnArticle().style.display = 'block';
 	}
 
 	hideArticle() {
-		let articleOfMedia = document.getElementById('id' + this.id);
-		articleOfMedia.style.display = 'none';
+		this.returnArticle().style.display = 'none';
 	}
-	returnArticle() {
-		let article = document.getElementById('id' + this.id);
-		return article;
-	}
+
 	returnThumbnail() {
-		//	let article = document.getElementById('id' + this.id);
-		let thumbnail = this.returnArticle().querySelector(
+		return this.returnArticle().querySelector(
 			'.gallery__main__gallery__container__thumbnail'
 		);
-		return thumbnail;
 	}
 
 	returnHeart() {
-		let article = document.getElementById('id' + this.id);
-		let heart = article.querySelector(
+		return this.returnArticle().querySelector(
 			'.gallery__main__gallery__container__info__likes__heart'
 		);
-		return heart;
 	}
 
 	returnLikeCount() {
-		let article = document.getElementById('id' + this.id);
-		let number = article.querySelector(
+		return this.returnArticle().querySelector(
 			'.gallery__main__gallery__container__info__likes__number'
 		);
-		return number;
 	}
 }
 

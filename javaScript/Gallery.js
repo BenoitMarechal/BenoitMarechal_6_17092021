@@ -4,12 +4,12 @@ let index = 0;
 //let visibleArticles = [];
 
 class Gallery {
-	constructor(pageId, photographer, media, articles) {
+	constructor(pageId, photographer, media) {
 		this.pageId = undefined;
 		this.photographer = {};
 		this.media = []; //passer au pluriel
 		//this.visibleMedia = []; //passer au pluriel
-		this.articles = [];
+		//this.articles = [];
 		//this.visibleArticles=[]
 	}
 	async getId() {
@@ -112,7 +112,7 @@ class Gallery {
 	}
 	async writeAllArticles() {
 		this.media.forEach((media) => {
-			this.articles.push(media.createMediaArticle());
+			media.createMediaArticle();
 		});
 	}
 
@@ -233,48 +233,72 @@ class Gallery {
 				page.fillBottomLikes();
 			});
 		});
+	}
+	/////end of LIKES
 
-		// let gallery = this;
-		// let hearts = document.querySelectorAll(
-		// 	'.gallery__main__gallery__container__info__likes__heart'
-		// );
-		// let arr = Array.from(hearts);
-		// arr.forEach((heart) => {
-		// 	let liked = false;
-		// 	heart.addEventListener('click', function (e) {
-		// 		gallery.refreshVisibleArticlesArray();
-		// 		let targetArticle = heart.parentNode.parentNode;
-		// 		let numero = visibleArticles.indexOf(targetArticle);
-		// 		console.log('numero ' + numero);
-		// 		console.log('media cible');
-		// 		let targetMedia = gallery.visibleMedia[numero];
-		// 		console.log(targetMedia);
-		// 		//let targetArticle = articles[number];
-		// 		let targetLikes = targetArticle.querySelector(
-		// 			'.gallery__main__gallery__container__info__likes__number'
-		// 		);
-
-		// 		// console.log(targetLikes);
-
-		// 		if (liked == false) {
-		// 			liked = true;
-		// 			//console.log(liked);
-		// 			targetMedia.like = targetMedia.likes++;
-		// 			heart.innerHTML = '<i class="fas fa-heart"></i>';
-		// 		} else {
-		// 			liked = false;
-		// 			targetMedia.like = targetMedia.likes--;
-		// 			heart.innerHTML = '<i class="far fa-heart"></i>';
-		// 		}
-		// 		//console.log(liked);
-
-		// 		targetLikes.innerText = targetMedia.likes;
-		// 		gallery.fillBottomLikes();
-		// 	});
-		// });
+	/////////SORT
+	async listenToBox() {
+		let gallery = this;
+		let box = document.getElementById('filter');
+		box.addEventListener('change', function (e) {
+			gallery.sortThisMedia(box.value);
+			gallery.sortArticles();
+		});
 	}
 
-	/////end of LIKES
+	sortThisMedia(value) {
+		if (value == 'likes') {
+			this.media.sort(function (a, b) {
+				return a.likes - b.likes;
+			});
+		}
+		if (value == 'date') {
+			this.media.sort(function (a, b) {
+				return removeHasgTagInString(a.date) - removeHasgTagInString(b.date);
+			});
+		}
+		if (value == 'title') {
+			this.media.sort(function (a, b) {
+				return a.title.localeCompare(b.title);
+			});
+		}
+	}
+	//END sorting this.media
+	//sorting article
+	sortArticles() {
+		let parentDiv = document.querySelector('.gallery__main__gallery'); //delcares parent gallery
+
+		for (let a = 0; a < this.media.length; a++) {
+			parentDiv.appendChild(this.media[a].returnArticle()); //rebuilds this.articles from this.media
+		}
+	}
+	//END sorting article
+
+	//ex bis
+	// let parentDiv = document.querySelector('.gallery__main__gallery'); //delcares parent gallery
+	// this.articles = []; //resests articles
+
+	// for (let a = 0; a < this.media.length; a++) {
+	// 	this.articles.push(this.media[a].returnArticle()); //rebuilds this.articles from this.media
+	// }
+	// for (let a = 0; a < this.articles.length; a++) {
+	// 	parentDiv.appendChild(this.articles[a]);
+	// }
+	//fin ex bis
+	//ex
+	// let parentDiv = document.querySelector('.gallery__main__gallery');
+	// let sortedArr = [];
+	// console.log(parentDiv);
+	// for (let a = 0; a < this.media.length; a++) {
+	// 	sortedArr.push(this.media[a].returnArticle()); //push article in sorted array
+	// }
+	// for (let a = 0; a < sortedArr.length; a++) {
+	// 	parentDiv.appendChild(sortedArr[a]);
+	// }
+
+	////end ex
+
+	/////////END OF SORT
 
 	///////////////FIN REFACTORING//////////////////////////////////////
 
@@ -317,43 +341,35 @@ class Gallery {
 		this.displayVisibleArticles();
 	}
 
-	sortMediaBy(value) {
-		//sorting this.visibleMedia --> Trier tous les medias?
-		//console.log(this.visibleMedia);
-		if (value == 'likes') {
-			this.visibleMedia.sort(function (a, b) {
-				return a.likes - b.likes;
-			});
-		}
-		if (value == 'date') {
-			this.visibleMedia.sort(function (a, b) {
-				return removeHasgTagInString(a.date) - removeHasgTagInString(b.date);
-			});
-		}
-		if (value == 'title') {
-			this.visibleMedia.sort(function (a, b) {
-				return a.title.localeCompare(b.title);
-			});
-		}
-		//END sorting this.visibleMedia
-		let parentDiv = document.querySelector('.gallery__main__gallery');
-		let sortedArr = [];
-		for (let a = 0; a < this.visibleMedia.length; a++) {
-			sortedArr.push(this.visibleMedia[a].returnArticle()); //push article in sorted array
-		}
-		for (let a = 0; a < sortedArr.length; a++) {
-			parentDiv.appendChild(sortedArr[a]);
-		}
-	}
+	// sortMediaBy(value) {
+	// 	//sorting this.visibleMedia --> Trier tous les medias?
+	// 	//console.log(this.visibleMedia);
+	// 	if (value == 'likes') {
+	// 		this.visibleMedia.sort(function (a, b) {
+	// 			return a.likes - b.likes;
+	// 		});
+	// 	}
+	// 	if (value == 'date') {
+	// 		this.visibleMedia.sort(function (a, b) {
+	// 			return removeHasgTagInString(a.date) - removeHasgTagInString(b.date);
+	// 		});
+	// 	}
+	// 	if (value == 'title') {
+	// 		this.visibleMedia.sort(function (a, b) {
+	// 			return a.title.localeCompare(b.title);
+	// 		});
+	// 	}
+	// 	//END sorting this.visibleMedia
+	// 	let parentDiv = document.querySelector('.gallery__main__gallery');
+	// 	let sortedArr = [];
+	// 	for (let a = 0; a < this.visibleMedia.length; a++) {
+	// 		sortedArr.push(this.visibleMedia[a].returnArticle()); //push article in sorted array
+	// 	}
+	// 	for (let a = 0; a < sortedArr.length; a++) {
+	// 		parentDiv.appendChild(sortedArr[a]);
+	// 	}
+	// }
 
-	async listenToBox() {
-		let gallery = this;
-		let box = document.getElementById('filter');
-		box.addEventListener('change', function (e) {
-			//	gallery.hideAllArticles();
-			gallery.sortMediaBy(box.value);
-		});
-	}
 	///////////////////////////
 
 	mediaLikes() {
@@ -513,6 +529,7 @@ class Gallery {
 	await gallery.getPhotographer();
 	await gallery.writePresentation();
 	await gallery.getGalleryMedia();
+	gallery.sortThisMedia('likes'); //so articles are first displayed as per default value of combobox
 	await gallery.writeAllArticles();
 	gallery.fillBottomLikes();
 	gallery.fillBottomPrice();
