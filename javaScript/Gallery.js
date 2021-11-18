@@ -128,6 +128,19 @@ class Gallery {
 			media.displayArticle();
 		});
 	}
+	refreshVisibleArticlesArray() {
+		let articles = document.querySelectorAll(
+			//tous les articles
+			'.gallery__main__gallery__container'
+		);
+		let articlesArr = Array.from(articles);
+		visibleArticles = [];
+		for (let i = 0; i < articlesArr.length; i++) {
+			if (articlesArr[i].style.display == 'block') {
+				visibleArticles.push(articlesArr[i]);
+			}
+		}
+	}
 
 	async updateArticles(tag) {
 		this.hideAllArticles();
@@ -296,22 +309,36 @@ class Gallery {
 		arr.forEach((heart) => {
 			let liked = false;
 			heart.addEventListener('click', function (e) {
+				////TEST
+				gallery.refreshVisibleArticlesArray();
+				let targetArticle = heart.parentNode.parentNode;
+				let numero = visibleArticles.indexOf(targetArticle);
+				console.log('numero ' + numero);
+				console.log('media cible');
+				let targetMedia = gallery.visibleMedia[numero];
+
+				////FIN TEST
+
 				//////essai refresh
-				hearts = document.querySelectorAll(
-					'.gallery__main__gallery__container__info__likes__heart'
-				);
-				arr = Array.from(hearts);
-				let articles = document.querySelectorAll(
-					'.gallery__main__gallery__container'
-				);
+
+				// hearts = document.querySelectorAll(
+				// 	'.gallery__main__gallery__container__info__likes__heart'
+				// );
+				//arr = Array.from(hearts);
+				// let articles = document.querySelectorAll(
+				// 	'.gallery__main__gallery__container'
+				// );
+				// gallery.refreshVisibleArticlesArray();
+				// console.log(visibleArticles);
 
 				//////fin essai refresh
+
 				// console.log(liked);
-				let number = arr.indexOf(heart);
-				console.log('article numero' + number);
-				let targetMedia = gallery.media[number];
+				//	let number = arr.indexOf(heart);
+				//console.log('article numero' + number);
+				//let targetMedia = gallery.media[number];
 				console.log(targetMedia);
-				let targetArticle = articles[number];
+				//let targetArticle = articles[number];
 				let targetLikes = targetArticle.querySelector(
 					'.gallery__main__gallery__container__info__likes__number'
 				);
@@ -385,17 +412,22 @@ class Gallery {
 			thumbnail.addEventListener('click', function (e) {
 				console.log('click');
 				////essai refresh
-				let articles = document.querySelectorAll(
-					//tous les articles
-					'.gallery__main__gallery__container'
-				);
-				let articlesArr = Array.from(articles);
-				visibleArticles = [];
-				for (let i = 0; i < articlesArr.length; i++) {
-					if (articlesArr[i].style.display == 'block') {
-						visibleArticles.push(articlesArr[i]);
-					}
-				}
+				/////a remplacer
+				// let articles = document.querySelectorAll(
+				// 	//tous les articles
+				// 	'.gallery__main__gallery__container'
+				// );
+				// let articlesArr = Array.from(articles);
+				// visibleArticles = [];
+				// for (let i = 0; i < articlesArr.length; i++) {
+				// 	if (articlesArr[i].style.display == 'block') {
+				// 		visibleArticles.push(articlesArr[i]);
+				// 	}
+				// }
+				///fin remplacemlent
+				///test
+				gallery.refreshVisibleArticlesArray();
+				//fin test
 				console.log('visible' + visibleArticles.length);
 				console.log(visibleArticles); //tous les articles visibles
 				console.log('parent');
