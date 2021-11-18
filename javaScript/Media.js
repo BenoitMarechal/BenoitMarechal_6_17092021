@@ -81,7 +81,7 @@ class Media {
 		}
 	}
 
-	async createMediaArticle() {
+	createMediaArticle() {
 		//writes media article in gallery page
 		for (let i = 0; i < elementsOfMediaArticle.typeOfElement.length; i++) {
 			let element = document.createElement(
@@ -129,28 +129,26 @@ class Media {
 		).innerText = this.likes;
 
 		articleToFill.querySelector(
-			//has to be managed from somewhere elese, refresh problem
 			'.gallery__main__gallery__container__info__likes__heart'
 		).innerHTML = '<i class="far fa-heart"></i>';
+		return articleToFill;
 	}
 
-	async displayArticle() {
+	displayArticle() {
 		let articleOfMedia = document.getElementById('id' + this.id);
-		//console.log(articleOfMedia);
 		articleOfMedia.style.display = 'block';
-		//articleOfMedia.style.opacity = '1';
 	}
 
-	async hideArticle() {
+	hideArticle() {
 		let articleOfMedia = document.getElementById('id' + this.id);
-		//console.log(articleOfMedia);
-		//articleOfMedia.style.opacity = '0.5';
 		articleOfMedia.style.display = 'none';
 	}
 	returnArticle() {
 		let article = document.getElementById('id' + this.id);
-		//console.log(article);
-		//console.log(article.style.display);
+		return article;
+	}
+	returnThumbnail() {
+		let article = document.getElementById('id' + this.id);
 		return article;
 	}
 }

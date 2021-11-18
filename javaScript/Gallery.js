@@ -1,14 +1,16 @@
 let dataFromJson = [];
 let currentTag = '';
 let index = 0;
-let visibleArticles = [];
+//let visibleArticles = [];
 
 class Gallery {
-	constructor(pageId, photographer, media, visibleMedia) {
+	constructor(pageId, photographer, media, articles) {
 		this.pageId = undefined;
 		this.photographer = {};
 		this.media = []; //passer au pluriel
-		this.visibleMedia = []; //passer au pluriel
+		//this.visibleMedia = []; //passer au pluriel
+		this.articles = [];
+		//this.visibleArticles=[]
 	}
 	async getId() {
 		//extracts id from url
@@ -106,38 +108,110 @@ class Gallery {
 		for (let a = 0; a < this.media.length; a++) {
 			this.media[a] = await this.media[a].defineType();
 		}
-		this.visibleMedia = this.media;
+		//this.visibleMedia = this.media;
 	}
 	async writeAllArticles() {
 		this.media.forEach((media) => {
-			media.createMediaArticle();
+			this.articles.push(media.createMediaArticle());
 		});
 	}
 
 	hideAllArticles() {
-		this.visibleMedia.forEach((media) => {
+		this.media.forEach((media) => {
 			media.hideArticle();
 		});
 	}
-	displayVisibleArticles() {
-		//Displays articles depending on this.visibleMedia (used for tags only)
-		this.visibleMedia.forEach((media) => {
+
+	showAllArticles() {
+		this.media.forEach((media) => {
 			media.displayArticle();
 		});
 	}
+
+	//////////navBar Tags
+	///listening
+	async updateSelectionOnClick() {
+		//fonction OK, gets currentTag
+		//manages click on NAvtag
+		let allNavBtn = document.querySelectorAll('.tag');
+		//console.log(allNavBtn);
+		let page = this; //otherwise, "this" will refer to the buttons once inside the "foreach" loop
+		//let currentTag = '';
+		let emptySelection = true;
+		allNavBtn.forEach((btn) => {
+			btn.addEventListener('click', function (e) {
+				// particular case: if click happens on the same tag that was already selected at the previous click
+				if (
+					(currentTag === removeHasgTagInString(btn.innerText)) &
+					(emptySelection === false) //and a button is selected ie not coming from an "empty bar" (which happens if 3 clicks on the same button, then regular behaviour is needed)
+				) {
+					btn.classList = 'tag--Off'; //set btn off
+					currentTag = '';
+					emptySelection = true; //state that no button is selected
+				}
+				// end of particular case
+				else {
+					//Filtering
+					currentTag = removeHasgTagInString(btn.innerText); //sets the value of currentTag
+					emptySelection = false; //state that selection is not empty
+				}
+				//console.log('currentTag=  ' + currentTag);
+				page.hideShowArticles(currentTag); //calls update method
+
+				//management of ON/OFF state of btns
+				for (let b = 0; b < allNavBtn.length; b++) {
+					//loop through all btns
+					allNavBtn[b].classList = 'tag--Off'; //set all of them OFF
+					if (
+						removeHasgTagInString(allNavBtn[b].innerText) === currentTag //find the one that is selected
+					) {
+						allNavBtn[b].classList = 'tag--On'; //set it ON
+					}
+				}
+			});
+		});
+	}
+	///end of listening
+	////hide/show
+	hideShowArticles(tag) {
+		this.hideAllArticles();
+		if (tag == '') {
+			this.showAllArticles();
+		} else {
+			for (let a = 0; a < this.media.length; a++) {
+				//loop through media
+				for (let b = 0; b < this.media[a].tags.length; b++) {
+					//loop through each media's tags (only one tag per media for now)
+					if (this.media[a].tags[b] === currentTag) {
+						//if tag matches selection
+						this.media[a].displayArticle(); //push media in visibleMedia
+						break; //stop looping through their tags and move on to next media
+					}
+				}
+			}
+		}
+	}
+	////End of hide/show
+
+	///////////////FIN REFACTORING//////////////////////////////////////
+
+	//fin refacto tags
+
+	// displayVisibleArticles() {
+	// 	//Displays articles depending on this.visibleMedia (used for tags only)
+	// 	this.visibleMedia.forEach((media) => {
+	// 		media.displayArticle();
+	// 	});
+	// }
 	refreshVisibleArticlesArray() {
-		//updates the array of visible articles (used for likes and lightbox)
-		let articles = document.querySelectorAll(
-			//gets all articles
-			'.gallery__main__gallery__container'
-		);
-		let articlesArr = Array.from(articles);
-		visibleArticles = [];
-		for (let i = 0; i < articlesArr.length; i++) {
-			if (articlesArr[i].style.display == 'block') {
+		//will be used for navigating lightbox
+		let visibleArticles = [];
+		for (let i = 0; i < this.articles.length; i++) {
+			if (this.articles[i].style.display == 'block') {
 				visibleArticles.push(articlesArr[i]);
 			}
 		}
+		return visibleArticles;
 	}
 
 	async updateArticles(tag) {
@@ -200,46 +274,7 @@ class Gallery {
 		});
 	}
 	///////////////////////////
-	async updateSelectionOnClick() {
-		//manages click on NAvtag
-		let allNavBtn = document.querySelectorAll('.tag');
-		//console.log(allNavBtn);
-		let page = this; //otherwise, "this" will refer to the buttons once inside the "foreach" loop
-		//let currentTag = '';
-		let emptySelection = true;
-		allNavBtn.forEach((btn) => {
-			btn.addEventListener('click', function (e) {
-				// particular case: if click happens on the same tag that was already selected at the previous click
-				if (
-					(currentTag === removeHasgTagInString(btn.innerText)) &
-					(emptySelection === false) //and a button is selected ie not coming from an "empty bar" (which happens if 3 clicks on the same button, then regular behaviour is needed)
-				) {
-					btn.classList = 'tag--Off'; //set btn off
-					currentTag = '';
-					emptySelection = true; //state that no button is selected
-				}
-				// end of particular case
-				else {
-					//Filtering
-					currentTag = removeHasgTagInString(btn.innerText); //sets the value of currentTag
-					emptySelection = false; //state that selection is not empty
-				}
-				//console.log('currentTag=  ' + currentTag);
-				page.updateArticles(currentTag); //calls update method
 
-				//management of ON/OFF state of btns
-				for (let b = 0; b < allNavBtn.length; b++) {
-					//loop through all btns
-					allNavBtn[b].classList = 'tag--Off'; //set all of them OFF
-					if (
-						removeHasgTagInString(allNavBtn[b].innerText) === currentTag //find the one that is selected
-					) {
-						allNavBtn[b].classList = 'tag--On'; //set it ON
-					}
-				}
-			});
-		});
-	}
 	countAllLikes() {
 		let totalOfLikes = 0;
 		for (let a = 0; a < this.media.length; a++) {
