@@ -5,10 +5,10 @@ let visibleArticles = [];
 
 class Gallery {
 	constructor(pageId, photographer, media, visibleMedia) {
-		this.pageId = [];
-		this.photographer = [];
-		this.media = [];
-		this.visibleMedia = [];
+		this.pageId = undefined;
+		this.photographer = {};
+		this.media = []; //passer au pluriel
+		this.visibleMedia = []; //passer au pluriel
 	}
 	async getId() {
 		//extracts id from url
@@ -107,30 +107,28 @@ class Gallery {
 			this.media[a] = await this.media[a].defineType();
 		}
 		this.visibleMedia = this.media;
-		//	console.log(this);
 	}
 	async writeAllArticles() {
-		//	console.log('called writeAllArticles');
 		this.media.forEach((media) => {
 			media.createMediaArticle();
 		});
 	}
 
 	hideAllArticles() {
-		//console.log('called hideAllArticles');
 		this.visibleMedia.forEach((media) => {
 			media.hideArticle();
 		});
 	}
 	displayVisibleArticles() {
-		//console.log('called displayVisibleArticles');
+		//Displays articles depending on this.visibleMedia (used for tags only)
 		this.visibleMedia.forEach((media) => {
 			media.displayArticle();
 		});
 	}
 	refreshVisibleArticlesArray() {
+		//updates the array of visible articles (used for likes and lightbox)
 		let articles = document.querySelectorAll(
-			//tous les articles
+			//gets all articles
 			'.gallery__main__gallery__container'
 		);
 		let articlesArr = Array.from(articles);
@@ -144,59 +142,29 @@ class Gallery {
 
 	async updateArticles(tag) {
 		this.hideAllArticles();
-		this.visibleMedia = [];
+		this.visibleMedia = []; //resets this.visibleMedia
 		if (tag == '') {
-			//console.log('no tag selected');
 			this.visibleMedia = this.media;
 		} else {
-			//loop through medias
 			for (let a = 0; a < this.media.length; a++) {
-				//loop through each media's tags (only one for now)
+				//loop through media
 				for (let b = 0; b < this.media[a].tags.length; b++) {
+					//loop through each media's tags (only one tag per media for now)
 					if (this.media[a].tags[b] === currentTag) {
 						//if tag matches selection
-						this.visibleMedia.push(this.media[a]); //display media
+						this.visibleMedia.push(this.media[a]); //push media in visibleMedia
 						break; //stop looping through their tags and move on to next media
 					}
-					// else {
-					// 	this.media[a].hideArticle();
-					// }
 				}
 			}
-			//END of Filtering
+			//END of updating this.visibleMedia
 		}
 		this.displayVisibleArticles();
-		//console.log(this);
 	}
 
-	// deleteAll() {
-	// 	document.querySelector('.gallery__main__gallery').innerHTML = '';
-	// }
-	// sortMediaBy(value) {
-	// 	if (value == 'likes') {
-	// 		this.media.sort(function (a, b) {
-	// 			return a.likes - b.likes;
-	// 		});
-	// 	}
-
-	// 	if (value == 'date') {
-	// 		this.media.sort(function (a, b) {
-	// 			return removeHasgTagInString(a.date) - removeHasgTagInString(b.date);
-	// 		});
-	// 	}
-	// 	if (value == 'title') {
-	// 		this.media.sort(function (a, b) {
-	// 			return a.title.localeCompare(b.title);
-	// 		});
-	// 	}
-	// 	console.log(this.media);
-	// 	this.updateArticles(currentTag);
-	// 	this.openLightbox();
-	// }
-
-	sortMediaBy2(value) {
-		//sorting visible media
-
+	sortMediaBy(value) {
+		//sorting this.visibleMedia --> Trier tous les medias?
+		//console.log(this.visibleMedia);
 		if (value == 'likes') {
 			this.visibleMedia.sort(function (a, b) {
 				return a.likes - b.likes;
@@ -212,13 +180,12 @@ class Gallery {
 				return a.title.localeCompare(b.title);
 			});
 		}
-		//end ofsorting visible media
+		//END sorting this.visibleMedia
 		let parentDiv = document.querySelector('.gallery__main__gallery');
 		let sortedArr = [];
 		for (let a = 0; a < this.visibleMedia.length; a++) {
 			sortedArr.push(this.visibleMedia[a].returnArticle()); //push article in sorted array
 		}
-		//console.log(sortedArr);
 		for (let a = 0; a < sortedArr.length; a++) {
 			parentDiv.appendChild(sortedArr[a]);
 		}
@@ -228,10 +195,8 @@ class Gallery {
 		let gallery = this;
 		let box = document.getElementById('filter');
 		box.addEventListener('change', function (e) {
-			//	console.log('box was changed');
-			//gallery.hideAllArticles();
-			//	console.log('effacé');
-			gallery.sortMediaBy2(box.value);
+			//	gallery.hideAllArticles();
+			gallery.sortMediaBy(box.value);
 		});
 	}
 	///////////////////////////
@@ -244,10 +209,6 @@ class Gallery {
 		let emptySelection = true;
 		allNavBtn.forEach((btn) => {
 			btn.addEventListener('click', function (e) {
-				//listens to click
-				//console.log(btn.innerText);
-				//page.deleteAll(); //deletes all articles at click
-
 				// particular case: if click happens on the same tag that was already selected at the previous click
 				if (
 					(currentTag === removeHasgTagInString(btn.innerText)) &
@@ -284,16 +245,11 @@ class Gallery {
 		for (let a = 0; a < this.media.length; a++) {
 			totalOfLikes = totalOfLikes + this.media[a].likes;
 		}
-		//	console.log(totalOfLikes);
 		return totalOfLikes;
 	}
 	fillBottomLikes() {
 		let target = document.querySelector('.bottom__likes__score');
-		//let space = ' ';
-		//let icon="<i class="fas fa-heart"></i>";
 		target.innerText = this.countAllLikes();
-		// this.countAllLikes() + ' yeah yeah yeah' +
-		//icon;
 	}
 
 	mediaLikes() {
@@ -301,42 +257,16 @@ class Gallery {
 		let hearts = document.querySelectorAll(
 			'.gallery__main__gallery__container__info__likes__heart'
 		);
-		// let articles = document.querySelectorAll(
-		// 	'.gallery__main__gallery__container'
-		// );
 		let arr = Array.from(hearts);
-		//console.log(arr);
 		arr.forEach((heart) => {
 			let liked = false;
 			heart.addEventListener('click', function (e) {
-				////TEST
 				gallery.refreshVisibleArticlesArray();
 				let targetArticle = heart.parentNode.parentNode;
 				let numero = visibleArticles.indexOf(targetArticle);
 				console.log('numero ' + numero);
 				console.log('media cible');
 				let targetMedia = gallery.visibleMedia[numero];
-
-				////FIN TEST
-
-				//////essai refresh
-
-				// hearts = document.querySelectorAll(
-				// 	'.gallery__main__gallery__container__info__likes__heart'
-				// );
-				//arr = Array.from(hearts);
-				// let articles = document.querySelectorAll(
-				// 	'.gallery__main__gallery__container'
-				// );
-				// gallery.refreshVisibleArticlesArray();
-				// console.log(visibleArticles);
-
-				//////fin essai refresh
-
-				// console.log(liked);
-				//	let number = arr.indexOf(heart);
-				//console.log('article numero' + number);
-				//let targetMedia = gallery.media[number];
 				console.log(targetMedia);
 				//let targetArticle = articles[number];
 				let targetLikes = targetArticle.querySelector(
@@ -354,8 +284,8 @@ class Gallery {
 					targetMedia.like = targetMedia.likes--;
 					heart.innerHTML = '<i class="far fa-heart"></i>';
 				}
-
 				//console.log(liked);
+
 				targetLikes.innerText = targetMedia.likes;
 				gallery.fillBottomLikes();
 			});
@@ -397,57 +327,16 @@ class Gallery {
 		let modal = document.querySelector('.lightbox__modal');
 		let thumbnails = document.querySelectorAll(
 			'.gallery__main__gallery__container__thumbnail'
-		); //images ou videos (pour detection clic)
-		// let visibleThumnails = [];
-		// for (let i = 0; i < thumbnails.length; i++) {
-		// 	console.log(thumbnails[i].parentNode.style.display);
-		// }
-		//console.log('thumbnails');
-		//console.log(thumbnails);
+		); //images or videos for click detection
 		let arrayOfthumbnails = Array.from(thumbnails);
 		let gallery = this;
-
 		////////detection
 		arrayOfthumbnails.forEach((thumbnail) => {
 			thumbnail.addEventListener('click', function (e) {
-				console.log('click');
-				////essai refresh
-				/////a remplacer
-				// let articles = document.querySelectorAll(
-				// 	//tous les articles
-				// 	'.gallery__main__gallery__container'
-				// );
-				// let articlesArr = Array.from(articles);
-				// visibleArticles = [];
-				// for (let i = 0; i < articlesArr.length; i++) {
-				// 	if (articlesArr[i].style.display == 'block') {
-				// 		visibleArticles.push(articlesArr[i]);
-				// 	}
-				// }
-				///fin remplacemlent
-				///test
 				gallery.refreshVisibleArticlesArray();
-				//fin test
-				console.log('visible' + visibleArticles.length);
-				console.log(visibleArticles); //tous les articles visibles
-				console.log('parent');
-				console.log(thumbnail.parentNode);
-
 				index = visibleArticles.indexOf(thumbnail.parentNode);
-				//console.log('index ' + index);
-				// let arrayOfArticles = Array.from(articles);
-				// console.log(articles);
-				// console.log(arrayOfArticles);
-				//////fin essai refresh
 				modal.style.display = 'block';
-				//index = 0;
-
-				//index = arrayOfthumbnails.indexOf(thumbnail);
-				console.log('index article cliqué' + index);
-
-				gallery.lightBoxDisplay(index); //index de l'article cliqué
-
-				//return index;
+				gallery.lightBoxDisplay(index);
 			});
 		});
 	}
@@ -526,8 +415,6 @@ class Gallery {
 	await gallery.writePresentation();
 	await gallery.getGalleryMedia();
 	await gallery.writeAllArticles();
-	//await updateArticles('');
-	//await gallery.displayVisibleArticles();
 	gallery.fillBottomLikes();
 	gallery.fillBottomPrice();
 	await gallery.listenToBox();
@@ -538,44 +425,8 @@ class Gallery {
 	await gallery.openLightbox();
 	await gallery.navigateLightBox();
 	await gallery.mediaLikes();
-
-	//export default Gallery;
 })();
-//get data from form
-let contactForm = {
-	id: ['first', 'last', 'email', 'message'],
-	value: ['none', 'none', 'none', 'none'],
-};
 
-for (let i = 0; i < contactForm.id.length; i++) {
-	document
-		.getElementById(contactForm.id[i])
-		.addEventListener('input', function (e) {
-			contactForm.value[i] = this.value;
-		});
-}
-
-let modal = document.querySelector('.modal');
-modal.addEventListener('submit', function (e) {
-	e.preventDefault();
-	for (let i = 0; i < contactForm.id.length; i++) {
-		console.log(contactForm.id[i] + ' ' + contactForm.value[i]);
-	}
-	modal.style.display = 'none';
-});
-
-// export default Gallery;
-/////////////contact modal
-
-////////////////end contact modal
-
-//lightbox: cadre avec plusieurs media, capacité à changer de média
-//position par défaut (courant) incrémentée/décré suivant actions
-//exceptions: début et fin de tableau
-//ouverture sur le média clické
-
-//formulaire de contact
-//bouton de contact --> OK
 //cleaner le code
 //modal contact dans un autre fichier JS
 //import-export JS
@@ -586,3 +437,7 @@ modal.addEventListener('submit', function (e) {
 //compter les likes --> OK
 
 //accessibilité à voir après
+
+//faire un fichier spécial pour dataFrom Json
+
+//deadline fin novembre
