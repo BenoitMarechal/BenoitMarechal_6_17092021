@@ -282,12 +282,10 @@ li {
   justify-content: center;
 }
 .lightbox__modal__container__mediaContainer {
-  border: 1px solid red;
   width: 1050px;
   height: 900px;
 }
 .lightbox__modal__container__mediaContainer__media {
-  border: 1px solid green;
   object-fit: contain;
   width: 100%;
   height: 100%;

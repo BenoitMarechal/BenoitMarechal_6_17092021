@@ -91,20 +91,8 @@ let elementsOfMediaArticle = {
 //////////////////////////////CREATING GALLERY PRESENTATION///////////////////
 
 let elementsOfGalleryPresentation = {
-	typeOfElement: [
-		//'div',
-		'div',
-		'h1',
-		'div',
-		'p',
-		'p',
-		'div',
-		'ul',
-		'button',
-		'img',
-	],
+	typeOfElement: ['div', 'h1', 'div', 'p', 'p', 'div', 'ul', 'button', 'img'],
 	classOfElement: [
-		//'gallery__main__presentation',
 		'gallery__main__presentation__info',
 		'gallery__main__presentation__info__name',
 		'gallery__main__presentation__info__location',
@@ -117,15 +105,14 @@ let elementsOfGalleryPresentation = {
 	],
 
 	extraClassOfElement: [
-		//'gallery__main__presentation',
-		'gallery__main__presentation__info',
+		undefined,
 		'photographer__link__name',
 		'photographer__link__location',
 		'photographer__link__location__city',
 		'photographer__link__location__country',
 		'photographer__link__tagline',
 		'photographer__link__tags',
-		'gallery__main__presentation__btn',
+		'pointer',
 		'photographer__link__img',
 	],
 
