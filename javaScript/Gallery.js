@@ -1,4 +1,48 @@
-let dataFromJson = [];
+// let dataFromJson = [];
+
+/////////////////////////// import data
+import { dataFromJson } from './FetchData.js';
+console.log(dataFromJson);
+///////////////////////////fin import data
+////////////import class Media
+import { Media } from './Media.js';
+let testMedia = new Media(
+	'lkjh',
+	'lkjh',
+	'lkjh',
+	'lkjh',
+	'lkjh',
+	'lkjh',
+	'lkjh',
+	'lkjh',
+	'lkjh'
+);
+console.log(testMedia);
+import { Photo } from './Media.js';
+let testPhoto = new Photo(
+	'lkjh',
+	'lkjh',
+	'lkjh',
+	'lkjh',
+	'lkjh',
+	'lkjh',
+	'lkjh',
+	'lkjh',
+	'lkjh'
+);
+console.log(testPhoto);
+
+////////////fin import class Media
+import { FishEyeUtilitaires } from './utilitaries.js';
+import { u } from './utilitaries.js';
+let utils = new FishEyeUtilitaires();
+//console.log(FishEyeUtilitaires);
+console.log(utils);
+console.log(utils.removeSpacesInString('kjh   kjh'));
+console.log(u.removeSpacesInString('AAA  BBB'));
+console.log(FishEyeUtilitaires()('kjh   kjh'));
+///////tester d'importer juste l'instance
+
 class Gallery {
 	constructor(
 		pageId,

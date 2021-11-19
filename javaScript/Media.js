@@ -1,4 +1,4 @@
-class Media {
+export class Media {
 	constructor(
 		id,
 		photographerId,
@@ -165,7 +165,7 @@ class Media {
 	}
 }
 
-class Photo extends Media {
+export class Photo extends Media {
 	constructor(
 		id,
 		photographerId,
@@ -181,7 +181,7 @@ class Photo extends Media {
 	}
 }
 
-class Video extends Media {
+export class Video extends Media {
 	constructor(
 		id,
 		photographerId,
