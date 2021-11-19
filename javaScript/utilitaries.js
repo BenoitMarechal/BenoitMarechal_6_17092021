@@ -117,7 +117,6 @@ let elementsOfGalleryPresentation = {
 	],
 
 	parentOfElement: [
-		//'gallery__main__presentation',
 		'gallery__main__presentation',
 		'gallery__main__presentation__info',
 		'gallery__main__presentation__info',
