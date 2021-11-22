@@ -4,8 +4,12 @@ export class ContactModal {
 			id: ['first', 'last', 'email', 'message'],
 			value: [undefined, undefined, undefined, undefined],
 		};
-		this.photographer = undefined;
+		this.photographer = photographer;
 		this.DOMelement = document.querySelector('.contact__modal');
+		// this.fillContact();
+		this.openClose();
+		this.storeValue();
+		this.submit();
 	}
 
 	fillContact() {

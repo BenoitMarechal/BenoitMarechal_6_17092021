@@ -103,12 +103,13 @@ class Gallery {
 
 	async contact() {
 		let contact = new ContactModal();
-		contact.photographer = this.photographer;
+		//contact.photographer = this.photographer;
+		//	contact.fillContact();
 		console.log(contact);
-		contact.fillContact();
-		contact.openClose();
-		contact.storeValue();
-		contact.submit();
+		// contact.fillContact();
+		// contact.openClose();
+		// contact.storeValue();
+		// contact.submit();
 	}
 
 	async getGalleryMedia() {
