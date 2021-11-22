@@ -25,7 +25,7 @@ export class Media {
 		this.price = price;
 	}
 
-	async defineType() {
+	defineType() {
 		//checks if photo or video
 		let newObject = {};
 		if (this.image !== undefined) {

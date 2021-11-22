@@ -1,25 +1,16 @@
-// let dataFromJson = [];
-
-/////////////////////////// import data
+/////////////////////////// import
 import { dataFromJson } from './FetchData.js';
 import { utils } from './utilitaries.js';
-import { elementsOfGalleryPresentation } from './utilitaries.js';
 import { Media } from './Media.js';
 import { ContactModal } from './ContactModal.js';
-////immporter class modal
-////en créant gallery, créer new modal (this.photgrapher)
+import { Like } from './GalleryLikes.js';
+import { Presentation } from './PhotographerPres.js';
+import { NavTags } from './GalleryTags.js';
+import { Sort } from './Sort.js';
+import { LightBox } from './Lightbox.js';
 
 class Gallery {
-	constructor(
-		pageId,
-		photographer,
-		media,
-		currentTag,
-		lightBox,
-		visibleMedia,
-		index
-	) {
-		this.pageId = undefined;
+	constructor(photographer, media, currentTag, lightBox, visibleMedia, index) {
 		this.photographer = {};
 		this.media = []; //passer au pluriel
 		this.currentTag = undefined;
@@ -27,95 +18,23 @@ class Gallery {
 		this.visibleMedia = [];
 		this.index = undefined;
 	}
-	async getId() {
-		//extracts id from url
-		let url = new URLSearchParams(window.location.search);
-		this.pageId = url.get('id');
-	}
-	// async extractData() {
-	// 	//extracts dataFromJson
-	// 	let rep = await fetch('./public/dataBase.json');
-	// 	dataFromJson = await rep.json();
-	// }
 
-	async getPhotographer() {
+	getPhotographer() {
+		let pageId = new URLSearchParams(window.location.search).get('id');
 		//finds photographer matching id in dataFromJson, assigns to gallery
 		for (let i = 0; i < dataFromJson.photographers.length; i++) {
-			if (dataFromJson.photographers[i].id == this.pageId) {
+			if (dataFromJson.photographers[i].id == pageId) {
 				this.photographer = dataFromJson.photographers[i];
 				break;
 			}
 		}
-		// let contact = new ContactModal();
-		// contact.photographer = this.photographer;
-		// console.log(contact);
-		// contact.fillContact();
-		// await contact.openClose();
-		// contact.storeValue();
-		// contact.submit();
-	}
-	async writePresentation() {
-		//generates upper content (photographer presentation)
-		for (
-			let i = 0;
-			i < elementsOfGalleryPresentation.typeOfElement.length;
-			i++
-		) {
-			let element = document.createElement(
-				elementsOfGalleryPresentation.typeOfElement[i]
-			);
-			if (elementsOfGalleryPresentation.extraClassOfElement[i] !== undefined) {
-				element.classList.add(
-					elementsOfGalleryPresentation.extraClassOfElement[i]
-				);
-			}
-			element.classList.add(elementsOfGalleryPresentation.classOfElement[i]);
-			let byClass = document.getElementsByClassName(
-				elementsOfGalleryPresentation.parentOfElement[i]
-			);
-			let parent = byClass.item(byClass.length - 1); //declares last element of collection as parent
-			parent.appendChild(element);
-		} //EMPTY ARTICLE CREATED
-
-		let articleToFill = '';
-		articleToFill = document.querySelector('.gallery__main__presentation');
-		articleToFill.querySelector('.photographer__link__name').innerText =
-			this.photographer.name;
-		articleToFill.querySelector(
-			'.photographer__link__location__city'
-		).innerText = this.photographer.city + ',';
-		articleToFill.querySelector(
-			'.photographer__link__location__country'
-		).innerText = '\u00A0' + this.photographer.country;
-		articleToFill.querySelector('.photographer__link__tagline').innerText =
-			this.photographer.tagline;
-		articleToFill.querySelector('.photographer__link__tags').innerHTML =
-			utils.generateTagButtons(this.photographer.tags);
-		articleToFill.querySelector('.gallery__main__presentation__btn').innerText =
-			'Contactez moi';
-		let clearedName = utils.removeSpacesInString(this.photographer.name);
-		let path = 'images/Photographers ID Photos/' + clearedName + '.jpg';
-		articleToFill.querySelector('.photographer__link__img').src = path;
-		articleToFill.querySelector('.photographer__link__img').alt =
-			this.photographer.name;
-		//presentation filled
 	}
 
-	async contact() {
-		let contact = new ContactModal();
-		//contact.photographer = this.photographer;
-		//	contact.fillContact();
-		console.log(contact);
-		// contact.fillContact();
-		// contact.openClose();
-		// contact.storeValue();
-		// contact.submit();
-	}
-
-	async getGalleryMedia() {
+	getGalleryMedia() {
 		//gets all the media from the photographer, assigns to gallery page
+		let page = this;
 		dataFromJson.media.forEach((media) => {
-			if (media.photographerId == this.pageId) {
+			if (media.photographerId == page.photographer.id) {
 				media = new Media(
 					media.id,
 					media.photographerId,
@@ -127,15 +46,18 @@ class Gallery {
 					media.date,
 					media.price
 				);
-				this.media.push(media);
+				page.media.push(media.defineType());
 			}
 		});
-		for (let a = 0; a < this.media.length; a++) {
-			this.media[a] = await this.media[a].defineType();
-		}
-		//this.visibleMedia = this.media;
 	}
-	async writeAllArticles() {
+
+	writePresentation() {
+		let pres = new Presentation(this, this.photographer, '');
+	}
+	contact() {
+		let contact = new ContactModal('', this.photographer, '');
+	}
+	writeAllArticles() {
 		this.media.forEach((media) => {
 			media.createMediaArticle();
 		});
@@ -146,7 +68,6 @@ class Gallery {
 			media.hideArticle();
 		});
 	}
-
 	showAllArticles() {
 		this.media.forEach((media) => {
 			media.displayArticle();
@@ -169,232 +90,130 @@ class Gallery {
 		let target = document.querySelector('.bottom__likes__score');
 		target.innerText = this.countAllLikes();
 	}
-
-	///listening to tags
-	async updateSelectionOnClick() {
-		//manages click on NAvtag
-		let allNavBtn = document.querySelectorAll('.tag');
-		let page = this; //otherwise, "this" will refer to the buttons once inside the "foreach" loop
-		let emptySelection = true;
-		allNavBtn.forEach((btn) => {
-			btn.addEventListener('click', function (e) {
-				let btnInput = utils.removeHasgTagInString(btn.innerText);
-				// particular case: if click happens on the same tag that was already selected at the previous click
-				if (
-					(page.currentTag === btnInput) &
-					(emptySelection === false) //and a button is selected ie not coming from an "empty bar" (which happens if 3 clicks on the same button, then regular behaviour is needed)
-				) {
-					btn.classList = 'tag--Off'; //set btn off
-					page.currentTag = '';
-					emptySelection = true; //state that no button is selected
-				}
-				// end of particular case
-				else {
-					//Filtering
-					page.currentTag = btnInput; //sets the value of currentTag
-					emptySelection = false; //state that selection is not empty
-				}
-				page.hideShowArticles(page.currentTag); //calls update method
-				//management of ON/OFF state of btns
-				allNavBtn.forEach((btn) => {
-					btn.classList = 'tag--Off'; //set all of them OFF
-
-					if (
-						utils.removeHasgTagInString(btn.innerText) === page.currentTag //find the one that is selected
-					) {
-						btn.classList = 'tag--On'; //set it ON
-					}
-				});
-			});
-		});
-	}
-	////hide/show
-	hideShowArticles(tag) {
-		this.hideAllArticles();
-		if (tag == '') {
-			this.showAllArticles();
-		} else {
-			for (let a = 0; a < this.media.length; a++) {
-				//loop through media
-				for (let b = 0; b < this.media[a].tags.length; b++) {
-					//loop through each media's tags (only one tag per media for now)
-					if (this.media[a].tags[b] === this.currentTag) {
-						//if tag matches selection
-						this.media[a].displayArticle(); //push media in visibleMedia
-						break; //stop looping through their tags and move on to next media
-					}
-				}
-			}
-		}
+	manageTags() {
+		let tags = new NavTags(this);
 	}
 	/////LIKES
-	async mediaLikes() {
-		let page = this;
-		this.media.forEach((media) => {
-			let liked = false;
-			let heart = media.returnHeart();
-			let likeCount = media.returnLikeCount();
-			heart.addEventListener('click', function (e) {
-				if (liked == false) {
-					liked = true;
-					media.like = media.likes++;
-					heart.innerHTML = '<i class="fas fa-heart"></i>';
-				} else {
-					liked = false;
-					media.like = media.likes--;
-					heart.innerHTML = '<i class="far fa-heart"></i>';
-				}
-				likeCount.innerHTML = media.likes;
-				page.fillBottomLikes();
-			});
-		});
+	mediaLikes() {
+		let likes = new Like(this, this.media);
 	}
 	/////end of LIKES
 
 	/////////SORT
-	async listenToBox() {
-		let gallery = this;
-		let box = document.getElementById('filter');
-		box.addEventListener('change', function (e) {
-			gallery.sortThisMedia(box.value);
-			gallery.sortArticles();
-		});
-	}
-
-	sortThisMedia(value) {
-		if (value == 'likes') {
-			this.media.sort(function (a, b) {
-				return a.likes - b.likes;
-			});
-		}
-		if (value == 'date') {
-			this.media.sort(function (a, b) {
-				return (
-					utils.removeHasgTagInString(a.date) -
-					utils.removeHasgTagInString(b.date)
-				);
-			});
-		}
-		if (value == 'title') {
-			this.media.sort(function (a, b) {
-				return a.title.localeCompare(b.title);
-			});
-		}
-	}
-	//END sorting this.media
-	//sorting articles
-	sortArticles() {
-		let parentDiv = document.querySelector('.gallery__main__gallery'); //declares parent gallery
-		for (let a = 0; a < this.media.length; a++) {
-			parentDiv.appendChild(this.media[a].returnArticle()); //rebuilds this.articles from this.media
-		}
+	sortMedias() {
+		let sorting = new Sort(this);
 	}
 	/////////END OF SORT
+
 	///////////// lightbox
-	getVisibleMedia() {
-		this.visibleMedia = [];
-		this.media.forEach((media) => {
-			if (media.returnArticle().style.display == 'block') {
-				this.visibleMedia.push(media);
-			}
-		});
+	enableLightBox() {
+		let lghtbox = new LightBox(this);
 	}
+	// 	getVisibleMedia() {
+	// 		this.visibleMedia = [];
+	// 		this.media.forEach((media) => {
+	// 			if (media.returnArticle().style.display == 'block') {
+	// 				this.visibleMedia.push(media);
+	// 			}
+	// 		});
+	// 	}
 
-	async closeLightbox() {
-		let btnClose = document.getElementById('btnCloseLightbox'); //gets the "close" button
-		let page = this;
-		btnClose.addEventListener('click', function (e) {
-			page.lightBox.style.display = 'none';
-		});
-	}
-	lightBoxDisplay(index) {
-		let container = document.querySelector(
-			'.lightbox__modal__container__mediaContainer'
-		);
-		let media = this.visibleMedia[index];
-		let child = ''; //html eleemnt to be inserted
-		if (media.image !== undefined) {
-			//case of photo
-			child = document.createElement('img');
-		} else {
-			//case of video
-			child = document.createElement('video');
-			child.setAttribute('controls', 'controls');
-		}
-		child.classList.add('lightbox__modal__container__mediaContainer__media'); //filling element
-		child.src = media.getPath();
-		child.alt = media.title;
-		container.innerHTML = ''; //delete previous picture
-		container.appendChild(child); //filling container
-	}
+	// 	closeLightbox() {
+	// 		let btnClose = document.getElementById('btnCloseLightbox'); //gets the "close" button
+	// 		let page = this;
+	// 		btnClose.addEventListener('click', function (e) {
+	// 			page.lightBox.style.display = 'none';
+	// 		});
+	// 	}
+	// 	lightBoxDisplay(index) {
+	// 		let container = document.querySelector(
+	// 			'.lightbox__modal__container__mediaContainer'
+	// 		);
+	// 		let media = this.visibleMedia[index];
+	// 		let child = ''; //html eleemnt to be inserted
+	// 		if (media.image !== undefined) {
+	// 			//case of photo
+	// 			child = document.createElement('img');
+	// 		} else {
+	// 			//case of video
+	// 			child = document.createElement('video');
+	// 			child.setAttribute('controls', 'controls');
+	// 		}
+	// 		child.classList.add('lightbox__modal__container__mediaContainer__media'); //filling element
+	// 		child.src = media.getPath();
+	// 		child.alt = media.title;
+	// 		container.innerHTML = ''; //delete previous picture
+	// 		container.appendChild(child); //filling container
+	// 	}
 
-	async openLightbox() {
-		let page = this;
-		this.media.forEach((media) => {
-			media.returnThumbnail().addEventListener('click', function (e) {
-				page.getVisibleMedia();
-				page.index = page.visibleMedia.indexOf(media);
-				page.lightBox.style.display = 'block';
-				page.lightBoxDisplay(page.index);
-			});
-		});
-	}
+	// 	openLightbox() {
+	// 		let page = this;
+	// 		this.media.forEach((media) => {
+	// 			media.returnThumbnail().addEventListener('click', function (e) {
+	// 				page.getVisibleMedia();
+	// 				page.index = page.visibleMedia.indexOf(media);
+	// 				page.lightBox.style.display = 'block';
+	// 				page.lightBoxDisplay(page.index);
+	// 			});
+	// 		});
+	// 	}
 
-	async navigateLightBox() {
-		let next = document.getElementById('btnNextLightbox');
-		let prev = document.getElementById('btnPrevLightbox');
-		let gallery = this;
-		prev.addEventListener('click', function (e) {
-			//index = index - 1;
-			gallery.index--;
-			gallery.correctIndex(); //manages limit conditions
-			gallery.lightBoxDisplay(gallery.index);
-		});
-		next.addEventListener('click', function (e) {
-			gallery.index++;
-			//index = index + 1;
-			gallery.correctIndex();
-			gallery.lightBoxDisplay(gallery.index);
-		});
-	}
-	correctIndex() {
-		//limit conditions
-		let min = 0;
-		let max = this.visibleMedia.length;
-		if (this.index > max - 1) {
-			this.index = min;
-		}
-		if (this.index < min) {
-			this.index = max - 1;
-		}
-		return this.index;
-	}
+	// 	navigateLightBox() {
+	// 		let next = document.getElementById('btnNextLightbox');
+	// 		let prev = document.getElementById('btnPrevLightbox');
+	// 		let gallery = this;
+	// 		prev.addEventListener('click', function (e) {
+	// 			//index = index - 1;
+	// 			gallery.index--;
+	// 			gallery.correctIndex(); //manages limit conditions
+	// 			gallery.lightBoxDisplay(gallery.index);
+	// 		});
+	// 		next.addEventListener('click', function (e) {
+	// 			gallery.index++;
+	// 			//index = index + 1;
+	// 			gallery.correctIndex();
+	// 			gallery.lightBoxDisplay(gallery.index);
+	// 		});
+	// 	}
+	// 	correctIndex() {
+	// 		//limit conditions
+	// 		let min = 0;
+	// 		let max = this.visibleMedia.length;
+	// 		if (this.index > max - 1) {
+	// 			this.index = min;
+	// 		}
+	// 		if (this.index < min) {
+	// 			this.index = max - 1;
+	// 		}
+	// 		return this.index;
+	// 	}
+	// }
+	////////////END OF lightBox
 }
-////////////END OF lightBox
 
-(async function launchGallery() {
+(function launchGallery() {
 	let gallery = new Gallery();
 	///loading
-	//await gallery.extractData();
-	await gallery.getId();
-	await gallery.getPhotographer();
-	await gallery.getGalleryMedia();
+	gallery.getPhotographer(); //gets photographer based on id
+	gallery.getGalleryMedia(); //gets media nbased on photographer
 	////building
-	await gallery.writePresentation();
-	await gallery.contact();
-	gallery.sortThisMedia('likes'); //so articles are first displayed as per default value of combobox
-	await gallery.writeAllArticles();
-	gallery.fillBottomLikes();
+	gallery.writePresentation(); //writes upper part with photographer data
+	gallery.contact(); //fills contact modal with artist name and runs modal functions
+	gallery.sortMedias(); //sorts medias with default combobox value (popularity), runs combobox
+	gallery.writeAllArticles(); //generating all articles
+	gallery.fillBottomLikes(); //
 	gallery.fillBottomPrice();
-	//await gallery.fillContact(); //insert photographer's name in contact modal
 	/////running
-	await gallery.listenToBox(); //sorting with combobox
-	await gallery.updateSelectionOnClick(); //hide/show with tags
-	//await gallery.openCloseContact(); //open/close contact modal
-	await gallery.closeLightbox(); //Close lightbox modal
-	await gallery.openLightbox(); //Open lightbox modal (loaded with first media)
-	await gallery.navigateLightBox(); //lightbox navigation
-	await gallery.mediaLikes(); //likes management
+	gallery.manageTags();
+	//gallery.listenToBox(); //sorting with combobox
+	//gallery.updateSelectionOnClick(); //hide/show with tags
+	// gallery.openCloseContact(); //open/close contact modal
+
+	//gallery.closeLightbox(); //Close lightbox modal
+	//	gallery.openLightbox(); //Open lightbox modal (loaded with first media)
+	//	gallery.navigateLightBox(); //lightbox navigation
+	gallery.enableLightBox();
+	gallery.mediaLikes(); //likes management
 })();
 
 //modal contact dans un autre fichier JS

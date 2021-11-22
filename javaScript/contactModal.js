@@ -6,7 +6,7 @@ export class ContactModal {
 		};
 		this.photographer = photographer;
 		this.DOMelement = document.querySelector('.contact__modal');
-		// this.fillContact();
+		this.fillContact();
 		this.openClose();
 		this.storeValue();
 		this.submit();
@@ -17,14 +17,9 @@ export class ContactModal {
 		name.innerText = this.photographer.name;
 	}
 	openClose() {
-		//let contactModal = this.DOMelement;
-
 		let btnLaunch = document.querySelector('.gallery__main__presentation__btn'); //gets the "contact" button
 		let btnClose = document.getElementById('btnClose'); //gets the "close" button
 		let modal = this.DOMelement;
-
-		console.log(btnClose);
-		console.log(btnLaunch);
 		// launch modal event
 		btnLaunch.addEventListener('click', function (e) {
 			modal.style.display = 'block';
@@ -36,9 +31,7 @@ export class ContactModal {
 	}
 	//////listening
 	storeValue() {
-		console.log(this.contactForm.id[2]);
 		let modal = this;
-
 		for (let i = 0; i < this.contactForm.id.length; i++) {
 			document
 				.getElementById(this.contactForm.id[i])
