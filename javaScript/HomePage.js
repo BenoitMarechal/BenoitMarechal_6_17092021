@@ -15,7 +15,7 @@ class HomePage {
 	async extractData() {
 		// let rep = await fetch('./public/dataBase.json');
 		// dataFromJson = await rep.json();
-		console.log(dataFromJson);
+		//console.log(dataFromJson);
 		dataFromJson.photographers.forEach((photographer) => {
 			let artist = new Photographer(
 				photographer.name,

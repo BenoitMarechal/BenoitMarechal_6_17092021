@@ -2,46 +2,12 @@
 
 /////////////////////////// import data
 import { dataFromJson } from './FetchData.js';
-console.log(dataFromJson);
-///////////////////////////fin import data
-////////////import class Media
-import { Media } from './Media.js';
-let testMedia = new Media(
-	'lkjh',
-	'lkjh',
-	'lkjh',
-	'lkjh',
-	'lkjh',
-	'lkjh',
-	'lkjh',
-	'lkjh',
-	'lkjh'
-);
-console.log(testMedia);
-import { Photo } from './Media.js';
-let testPhoto = new Photo(
-	'lkjh',
-	'lkjh',
-	'lkjh',
-	'lkjh',
-	'lkjh',
-	'lkjh',
-	'lkjh',
-	'lkjh',
-	'lkjh'
-);
-console.log(testPhoto);
-
-////////////fin import class Media
-// import { FishEyeUtilitaires } from './utilitaries.js';
 import { utils } from './utilitaries.js';
-
-//console.log(FishEyeUtilitaires);
-console.log(utils);
-console.log(utils.removeSpacesInString('kjh   kjh'));
-// console.log(u.removeSpacesInString('AAA  BBB'));
-// console.log(FishEyeUtilitaires()('kjh   kjh'));
-///////tester d'importer juste l'instance
+import { elementsOfGalleryPresentation } from './utilitaries.js';
+import { Media } from './Media.js';
+import { ContactModal } from './ContactModal.js';
+////immporter class modal
+////en créant gallery, créer new modal (this.photgrapher)
 
 class Gallery {
 	constructor(
@@ -66,11 +32,11 @@ class Gallery {
 		let url = new URLSearchParams(window.location.search);
 		this.pageId = url.get('id');
 	}
-	async extractData() {
-		//extracts dataFromJson
-		let rep = await fetch('./public/dataBase.json');
-		dataFromJson = await rep.json();
-	}
+	// async extractData() {
+	// 	//extracts dataFromJson
+	// 	let rep = await fetch('./public/dataBase.json');
+	// 	dataFromJson = await rep.json();
+	// }
 
 	async getPhotographer() {
 		//finds photographer matching id in dataFromJson, assigns to gallery
@@ -80,6 +46,13 @@ class Gallery {
 				break;
 			}
 		}
+		// let contact = new ContactModal();
+		// contact.photographer = this.photographer;
+		// console.log(contact);
+		// contact.fillContact();
+		// await contact.openClose();
+		// contact.storeValue();
+		// contact.submit();
 	}
 	async writePresentation() {
 		//generates upper content (photographer presentation)
@@ -117,15 +90,25 @@ class Gallery {
 		articleToFill.querySelector('.photographer__link__tagline').innerText =
 			this.photographer.tagline;
 		articleToFill.querySelector('.photographer__link__tags').innerHTML =
-			generateTagButtons(this.photographer.tags);
+			utils.generateTagButtons(this.photographer.tags);
 		articleToFill.querySelector('.gallery__main__presentation__btn').innerText =
 			'Contactez moi';
-		let clearedName = removeSpacesInString(this.photographer.name);
+		let clearedName = utils.removeSpacesInString(this.photographer.name);
 		let path = 'images/Photographers ID Photos/' + clearedName + '.jpg';
 		articleToFill.querySelector('.photographer__link__img').src = path;
 		articleToFill.querySelector('.photographer__link__img').alt =
 			this.photographer.name;
 		//presentation filled
+	}
+
+	async contact() {
+		let contact = new ContactModal();
+		contact.photographer = this.photographer;
+		console.log(contact);
+		contact.fillContact();
+		contact.openClose();
+		contact.storeValue();
+		contact.submit();
 	}
 
 	async getGalleryMedia() {
@@ -186,24 +169,6 @@ class Gallery {
 		target.innerText = this.countAllLikes();
 	}
 
-	////////////////contact modal (voire pour export)
-	async openCloseContact() {
-		let modal = document.querySelector('.contact__modal');
-		let btnLaunch = document.querySelector('.gallery__main__presentation__btn'); //gets the "contact" button
-		let btnClose = document.getElementById('btnClose'); //gets the "close" button
-		// launch modal event
-		btnLaunch.addEventListener('click', function (e) {
-			modal.style.display = 'block';
-		});
-		//close modal event
-		btnClose.addEventListener('click', function (e) {
-			modal.style.display = 'none';
-		});
-	}
-	async fillContact() {
-		let name = document.querySelector('.modal__container__name');
-		name.innerText = this.photographer.name;
-	}
 	///listening to tags
 	async updateSelectionOnClick() {
 		//manages click on NAvtag
@@ -212,7 +177,7 @@ class Gallery {
 		let emptySelection = true;
 		allNavBtn.forEach((btn) => {
 			btn.addEventListener('click', function (e) {
-				let btnInput = removeHasgTagInString(btn.innerText);
+				let btnInput = utils.removeHasgTagInString(btn.innerText);
 				// particular case: if click happens on the same tag that was already selected at the previous click
 				if (
 					(page.currentTag === btnInput) &
@@ -234,7 +199,7 @@ class Gallery {
 					btn.classList = 'tag--Off'; //set all of them OFF
 
 					if (
-						removeHasgTagInString(btn.innerText) === page.currentTag //find the one that is selected
+						utils.removeHasgTagInString(btn.innerText) === page.currentTag //find the one that is selected
 					) {
 						btn.classList = 'tag--On'; //set it ON
 					}
@@ -303,7 +268,10 @@ class Gallery {
 		}
 		if (value == 'date') {
 			this.media.sort(function (a, b) {
-				return removeHasgTagInString(a.date) - removeHasgTagInString(b.date);
+				return (
+					utils.removeHasgTagInString(a.date) -
+					utils.removeHasgTagInString(b.date)
+				);
 			});
 		}
 		if (value == 'title') {
@@ -406,21 +374,22 @@ class Gallery {
 (async function launchGallery() {
 	let gallery = new Gallery();
 	///loading
-	await gallery.extractData();
+	//await gallery.extractData();
 	await gallery.getId();
 	await gallery.getPhotographer();
 	await gallery.getGalleryMedia();
 	////building
 	await gallery.writePresentation();
+	await gallery.contact();
 	gallery.sortThisMedia('likes'); //so articles are first displayed as per default value of combobox
 	await gallery.writeAllArticles();
 	gallery.fillBottomLikes();
 	gallery.fillBottomPrice();
-	await gallery.fillContact(); //insert photographer's name in contact modal
+	//await gallery.fillContact(); //insert photographer's name in contact modal
 	/////running
 	await gallery.listenToBox(); //sorting with combobox
 	await gallery.updateSelectionOnClick(); //hide/show with tags
-	await gallery.openCloseContact(); //open/close contact modal
+	//await gallery.openCloseContact(); //open/close contact modal
 	await gallery.closeLightbox(); //Close lightbox modal
 	await gallery.openLightbox(); //Open lightbox modal (loaded with first media)
 	await gallery.navigateLightBox(); //lightbox navigation

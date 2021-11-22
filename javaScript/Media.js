@@ -1,3 +1,7 @@
+import { elementsOfMediaArticle } from './utilitaries.js';
+import { utils } from './utilitaries.js';
+import { dataFromJson } from './FetchData.js';
+
 export class Media {
 	constructor(
 		id,
@@ -57,7 +61,7 @@ export class Media {
 		//generates acces path for media
 		for (let i = 0; i < dataFromJson.photographers.length; i++) {
 			if (dataFromJson.photographers[i].id == this.photographerId) {
-				let name = replaceDashBySpaceInString(
+				let name = utils.replaceDashBySpaceInString(
 					dataFromJson.photographers[i].name
 				);
 				let array = [];
@@ -67,7 +71,7 @@ export class Media {
 				if (array.length > 0) {
 					array.pop();
 					for (let i = 1; i < array.length; i++) {
-						removeSpacesInString(array[i]);
+						utils.removeSpacesInString(array[i]);
 						path = path + ' ' + array[i];
 					}
 				}
