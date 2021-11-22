@@ -33,14 +33,14 @@ let testPhoto = new Photo(
 console.log(testPhoto);
 
 ////////////fin import class Media
-import { FishEyeUtilitaires } from './utilitaries.js';
-import { u } from './utilitaries.js';
-let utils = new FishEyeUtilitaires();
+// import { FishEyeUtilitaires } from './utilitaries.js';
+import { utils } from './utilitaries.js';
+
 //console.log(FishEyeUtilitaires);
 console.log(utils);
 console.log(utils.removeSpacesInString('kjh   kjh'));
-console.log(u.removeSpacesInString('AAA  BBB'));
-console.log(FishEyeUtilitaires()('kjh   kjh'));
+// console.log(u.removeSpacesInString('AAA  BBB'));
+// console.log(FishEyeUtilitaires()('kjh   kjh'));
 ///////tester d'importer juste l'instance
 
 class Gallery {

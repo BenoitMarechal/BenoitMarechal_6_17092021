@@ -1,4 +1,7 @@
-class Photographer {
+import { elementsOfArtistArticle } from './utilitaries.js';
+import { utils } from './utilitaries.js';
+
+export class Photographer {
 	constructor(name, id, city, country, tagline, price, tags) {
 		this.name = name;
 		this.id = id;
@@ -11,7 +14,7 @@ class Photographer {
 
 	createArtistArticle() {
 		//writes an article for a photographer
-		let clearedName = removeSpacesInString(this.name);
+		let clearedName = utils.removeSpacesInString(this.name);
 		for (let i = 0; i < elementsOfArtistArticle.typeOfElement.length; i++) {
 			let element = document.createElement(
 				elementsOfArtistArticle.typeOfElement[i]
@@ -47,7 +50,7 @@ class Photographer {
 		articleToFill.querySelector('.photographer__link__price').innerText =
 			this.price + ' €/jour';
 		articleToFill.querySelector('.photographer__link__tags').innerHTML =
-			generateTagButtons(this.tags); //ARTICLE COMPLETED
+			utils.generateTagButtons(this.tags); //ARTICLE COMPLETED
 		return articleToFill;
 	}
 }

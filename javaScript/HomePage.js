@@ -1,4 +1,9 @@
-let dataFromJson = [];
+// let dataFromJson = [];
+
+import { utils } from './utilitaries.js';
+import { dataFromJson } from './FetchData.js';
+import { Photographer } from './Photographers.js';
+import { Media } from './Media.js';
 
 class HomePage {
 	constructor(photographers, tags, media) {
@@ -8,9 +13,9 @@ class HomePage {
 	}
 
 	async extractData() {
-		let rep = await fetch('./public/dataBase.json');
-		dataFromJson = await rep.json();
-		//console.log(dataFromJson);
+		// let rep = await fetch('./public/dataBase.json');
+		// dataFromJson = await rep.json();
+		console.log(dataFromJson);
 		dataFromJson.photographers.forEach((photographer) => {
 			let artist = new Photographer(
 				photographer.name,
@@ -23,7 +28,7 @@ class HomePage {
 			);
 			this.photographers.push(artist);
 		});
-		//console.log(this.photographers);
+		console.log(this.photographers);
 	}
 
 	async getAllTags() {
@@ -36,7 +41,7 @@ class HomePage {
 			}
 		});
 		this.tags = [...new Set(this.tags)]; //delete all duplicates in list of every tags
-		navBar.innerHTML = generateTagButtons(this.tags); //fills navbar with tag buttons (function also used when building Artists Articles)
+		navBar.innerHTML = utils.generateTagButtons(this.tags); //fills navbar with tag buttons (function also used when building Artists Articles)
 	}
 
 	// displays all artists
@@ -54,7 +59,7 @@ class HomePage {
 	//filters
 	async updateSelectionOnClick() {
 		let allNavBtn = document.querySelectorAll('#header__nav__ul button');
-		//console.log(allNavBtn);
+		console.log(allNavBtn);
 		let page = this; //otherwise, "this" will refer to the buttons once inside the "foreach" loop
 		let currentTag = '';
 		let emptySelection = true;
@@ -66,7 +71,7 @@ class HomePage {
 
 				// particular case: if click happens on the same tag that was already selected at the previous click
 				if (
-					(currentTag === removeHasgTagInString(btn.innerText)) &
+					(currentTag === utils.removeHasgTagInString(btn.innerText)) &
 					(emptySelection === false) //and a button is selected ie not coming from an "empty bar" (which happens if 3 clicks on the same button, then regular behaviour is needed)
 				) {
 					btn.classList = 'tag--Off'; //de-select tag button
@@ -76,7 +81,7 @@ class HomePage {
 				}
 				// end of particular case
 
-				currentTag = removeHasgTagInString(btn.innerText); //sets the value of currentTag
+				currentTag = utils.removeHasgTagInString(btn.innerText); //sets the value of currentTag
 				emptySelection = false; //state that selection is not empty
 
 				for (let a = 0; a < page.photographers.length; a++) {
@@ -93,7 +98,8 @@ class HomePage {
 							//loop through all btns
 							allNavBtn[b].classList = 'tag--Off'; //set all of them OFF
 							if (
-								removeHasgTagInString(allNavBtn[b].innerText) === currentTag //find the one that is selected
+								utils.removeHasgTagInString(allNavBtn[b].innerText) ===
+								currentTag //find the one that is selected
 							) {
 								allNavBtn[b].classList = 'tag--On'; //set it ON
 							}
@@ -136,5 +142,4 @@ class HomePage {
 	await homepage.getAllTags();
 	await homepage.writeAllArtistsArticles();
 	await homepage.updateSelectionOnClick();
-	// await homepage.media[2].createMediaArticle2();
 })();
