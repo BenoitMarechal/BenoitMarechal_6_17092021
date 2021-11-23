@@ -2,8 +2,8 @@ import { utils } from './utilitaries.js';
 ///listening to tags
 export class NavTags {
 	constructor(page, material) {
-		this.page = page;
-		this.material = material;
+		this.page = page; //allows to reach currentTag and Gallery Methods(HideAllArticles and ShowAllArticles)
+		this.material = material; //can be applied to either photographers (homepage) or medias(gallery)
 		this.updateSelectionOnClick();
 	}
 	updateSelectionOnClick() {
