@@ -11,7 +11,6 @@ export class ContactModal {
 		this.storeValue();
 		this.submit();
 	}
-
 	fillContact() {
 		let name = document.querySelector('.modal__container__name');
 		name.innerText = this.photographer.name;
@@ -37,7 +36,6 @@ export class ContactModal {
 				.getElementById(this.contactForm.id[i])
 				.addEventListener('input', function (e) {
 					modal.contactForm.value[i] = this.value;
-					console.log(modal.contactForm);
 				});
 		}
 	}
@@ -46,8 +44,6 @@ export class ContactModal {
 		let modal = this;
 		this.DOMelement.addEventListener('submit', function (e) {
 			e.preventDefault();
-			console.log('submit');
-			console.log(modal);
 			for (let i = 0; i < modal.contactForm.id.length; i++) {
 				console.log(modal.contactForm.id[i] + ' ' + modal.contactForm.value[i]);
 			}
@@ -55,5 +51,4 @@ export class ContactModal {
 		});
 	}
 }
-
 ////////////////end contact modal

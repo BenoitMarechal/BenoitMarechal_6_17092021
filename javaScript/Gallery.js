@@ -5,7 +5,7 @@ import { Media } from './Media.js';
 import { ContactModal } from './ContactModal.js';
 import { Like } from './GalleryLikes.js';
 import { Presentation } from './PhotographerPres.js';
-import { NavTags } from './GalleryTags.js';
+import { NavTags } from './RunTags.js';
 import { Sort } from './Sort.js';
 import { LightBox } from './Lightbox.js';
 
@@ -59,7 +59,7 @@ class Gallery {
 	}
 	writeAllArticles() {
 		this.media.forEach((media) => {
-			media.createMediaArticle();
+			media.createArticle();
 		});
 	}
 
@@ -91,7 +91,7 @@ class Gallery {
 		target.innerText = this.countAllLikes();
 	}
 	manageTags() {
-		let tags = new NavTags(this);
+		let tags = new NavTags(this, this.media);
 	}
 	/////LIKES
 	mediaLikes() {
@@ -109,86 +109,6 @@ class Gallery {
 	enableLightBox() {
 		let lghtbox = new LightBox(this);
 	}
-	// 	getVisibleMedia() {
-	// 		this.visibleMedia = [];
-	// 		this.media.forEach((media) => {
-	// 			if (media.returnArticle().style.display == 'block') {
-	// 				this.visibleMedia.push(media);
-	// 			}
-	// 		});
-	// 	}
-
-	// 	closeLightbox() {
-	// 		let btnClose = document.getElementById('btnCloseLightbox'); //gets the "close" button
-	// 		let page = this;
-	// 		btnClose.addEventListener('click', function (e) {
-	// 			page.lightBox.style.display = 'none';
-	// 		});
-	// 	}
-	// 	lightBoxDisplay(index) {
-	// 		let container = document.querySelector(
-	// 			'.lightbox__modal__container__mediaContainer'
-	// 		);
-	// 		let media = this.visibleMedia[index];
-	// 		let child = ''; //html eleemnt to be inserted
-	// 		if (media.image !== undefined) {
-	// 			//case of photo
-	// 			child = document.createElement('img');
-	// 		} else {
-	// 			//case of video
-	// 			child = document.createElement('video');
-	// 			child.setAttribute('controls', 'controls');
-	// 		}
-	// 		child.classList.add('lightbox__modal__container__mediaContainer__media'); //filling element
-	// 		child.src = media.getPath();
-	// 		child.alt = media.title;
-	// 		container.innerHTML = ''; //delete previous picture
-	// 		container.appendChild(child); //filling container
-	// 	}
-
-	// 	openLightbox() {
-	// 		let page = this;
-	// 		this.media.forEach((media) => {
-	// 			media.returnThumbnail().addEventListener('click', function (e) {
-	// 				page.getVisibleMedia();
-	// 				page.index = page.visibleMedia.indexOf(media);
-	// 				page.lightBox.style.display = 'block';
-	// 				page.lightBoxDisplay(page.index);
-	// 			});
-	// 		});
-	// 	}
-
-	// 	navigateLightBox() {
-	// 		let next = document.getElementById('btnNextLightbox');
-	// 		let prev = document.getElementById('btnPrevLightbox');
-	// 		let gallery = this;
-	// 		prev.addEventListener('click', function (e) {
-	// 			//index = index - 1;
-	// 			gallery.index--;
-	// 			gallery.correctIndex(); //manages limit conditions
-	// 			gallery.lightBoxDisplay(gallery.index);
-	// 		});
-	// 		next.addEventListener('click', function (e) {
-	// 			gallery.index++;
-	// 			//index = index + 1;
-	// 			gallery.correctIndex();
-	// 			gallery.lightBoxDisplay(gallery.index);
-	// 		});
-	// 	}
-	// 	correctIndex() {
-	// 		//limit conditions
-	// 		let min = 0;
-	// 		let max = this.visibleMedia.length;
-	// 		if (this.index > max - 1) {
-	// 			this.index = min;
-	// 		}
-	// 		if (this.index < min) {
-	// 			this.index = max - 1;
-	// 		}
-	// 		return this.index;
-	// 	}
-	// }
-	////////////END OF lightBox
 }
 
 (function launchGallery() {
@@ -205,13 +125,6 @@ class Gallery {
 	gallery.fillBottomPrice();
 	/////running
 	gallery.manageTags();
-	//gallery.listenToBox(); //sorting with combobox
-	//gallery.updateSelectionOnClick(); //hide/show with tags
-	// gallery.openCloseContact(); //open/close contact modal
-
-	//gallery.closeLightbox(); //Close lightbox modal
-	//	gallery.openLightbox(); //Open lightbox modal (loaded with first media)
-	//	gallery.navigateLightBox(); //lightbox navigation
 	gallery.enableLightBox();
 	gallery.mediaLikes(); //likes management
 })();

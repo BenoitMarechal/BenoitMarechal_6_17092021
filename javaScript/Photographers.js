@@ -12,7 +12,7 @@ export class Photographer {
 		this.tags = tags;
 	}
 
-	createArtistArticle() {
+	createArticle() {
 		//writes an article for a photographer
 		let clearedName = utils.removeSpacesInString(this.name);
 		for (let i = 0; i < elementsOfArtistArticle.typeOfElement.length; i++) {
@@ -52,5 +52,17 @@ export class Photographer {
 		articleToFill.querySelector('.photographer__link__tags').innerHTML =
 			utils.generateTagButtons(this.tags); //ARTICLE COMPLETED
 		return articleToFill;
+	}
+
+	returnArticle() {
+		return document.getElementById('id' + this.id);
+	}
+
+	displayArticle() {
+		this.returnArticle().style.display = 'block';
+	}
+
+	hideArticle() {
+		this.returnArticle().style.display = 'none';
 	}
 }

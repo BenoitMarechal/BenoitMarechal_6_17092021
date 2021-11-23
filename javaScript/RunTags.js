@@ -1,15 +1,16 @@
 import { utils } from './utilitaries.js';
 ///listening to tags
 export class NavTags {
-	constructor(Gallery) {
-		this.Gallery = Gallery;
+	constructor(page, material) {
+		this.page = page;
+		this.material = material;
 		this.updateSelectionOnClick();
 	}
 	updateSelectionOnClick() {
 		//manages click on NAvtag
 		let nav = this;
 		let allNavBtn = document.querySelectorAll('.tag');
-		let page = this.Gallery; //otherwise, "this" will refer to the buttons once inside the "foreach" loop
+		let page = this.page; //otherwise, "this" will refer to the buttons once inside the "foreach" loop
 		let emptySelection = true;
 		allNavBtn.forEach((btn) => {
 			btn.addEventListener('click', function (e) {
@@ -44,17 +45,17 @@ export class NavTags {
 		});
 	}
 	hideShowArticles(tag) {
-		this.Gallery.hideAllArticles();
+		this.page.hideAllArticles();
 		if (tag == '') {
-			this.Gallery.showAllArticles();
+			this.page.showAllArticles();
 		} else {
-			for (let a = 0; a < this.Gallery.media.length; a++) {
-				//loop through media
-				for (let b = 0; b < this.Gallery.media[a].tags.length; b++) {
+			for (let a = 0; a < this.material.length; a++) {
+				//loop through material
+				for (let b = 0; b < this.material[a].tags.length; b++) {
 					//loop through each media's tags (only one tag per media for now)
-					if (this.Gallery.media[a].tags[b] === this.Gallery.currentTag) {
+					if (this.material[a].tags[b] === this.page.currentTag) {
 						//if tag matches selection
-						this.Gallery.media[a].displayArticle(); //push media in visibleMedia
+						this.material[a].displayArticle(); //push media in visibleMedia
 						break; //stop looping through their tags and move on to next media
 					}
 				}

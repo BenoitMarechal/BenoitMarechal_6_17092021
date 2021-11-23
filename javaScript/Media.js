@@ -85,7 +85,7 @@ export class Media {
 		}
 	}
 
-	createMediaArticle() {
+	createArticle() {
 		//writes media article in gallery page
 		for (let i = 0; i < elementsOfMediaArticle.typeOfElement.length; i++) {
 			let element = document.createElement(
