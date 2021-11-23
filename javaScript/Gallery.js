@@ -12,17 +12,17 @@ class Gallery {
 	constructor(
 		photographer,
 		medias,
-		currentTag,
-		lightBox,
-		visibleMedias,
-		index
+		currentTag
+		// lightBox,
+		// visibleMedias,
+		// index
 	) {
 		this.photographer = {};
 		this.medias = []; //passer au pluriel
 		this.currentTag = undefined;
-		this.lightBox = document.querySelector('.lightbox__modal');
-		this.visibleMedias = [];
-		this.index = undefined;
+		// this.lightBox = document.querySelector('.lightbox__modal');
+		// this.visibleMedias = [];
+		// this.index = undefined;
 	}
 
 	getPhotographer() {
@@ -113,7 +113,7 @@ class Gallery {
 
 	///////////// lightbox
 	enableLightBox() {
-		let lightbox = new LightBox(this);
+		let lightbox = new LightBox(this.medias, '', '', '');
 	}
 }
 
