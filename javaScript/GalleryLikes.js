@@ -1,13 +1,13 @@
 // /////LIKES
 export class Like {
-	constructor(gallery, media) {
+	constructor(gallery, medias) {
 		this.gallery = gallery;
-		this.media = media;
+		this.medias = medias;
 		this.mediaLikes();
 	}
 	mediaLikes() {
 		let page = this.gallery;
-		this.media.forEach((media) => {
+		this.medias.forEach((media) => {
 			let liked = false;
 			let heart = media.returnHeart();
 			let likeCount = media.returnLikeCount();

@@ -3,16 +3,16 @@ import { utils } from './utilitaries.js';
 export class LightBox {
 	constructor(Gallery) {
 		this.Gallery = Gallery;
-		this.getVisibleMedia();
+		this.getvisibleMedias();
 		this.closeLightbox();
 		this.openLightbox();
 		this.navigateLightBox();
 	}
-	getVisibleMedia() {
-		this.Gallery.visibleMedia = [];
-		this.Gallery.media.forEach((media) => {
+	getvisibleMedias() {
+		this.Gallery.visibleMedias = [];
+		this.Gallery.medias.forEach((media) => {
 			if (media.returnArticle().style.display == 'block') {
-				this.Gallery.visibleMedia.push(media);
+				this.Gallery.visibleMedias.push(media);
 			}
 		});
 	}
@@ -29,7 +29,7 @@ export class LightBox {
 		let container = document.querySelector(
 			'.lightbox__modal__container__mediaContainer'
 		);
-		let media = this.Gallery.visibleMedia[index];
+		let media = this.Gallery.visibleMedias[index];
 
 		let child = ''; //html eleemnt to be inserted
 		if (media.image !== undefined) {
@@ -49,10 +49,10 @@ export class LightBox {
 
 	openLightbox() {
 		let page = this;
-		this.Gallery.media.forEach((media) => {
+		this.Gallery.medias.forEach((media) => {
 			media.returnThumbnail().addEventListener('click', function (e) {
-				page.getVisibleMedia();
-				page.Gallery.index = page.Gallery.visibleMedia.indexOf(media);
+				page.getvisibleMedias();
+				page.Gallery.index = page.Gallery.visibleMedias.indexOf(media);
 				page.Gallery.lightBox.style.display = 'block';
 				page.lightBoxDisplay(page.Gallery.index);
 			});
@@ -79,7 +79,7 @@ export class LightBox {
 	correctIndex() {
 		//limit conditions
 		let min = 0;
-		let max = this.Gallery.visibleMedia.length;
+		let max = this.Gallery.visibleMedias.length;
 		if (this.Gallery.index > max - 1) {
 			this.Gallery.index = min;
 		}
@@ -90,11 +90,11 @@ export class LightBox {
 	}
 }
 
-// function getVisibleMedia() {
-// 	this.visibleMedia = [];
+// function getvisibleMedias() {
+// 	this.visibleMedias = [];
 // 	this.media.forEach((media) => {
 // 		if (media.returnArticle().style.display == 'block') {
-// 			this.visibleMedia.push(media);
+// 			this.visibleMedias.push(media);
 // 		}
 // 	});
 // }
@@ -103,7 +103,7 @@ export class LightBox {
 // 	let container = document.querySelector(
 // 		'.lightbox__modal__container__mediaContainer'
 // 	);
-// 	let media = this.visibleMedia[index];
+// 	let media = this.visibleMedias[index];
 // 	let child = ''; //html eleemnt to be inserted
 // 	if (media.image !== undefined) {
 // 		//case of photo
@@ -124,8 +124,8 @@ export class LightBox {
 // 	let page = this;
 // 	this.media.forEach((media) => {
 // 		media.returnThumbnail().addEventListener('click', function (e) {
-// 			page.getVisibleMedia();
-// 			page.index = page.visibleMedia.indexOf(media);
+// 			page.getvisibleMedias();
+// 			page.index = page.visibleMedias.indexOf(media);
 // 			page.lightBox.style.display = 'block';
 // 			page.lightBoxDisplay(page.index);
 // 		});
@@ -152,7 +152,7 @@ export class LightBox {
 // function correctIndex() {
 // 	//limit conditions
 // 	let min = 0;
-// 	let max = this.visibleMedia.length;
+// 	let max = this.visibleMedias.length;
 // 	if (this.index > max - 1) {
 // 		this.index = min;
 // 	}

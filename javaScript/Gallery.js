@@ -1,6 +1,5 @@
 /////////////////////////// import
 import { dataFromJson } from './FetchData.js';
-import { utils } from './utilitaries.js';
 import { Media } from './Media.js';
 import { ContactModal } from './ContactModal.js';
 import { Like } from './GalleryLikes.js';
@@ -10,12 +9,19 @@ import { Sort } from './Sort.js';
 import { LightBox } from './Lightbox.js';
 
 class Gallery {
-	constructor(photographer, media, currentTag, lightBox, visibleMedia, index) {
+	constructor(
+		photographer,
+		medias,
+		currentTag,
+		lightBox,
+		visibleMedias,
+		index
+	) {
 		this.photographer = {};
-		this.media = []; //passer au pluriel
+		this.medias = []; //passer au pluriel
 		this.currentTag = undefined;
 		this.lightBox = document.querySelector('.lightbox__modal');
-		this.visibleMedia = [];
+		this.visibleMedias = [];
 		this.index = undefined;
 	}
 
@@ -46,7 +52,7 @@ class Gallery {
 					media.date,
 					media.price
 				);
-				page.media.push(media.defineType());
+				page.medias.push(media.defineType());
 			}
 		});
 	}
@@ -58,18 +64,18 @@ class Gallery {
 		let contact = new ContactModal('', this.photographer, '');
 	}
 	writeAllArticles() {
-		this.media.forEach((media) => {
+		this.medias.forEach((media) => {
 			media.createArticle();
 		});
 	}
 
 	hideAllArticles() {
-		this.media.forEach((media) => {
+		this.medias.forEach((media) => {
 			media.hideArticle();
 		});
 	}
 	showAllArticles() {
-		this.media.forEach((media) => {
+		this.medias.forEach((media) => {
 			media.displayArticle();
 		});
 	}
@@ -81,8 +87,8 @@ class Gallery {
 
 	countAllLikes() {
 		let totalOfLikes = 0;
-		for (let a = 0; a < this.media.length; a++) {
-			totalOfLikes = totalOfLikes + this.media[a].likes;
+		for (let a = 0; a < this.medias.length; a++) {
+			totalOfLikes = totalOfLikes + this.medias[a].likes;
 		}
 		return totalOfLikes;
 	}
@@ -91,11 +97,11 @@ class Gallery {
 		target.innerText = this.countAllLikes();
 	}
 	manageTags() {
-		let tags = new NavTags(this, this.media);
+		let tags = new NavTags(this, this.medias);
 	}
 	/////LIKES
 	mediaLikes() {
-		let likes = new Like(this, this.media);
+		let likes = new Like(this, this.medias);
 	}
 	/////end of LIKES
 
@@ -107,7 +113,7 @@ class Gallery {
 
 	///////////// lightbox
 	enableLightBox() {
-		let lghtbox = new LightBox(this);
+		let lightbox = new LightBox(this);
 	}
 }
 
@@ -129,9 +135,6 @@ class Gallery {
 	gallery.mediaLikes(); //likes management
 })();
 
-//modal contact dans un autre fichier JS
-//import-export JS
-//definir classe dans un fichier
 //accessibilité à voir après
 //faire un fichier spécial pour dataFrom Json
 //deadline fin novembre
