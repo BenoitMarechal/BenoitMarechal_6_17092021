@@ -101,7 +101,7 @@ class Gallery {
 	}
 	/////LIKES
 	mediaLikes() {
-		let likes = new Like(this, this.medias);
+		let likes = new Like(this, '');
 	}
 	/////end of LIKES
 

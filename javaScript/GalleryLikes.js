@@ -1,8 +1,8 @@
 // /////LIKES
 export class Like {
 	constructor(gallery, medias) {
-		this.gallery = gallery;
-		this.medias = medias;
+		this.gallery = gallery; //because fillbottomlikes needs to be called by gallery object at the end
+		this.medias = this.gallery.medias;
 		this.mediaLikes();
 	}
 	mediaLikes() {
