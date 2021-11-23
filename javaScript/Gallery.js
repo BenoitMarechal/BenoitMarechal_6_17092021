@@ -125,13 +125,15 @@ class Gallery {
 	////building
 	gallery.writePresentation(); //writes upper part with photographer data
 	gallery.contact(); //fills contact modal with artist name and runs modal functions
+
 	gallery.sortMedias(); //sorts medias with default combobox value (popularity), runs combobox
 	gallery.writeAllArticles(); //generating all articles
-	gallery.fillBottomLikes(); //
+
+	gallery.fillBottomLikes();
 	gallery.fillBottomPrice();
 	/////running
-	gallery.manageTags();
-	gallery.enableLightBox();
+	gallery.manageTags(); //tags
+	gallery.enableLightBox(); //lightbox
 	gallery.mediaLikes(); //likes management
 })();
 
