@@ -58,7 +58,7 @@ class Gallery {
 	}
 
 	writePresentation() {
-		let pres = new Presentation(this, this.photographer, '');
+		let pres = new Presentation(this.photographer, '');
 	}
 	contact() {
 		let contact = new ContactModal('', this.photographer, '');
