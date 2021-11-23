@@ -107,7 +107,7 @@ class Gallery {
 
 	/////////SORT
 	sortMedias() {
-		let sorting = new Sort(this);
+		let sorting = new Sort(this.medias);
 	}
 	/////////END OF SORT
 
