@@ -97,6 +97,5 @@ class HomePage {
 	homepage.buildNavBar();
 	homepage.writeAllArticles();
 	//running
-	//homepage.updateSelectionOnClick();
 	homepage.manageTags();
 })();
