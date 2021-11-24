@@ -1,0 +1,125 @@
+// .contact__modal {
+// 	//display: none;
+// }
+.modal {
+	display: none;
+	&__bground {
+		position: fixed;
+		top: 0px;
+		bottom: 0px;
+		left: 0px;
+		right: 0px;
+		background-color: $colour-light-grey;
+		opacity: 0;
+		animation: contact-modal-background-opacity 0.6s forwards;
+	}
+
+	&__container {
+		background-color: $colour-secondary;
+		overflow: hidden;
+		position: fixed;
+		top: 0px;
+		bottom: 30px;
+		left: 0px;
+		right: 0px;
+		margin-top: 30px;
+		margin-bottom: 30px;
+		margin-left: 30%;
+		margin-right: 30%;
+		//height: auto;
+		//background: #232323;
+		border-radius: 10px;
+		display: flex;
+		flex-direction: column;
+		justify-content: flex-start;
+		align-items: flex-start;
+
+		//border: 1px solid green;
+
+		font-size: 1.5rem;
+
+		//opacity: 0;
+		//transform: scaleY(1);
+		transform-origin: 0% -100%;
+		animation: apparition 0.6s forwards;
+
+		&__head {
+			display: flex;
+			width: 100%;
+			justify-content: space-between;
+			//border: 1px solid blue;
+		}
+		&__name {
+			//border: 1px solid red;
+			width: 100%;
+		}
+	}
+}
+
+#message {
+	height: 200px;
+}
+
+///////////////////////////////lightBox modal
+.lightboxBtn {
+	position: absolute;
+	margin: $lightbox-btn-margin;
+	font-size: 3rem;
+	width: $lightbox-btn-size;
+	height: $lightbox-btn-size;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	overflow: visible;
+	//margin: $lightbox-side-padding;
+}
+.prev {
+	left: 0px;
+	//top: 40%;
+}
+.next {
+	right: 0px;
+	//top: 40%;
+}
+.close {
+	top: 0px;
+	right: 0px;
+}
+.lightbox__modal {
+	color: $colour-primary;
+	display: none;
+	&__bground {
+		animation: lightbox-modal-background-opacity 0.6s forwards;
+		//opacity: 0;
+		background-color: white;
+	}
+
+	&__container {
+		margin: 0px;
+		top: 0px;
+		bottom: 0px;
+		left: 0px;
+		right: 0px;
+		width: auto;
+		height: auto;
+		background-color: unset;
+
+		display: flex;
+		align-items: center;
+		justify-content: center;
+
+		&__mediaContainer {
+			width: $lightbox-width;
+			height: $lighbox-height;
+			&__media {
+				object-fit: contain;
+				width: 100%;
+				height: 100%;
+				max-width: $lightbox-width;
+				max-height: $lighbox-height;
+			}
+		}
+	}
+}
+
+///////////////////////////////END lightBox modal

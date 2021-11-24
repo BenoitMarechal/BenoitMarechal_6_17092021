@@ -2,14 +2,28 @@
 /*Couleurs*/
 /*valeurs de marges les plus utilisées*/
 /*Radii*/
-@keyframes apparition {
+@keyframes link-apparition {
   0% {
-    opacity: 0;
     transform: scaleY(0);
   }
   100% {
-    opacity: 1;
     transform: scaleY(1);
+  }
+}
+@keyframes contact-modal-background-opacity {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 0.8;
+  }
+}
+@keyframes lightbox-modal-background-opacity {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
   }
 }
 html,
@@ -55,6 +69,7 @@ li {
 }
 
 .header__linkContainer {
+  position: relative;
   display: flex;
   justify-content: center;
 }
@@ -69,10 +84,9 @@ li {
   vertical-align: middle;
   line-height: 30px;
   margin-top: 4px;
-  opacity: 0.2;
   transform: scaleY(1);
   transform-origin: 0% -100%;
-  animation: apparition 0.6s forwards;
+  animation: link-apparition 0.6s forwards;
 }
 .header__content {
   display: flex;
@@ -123,7 +137,6 @@ li {
   margin: 15px 0 0 0;
   padding: 0;
   font-size: 0.8rem;
-  z-index: 0;
 }
 .photographer__link {
   display: flex;
@@ -160,7 +173,6 @@ li {
 }
 .photographer__link__price__tags {
   margin: 0;
-  z-index: 2;
 }
 
 .gallery__main {
@@ -243,10 +255,9 @@ li {
   margin-left: 30px;
 }
 
-.contact__modal {
+.modal {
   display: none;
 }
-
 .modal__bground {
   position: fixed;
   top: 0px;
@@ -254,9 +265,8 @@ li {
   left: 0px;
   right: 0px;
   background-color: #c4c4c4;
-  opacity: 0.5;
-  animation-name: modalopen;
-  animation-duration: 5s;
+  opacity: 0;
+  animation: contact-modal-background-opacity 0.6s forwards;
 }
 .modal__container {
   background-color: #db8876;
@@ -276,6 +286,8 @@ li {
   justify-content: flex-start;
   align-items: flex-start;
   font-size: 1.5rem;
+  transform-origin: 0% -100%;
+  animation: apparition 0.6s forwards;
 }
 .modal__container__head {
   display: flex;
@@ -319,8 +331,11 @@ li {
   color: #901c1c;
   display: none;
 }
+.lightbox__modal__bground {
+  animation: lightbox-modal-background-opacity 0.6s forwards;
+  background-color: white;
+}
 .lightbox__modal__container {
-  opacity: 1;
   margin: 0px;
   top: 0px;
   bottom: 0px;
@@ -328,8 +343,7 @@ li {
   right: 0px;
   width: auto;
   height: auto;
-  border-radius: 0px;
-  background-color: white;
+  background-color: unset;
   display: flex;
   align-items: center;
   justify-content: center;
