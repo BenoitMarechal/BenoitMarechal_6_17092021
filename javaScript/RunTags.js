@@ -10,7 +10,6 @@ export class NavTags {
 		//manages click on NAvtag
 		let nav = this;
 		let allNavBtn = document.querySelectorAll('.tag');
-		console.log(allNavBtn);
 		let page = this.page; //otherwise, "this" will refer to the buttons once inside the "foreach" loop
 		let emptySelection = true;
 		allNavBtn.forEach((btn) => {

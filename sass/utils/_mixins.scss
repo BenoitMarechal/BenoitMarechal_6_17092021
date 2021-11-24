@@ -24,3 +24,10 @@
 	color: $colour-black;
 	background: $colour-secondary;
 }
+
+@mixin gallery-buttons {
+	@include colorway-white-on-red;
+	border-radius: $radius-small;
+	border: none;
+	height: 50px;
+}

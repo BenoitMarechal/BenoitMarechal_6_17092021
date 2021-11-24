@@ -278,28 +278,42 @@ li {
   right: 0px;
   margin-top: 30px;
   margin-bottom: 30px;
-  margin-left: 30%;
-  margin-right: 30%;
+  margin-left: 37%;
+  margin-right: 37%;
   border-radius: 10px;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   align-items: flex-start;
-  font-size: 1.5rem;
+  font-size: 1.8rem;
   transform-origin: 0% -100%;
   animation: apparition 0.6s forwards;
+  padding: 20px;
 }
 .modal__container__head {
   display: flex;
   width: 100%;
   justify-content: space-between;
+  align-items: center;
 }
-.modal__container__name {
+.modal__container__fields {
+  margin-top: 10px;
+  color: #525252;
+  font-size: 1.3rem;
   width: 100%;
 }
 
+input {
+  font-size: 1.2rem;
+  margin-bottom: 5px;
+}
+
 #message {
-  height: 200px;
+  height: 280px;
+  font-size: 1.2rem;
+  width: 100%;
+  padding: 0;
+  margin: 0;
 }
 
 .lightboxBtn {
@@ -332,7 +346,7 @@ li {
   display: none;
 }
 .lightbox__modal__bground {
-  animation: lightbox-modal-background-opacity 0.6s forwards;
+  animation: lightbox-modal-background-opacity 0.4s forwards ease-out;
   background-color: white;
 }
 .lightbox__modal__container {
@@ -398,6 +412,22 @@ button:hover {
   color: #000000;
   background: #db8876;
   border: none;
+}
+
+.btn-submit {
+  background: #901c1c;
+  color: #fff;
+  border-radius: 5px;
+  border: none;
+  height: 50px;
+  font-size: 1rem;
+  padding: 0px 50px;
+  margin-top: 15px;
+}
+
+#btnClose {
+  color: white;
+  font-size: 2rem;
 }
 
 /*# sourceMappingURL=style.css.map */
