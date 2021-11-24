@@ -1,8 +1,10 @@
 .photographer {
-	width: 25%;
+	width: 30%;
 	//	border: 1px solid blue;
-	margin: $margindefault;
-	padding: $margindefault;
+	margin: $marginH 0 0 0;
+	padding: 0;
+	font-size: 0.8rem;
+	z-index: 0;
 
 	&__link {
 		display: flex;
@@ -10,12 +12,11 @@
 		justify-content: center;
 		align-items: center;
 		//padding: $margindefault;
-
 		&__img {
 			object-fit: cover;
-			width: 300px;
-			height: 300px;
-			border-radius: 150px;
+			width: $photographer-avatar-dims;
+			height: $photographer-avatar-dims;
+			border-radius: 0.5 * $photographer-avatar-dims;
 		}
 		&__tags {
 			display: flex;
@@ -23,19 +24,28 @@
 		}
 		&__name {
 			color: $colour-secondary;
+			margin: 0;
 		}
 
 		&__location {
 			display: flex;
 			color: $colour-primary;
+			margin: 0;
 		}
 
 		&__tagline {
 			color: $colour-black;
+			margin: 0;
 		}
 
 		&__price {
 			color: $colour-grey;
+			margin: 0;
+
+			&__tags {
+				margin: 0;
+				z-index: 2;
+			}
 		}
 	}
 }

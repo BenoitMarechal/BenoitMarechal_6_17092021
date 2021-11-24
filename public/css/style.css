@@ -2,6 +2,16 @@
 /*Couleurs*/
 /*valeurs de marges les plus utilisées*/
 /*Radii*/
+@keyframes apparition {
+  0% {
+    opacity: 0;
+    transform: scaleY(0);
+  }
+  100% {
+    opacity: 1;
+    transform: scaleY(1);
+  }
+}
 html,
 body {
   margin: 0px;
@@ -59,12 +69,17 @@ li {
   vertical-align: middle;
   line-height: 30px;
   margin-top: 4px;
+  opacity: 0.2;
+  transform: scaleY(1);
+  transform-origin: 0% -100%;
+  animation: apparition 0.6s forwards;
 }
 .header__content {
   display: flex;
   margin-left: 15px;
   align-items: center;
   margin-top: -8px;
+  z-index: 1;
 }
 .header__content__logo {
   color: #901c1c;
@@ -88,6 +103,7 @@ li {
   display: flex;
   margin: 0;
   padding: 0;
+  z-index: 2;
 }
 
 .main__h1 {
@@ -95,6 +111,7 @@ li {
   top: 15px;
   right: 20px;
   font-weight: normal;
+  width: auto;
 }
 
 .gallery___nav {
@@ -102,9 +119,11 @@ li {
 }
 
 .photographer {
-  width: 25%;
-  margin: 20px 15px 20px 15px;
-  padding: 20px 15px 20px 15px;
+  width: 30%;
+  margin: 15px 0 0 0;
+  padding: 0;
+  font-size: 0.8rem;
+  z-index: 0;
 }
 .photographer__link {
   display: flex;
@@ -114,9 +133,9 @@ li {
 }
 .photographer__link__img {
   object-fit: cover;
-  width: 300px;
-  height: 300px;
-  border-radius: 150px;
+  width: 180px;
+  height: 180px;
+  border-radius: 90px;
 }
 .photographer__link__tags {
   display: flex;
@@ -124,16 +143,24 @@ li {
 }
 .photographer__link__name {
   color: #db8876;
+  margin: 0;
 }
 .photographer__link__location {
   display: flex;
   color: #901c1c;
+  margin: 0;
 }
 .photographer__link__tagline {
   color: #000000;
+  margin: 0;
 }
 .photographer__link__price {
   color: #525252;
+  margin: 0;
+}
+.photographer__link__price__tags {
+  margin: 0;
+  z-index: 2;
 }
 
 .gallery__main {
@@ -189,7 +216,6 @@ li {
 }
 .gallery__main__gallery__container__info__likes__heart {
   cursor: pointer;
-  z-index: 1;
 }
 
 .bottom {
@@ -229,14 +255,12 @@ li {
   right: 0px;
   background-color: #c4c4c4;
   opacity: 0.5;
-  z-index: 1;
   animation-name: modalopen;
   animation-duration: 5s;
 }
 .modal__container {
   background-color: #db8876;
   overflow: hidden;
-  z-index: 2;
   position: fixed;
   top: 0px;
   bottom: 30px;
@@ -296,7 +320,6 @@ li {
   display: none;
 }
 .lightbox__modal__container {
-  z-index: 2;
   opacity: 1;
   margin: 0px;
   top: 0px;

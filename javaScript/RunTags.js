@@ -10,10 +10,12 @@ export class NavTags {
 		//manages click on NAvtag
 		let nav = this;
 		let allNavBtn = document.querySelectorAll('.tag');
+		console.log(allNavBtn);
 		let page = this.page; //otherwise, "this" will refer to the buttons once inside the "foreach" loop
 		let emptySelection = true;
 		allNavBtn.forEach((btn) => {
 			btn.addEventListener('click', function (e) {
+				e.preventDefault(); //allows sorting from photographer's portaits in homepage
 				let btnInput = utils.removeHasgTagInString(btn.innerText);
 				// particular case: if click happens on the same tag that was already selected at the previous click
 				if (
