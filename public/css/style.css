@@ -44,31 +44,54 @@ li {
   list-style-type: none;
 }
 
-#content {
-  position: absolute;
-  top: 0px;
-  left: 50%;
+.header__linkContainer {
+  border: 1px solid green;
+  display: flex;
+  justify-content: center;
+}
+.header__linkContainer__link {
+  color: #000000;
+  background: #db8876;
+  font-weight: bold;
+  border-radius: 5px;
+  width: 182px;
+  height: 30px;
+  text-align: center;
+  vertical-align: middle;
+  line-height: 30px;
+  margin-top: 4px;
+}
+.header__content {
+  display: flex;
+  margin-left: 15px;
+  align-items: center;
+}
+.header__content__logo {
+  color: #901c1c;
+  width: 30%;
+  display: flex;
+  align-items: center;
+}
+.header__content__logo__img {
+  height: 28px;
+  margin: 0;
+}
+.header__content__logo__txt {
+  font-size: 2.5rem;
+  font-weight: bold;
+  margin: 0;
+}
+.header__content__nav {
+  justify-content: center;
+}
+.header__content__nav__ul {
+  display: flex;
+  margin: 0;
+  padding: 0;
 }
 
-.header {
-  display: flex;
-  justify-content: flex-start;
-  position: absolute;
-  top: 0px;
-  left: 0px;
-  width: 100%;
-}
-.header__logo {
-  color: #901c1c;
-  font-size: 2rem;
-  font-weight: bolder;
-}
-.header__nav__ul {
-  display: flex;
-  flex-direction: row;
-}
-.header__gallery {
-  display: block;
+.main__h1 {
+  margin: 20px;
 }
 
 .photographer {

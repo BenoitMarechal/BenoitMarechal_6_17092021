@@ -65,7 +65,7 @@ class HomePage {
 	}
 
 	buildNavBar() {
-		let navBar = document.getElementById('header__nav__ul');
+		let navBar = document.getElementById('header__content__nav__ul');
 		navBar.innerHTML = utils.generateTagButtons(this.tags); //fills navbar with tag buttons (function also used when building Artists Articles)
 	}
 	// displays all artists
