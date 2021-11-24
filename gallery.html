@@ -14,7 +14,21 @@
 		<title>Fish Eye</title>
 	</head>
 	<body>
-		<header class="header__gallery">
+		<header class="header">
+			<nav class="header__content gallery___nav">
+				<a class="header__content__logo" href="index.html">
+					<span class="header__content__logo__txt">Fish</span>
+					<img
+						src="images/logo/logo.png"
+						alt="logo fisheye"
+						class="header__content__logo__img"
+					/>
+					<span class="header__content__logo__txt">ye</span></a
+				>
+			</nav>
+		</header>
+
+		<!-- <header class="header__gallery">
 			<nav class="header__gallery__nav">
 				<a class="header__logo" href="index.html" alt="Fisheye home page"
 					>Fish<img
@@ -23,15 +37,15 @@
 						class="header__logo__img"
 					/>ye</a
 				>
-			</nav>
-			<!-- <nav class="header__nav"></nav> -->
-		</header>
+			</nav>			
+		</header> -->
 
 		<main class="gallery__main">
 			<div class="gallery__main__presentation"></div>
 
 			<div class="gallery__main__sorting">
-				<label for="jesaispas">Trier par:</label>
+				<label>Trier par:</label>
+				<!-- for="jesaispas" -->
 
 				<select name="sortBy" id="sort">
 					<option value="likes">Popularité</option>

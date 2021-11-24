@@ -45,7 +45,6 @@ li {
 }
 
 .header__linkContainer {
-  border: 1px solid green;
   display: flex;
   justify-content: center;
 }
@@ -65,6 +64,7 @@ li {
   display: flex;
   margin-left: 15px;
   align-items: center;
+  margin-top: -8px;
 }
 .header__content__logo {
   color: #901c1c;
@@ -91,7 +91,14 @@ li {
 }
 
 .main__h1 {
-  margin: 20px;
+  position: absolute;
+  top: 15px;
+  right: 20px;
+  font-weight: normal;
+}
+
+.gallery___nav {
+  margin-top: 15px;
 }
 
 .photographer {

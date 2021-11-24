@@ -1,20 +1,5 @@
-// #content {
-// 	position: absolute;
-// 	top: 0px;
-// 	left: 50%;
-// }
 .header {
-	// width: 100%;
-	// border: solid black 2px;
-	// //position: absolute;
-	// display: flex;
-	// flex-direction: column;
-
 	&__linkContainer {
-		//position: absolute;
-		//top: 0px;
-		border: 1px solid green;
-		//width: 100%;
 		display: flex;
 		justify-content: center;
 		&__link {
@@ -22,8 +7,6 @@
 			@include colorway-black-on-salmon;
 			font-weight: bold;
 			border-radius: 5px;
-			// padding: 0.5 * $marginV $marginV;
-			// margin-top: 0.5 * $marginV;
 			width: 182px;
 			height: 30px;
 			text-align: center;
@@ -37,6 +20,7 @@
 		display: flex;
 		margin-left: $marginH;
 		align-items: center;
+		margin-top: -8px;
 		&__logo {
 			color: $colour-primary;
 			width: 30%;
@@ -49,14 +33,12 @@
 			}
 
 			&__txt {
-				//color: $colour-primary;
 				font-size: 2.5rem;
 				font-weight: bold;
 				margin: 0;
 			}
 		}
 		&__nav {
-			//width: 70%;
 			justify-content: center;
 			&__ul {
 				display: flex;
@@ -65,14 +47,16 @@
 			}
 		}
 	}
-
-	// &__gallery {
-	// 	display: block;
-	// }
 }
 
 .main {
 	&__h1 {
-		margin: $marginV;
+		position: absolute;
+		top: $marginH;
+		right: $marginV;
+		font-weight: normal;
 	}
+}
+.gallery___nav {
+	margin-top: 15px;
 }
