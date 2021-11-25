@@ -1,7 +1,8 @@
 /////////////////////////// import
 import { dataFromJson } from './FetchData.js';
 import { Media } from './Media.js';
-import { ContactModal } from './ContactModal.js';
+import { ContactModal } from './Contact.js';
+
 import { Like } from './GalleryLikes.js';
 import { Presentation } from './PhotographerPres.js';
 import { NavTags } from './RunTags.js';

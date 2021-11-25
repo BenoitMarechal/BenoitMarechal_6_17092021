@@ -1,4 +1,3 @@
-//
 export class ContactModal {
 	constructor(contactForm, photographer, DOMelement) {
 		this.contactForm = {
