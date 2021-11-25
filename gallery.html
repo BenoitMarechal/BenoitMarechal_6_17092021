@@ -31,11 +31,19 @@
 		<main class="gallery__main">
 			<div class="gallery__main__presentation"></div>
 
-			<div class="gallery__main__sorting">
+			<!-- <div class="gallery__main__sorting">
 				<label>Trier par:</label>
-				<!-- for="jesaispas" -->
-
 				<select name="sortBy" id="sort">
+					<option value="likes">Popularité</option>
+					<option value="date">Date</option>
+					<option value="title">Titre</option>
+				</select>
+			</div> -->
+
+			<!--surround the select box with a "custom-select" DIV element. Remember to set the width:-->
+			<div class="custom-select" style="width: 200px">
+				<select id="sort">
+					<option value="0">Select car:</option>
 					<option value="likes">Popularité</option>
 					<option value="date">Date</option>
 					<option value="title">Titre</option>
@@ -157,6 +165,7 @@
 		<!-- si type module, extension .mjs -->
 		<!-- <script src="javaScript/utilitaries.js"></script> -->
 		<script src="./javaScript/Gallery.js" type="module"></script>
+		<script src="javaScript/combobox.js"></script>
 		<!-- <script src="javaScript/contactModal.js"></script>
 		<script src="javaScript/Media.js"></script> -->
 	</body>

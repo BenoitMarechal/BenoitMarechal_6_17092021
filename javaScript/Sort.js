@@ -10,12 +10,38 @@ export class Sort {
 	//box input
 	listenToBox() {
 		let medias = this;
+		let options = document.querySelectorAll('.select-items');
+		console.log(options);
 		let box = document.getElementById('sort');
-		box.addEventListener('change', function (e) {
-			medias.sortThisMedia(box.value);
-			medias.sortArticles();
+		console.log(box);
+		options.forEach((option) => {
+			option.addEventListener('click', function (e) {
+				console.log('clock');
+				console.log(box.value);
+
+				medias.sortThisMedia(box.value);
+				medias.sortArticles();
+			});
 		});
+		// selector.addEventListener('click', function (e) {
+		// 	console.log(box.value);
+
+		// 	medias.sortThisMedia(box.value);
+		// 	medias.sortArticles();
+		// });
 	}
+	// listenToBox() {
+	// 	let medias = this;
+	// 	let selecter = document.querySelector('.select-selected');
+	// 	console.log(selecter);
+	// 	let box = document.getElementById('sort');
+	// 	console.log(box);
+	// 	box.addEventListener('change', function (e) {
+	// 		console.log(box.value);
+	// 		medias.sortThisMedia(box.value);
+	// 		medias.sortArticles();
+	// 	});
+	// }
 	////sorting gallery's Media
 	sortDefault() {
 		//on init
