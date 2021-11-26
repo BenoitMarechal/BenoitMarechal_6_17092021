@@ -261,14 +261,8 @@ li {
   font-family: Arial;
 }
 
-.custom-select select {
-  display: none;
-  /*hide original SELECT element:*/
-}
-
 .select-selected {
-  background: #901c1c;
-  color: #fff;
+  background-color: DodgerBlue;
 }
 
 /*style the arrow inside the select element:*/
@@ -303,8 +297,7 @@ li {
 /*style items (options):*/
 .select-items {
   position: absolute;
-  background: #901c1c;
-  color: #fff;
+  background-color: DodgerBlue;
   top: 100%;
   left: 0;
   right: 0;
@@ -316,9 +309,12 @@ li {
   display: none;
 }
 
-.select-items div:hover,
-.same-as-selected {
+.select-items div:hover {
   background-color: rgba(0, 0, 0, 0.1);
+}
+
+.same-as-selected {
+  display: none;
 }
 
 .modal {

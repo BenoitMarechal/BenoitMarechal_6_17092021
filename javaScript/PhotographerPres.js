@@ -2,7 +2,7 @@ import { utils } from './utilitaries.js';
 //import { elementsOfGalleryPresentation } from './utilitaries.js';
 
 export class Presentation {
-	constructor(photographer, elementsOfGalleryPresentation) {
+	constructor(photographer) {
 		this.photographer = photographer;
 		this.elementsOfGalleryPresentation = {
 			typeOfElement: [

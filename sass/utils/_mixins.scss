@@ -31,3 +31,8 @@
 	border: none;
 	height: 50px;
 }
+@mixin format-options {
+	//	@include colorway-white-on-red;
+	width: $option-width;
+	height: $option-height;
+}

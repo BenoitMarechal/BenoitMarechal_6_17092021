@@ -1,46 +1,11 @@
-//rajouter un this.articles dans les pages?
-//créer un artcile.returnMedia?
+// import { LightBox } from "./Lightbox"
 
-///////////////////////////////////////////////ALL
-//homepage
-// writeAllArticles() {
-//     this.photographers.forEach((artist) => {
-//         artist.createArticle();
-//     });
-// }
+// ////////
+//nettoyer les contructors
 
-// hideAllArticles() {
-//     this.photographers.forEach((photographer) => {
-//         photographer.hideArticle();
-//     });
-// }
-// showAllArticles() {
-//     this.photographers.forEach((photographers) => {
-//         photographers.displayArticle();
-//     });
-// }
+// rajouter addEventListener clavier (key, touche gauche, droite) pour la LightBox
+// bouton echap
 
-//gallery
-// writeAllArticles() {
-//     this.medias.forEach((media) => {
-//         media.createArticle();
-//     });
-// }
-
-// hideAllArticles() {
-//     this.medias.forEach((media) => {
-//         media.hideArticle();
-//     });
-// }
-// showAllArticles() {
-//     this.medias.forEach((media) => {
-//         media.displayArticle();
-//     });
-// }
-///////////////////////////////////////////
-// createArticle()
-// hideArticle()
-// displayArticle()
-
-////////
-//Export fonctions?
+// accessibiltié: suivre cours
+// accessibiltié hompage (images, nav avec tab)
+//lighthouse

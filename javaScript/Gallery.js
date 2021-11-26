@@ -10,20 +10,10 @@ import { Sort } from './Sort.js';
 import { LightBox } from './Lightbox.js';
 
 class Gallery {
-	constructor(
-		photographer,
-		medias,
-		currentTag
-		// lightBox,
-		// visibleMedias,
-		// index
-	) {
+	constructor() {
 		this.photographer = {};
 		this.medias = []; //passer au pluriel
 		this.currentTag = undefined;
-		// this.lightBox = document.querySelector('.lightbox__modal');
-		// this.visibleMedias = [];
-		// this.index = undefined;
 	}
 
 	getPhotographer() {
