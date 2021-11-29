@@ -18,9 +18,10 @@
 	width: $option-width;
 	height: $option-height;
 }
-// .select-selected {
-// 	background-color: $colour-primary;
-// }
+.select-selected {
+	border-top-left-radius: $select-radius;
+	border-top-right-radius: $select-radius;
+}
 
 label {
 	width: $label-width;
@@ -29,11 +30,10 @@ label {
 
 /*style the arrow inside the select element:*/
 .select-selected:after {
-	position: relative;
+	position: absolute;
+	top: 0.6 * $option-height;
+	left: $label-width + $option-width + $marginV;
 	content: '';
-	top: 0.5 * $option-height;
-	left: $marginH;
-	//	right: 10px;
 	width: 0;
 	height: 0;
 	border: 6px solid transparent;
@@ -43,10 +43,13 @@ label {
 /*point the arrow upwards when the select box is open (active):*/
 .select-selected.select-arrow-active:after {
 	border-color: transparent transparent #fff transparent;
+	position: absolute;
+	top: 0.5 * $option-height;
+	left: $label-width + $option-width + $marginV;
 	//top: 7px;
-	position: relative;
-	top: -0.5 * $option-height;
-	left: $marginH;
+	// position: relative;
+	// top: -0.5 * $option-height;
+	// left: $marginH;
 }
 
 /*style the items (options), including the selected item:*/
@@ -68,15 +71,20 @@ label {
 	z-index: 99;
 	margin-left: $label-width + $marginH;
 }
+.last {
+	border-bottom-left-radius: $select-radius;
+	border-bottom-right-radius: $select-radius;
+	//background-color: yellow !important;
+}
 
 /*hide the items when the select box is closed:*/
 .select-hide {
 	display: none;
 }
 
-.select-items div:hover {
-	background-color: rgba(0, 0, 0, 0.1);
-}
+// .select-items div:hover {
+// 	background-color: rgba(0, 0, 0, 0.1);
+// }
 .same-as-selected {
 	display: none;
 }

@@ -1,12 +1,6 @@
-// if (j == 0) {
-// 	console.log('fisrt');
-// 	first = c;
-// 	console.log(fisrt);
-// }
-
 var x, i, j, l, ll, selElmnt, a, b, c;
 let firstTour = true;
-console.log('first ' + firstTour);
+//console.log('first ' + firstTour);
 /*look for any elements with the class "custom-select":*/
 x = document.getElementsByClassName('custom-select');
 l = x.length;
@@ -24,8 +18,6 @@ for (i = 0; i < l; i++) {
 	/*for each element, create a new DIV that will contain the option list:*/
 	b = document.createElement('DIV');
 	b.setAttribute('class', 'select-items select-hide');
-	//	console.log(a);
-	//b = list of clikableoptions
 
 	for (j = 0; j < ll; j++) {
 		/*for each option in the original select element,
@@ -34,12 +26,12 @@ for (i = 0; i < l; i++) {
 		c.innerHTML = selElmnt.options[j].innerHTML;
 
 		c.addEventListener('click', function (e) {
-			console.log('c');
-			console.log('first ' + firstTour);
+			// console.log('CHANGE HAPPENDED');
+			// resetLastClass();
 			/*when an item is clicked, update the original select box,
         and the selected item:*/
 			firstTour = false;
-			console.log('first ' + firstTour);
+			//console.log('first ' + firstTour);
 			var y, i, k, s, h, sl, yl;
 			s = this.parentNode.parentNode.getElementsByTagName('select')[0];
 			sl = s.length;
@@ -63,59 +55,90 @@ for (i = 0; i < l; i++) {
 	}
 	x[i].appendChild(b);
 
+	//hiding redundant option on first tour
 	let first = document.querySelector('.select-items').firstChild;
 	if (firstTour === true) {
 		first.classList.add('same-as-selected');
+	}
+	//END hiding redundant option on first tour
 
-		a.addEventListener('click', function (e) {
-			/*when the select box is clicked, close any other select boxes,
+	a.addEventListener('click', function (e) {
+		//console.log('open/close');
+		/*when the select box is clicked, close any other select boxes,
       and open/close the current select box:*/
-			//   let first = document.querySelector('.select-items').firstChild;
-			console.log('click sur A');
-			console.log(first);
-			console.log(firstTour);
-			// if (firstTour === true) {
-			// 	first.style.display = 'none';
-			// } else {
-			// 	first.style.display = 'block';
-			// }
+		resetLastClass();
+		//styleLastDiv();
+		e.stopPropagation();
+		closeAllSelect(this);
+		this.nextSibling.classList.toggle('select-hide');
+		this.classList.toggle('select-arrow-active');
+	});
+}
 
-			e.stopPropagation();
-			closeAllSelect(this);
-			this.nextSibling.classList.toggle('select-hide');
-			this.classList.toggle('select-arrow-active');
+function closeAllSelect(elmnt) {
+	/*a function that will close all select boxes in the document,
+  except the current select box:*/
+	var x,
+		y,
+		i,
+		xl,
+		yl,
+		arrNo = [];
+	x = document.getElementsByClassName('select-items');
+	y = document.getElementsByClassName('select-selected');
+	xl = x.length;
+	yl = y.length;
+	for (i = 0; i < yl; i++) {
+		if (elmnt == y[i]) {
+			arrNo.push(i);
+		} else {
+			y[i].classList.remove('select-arrow-active');
+		}
+	}
+	for (i = 0; i < xl; i++) {
+		if (arrNo.indexOf(i)) {
+			x[i].classList.add('select-hide');
+		}
+	}
+}
+/*if the user clicks anywhere outside the select box,
+then close all select boxes:*/
+document.addEventListener('click', function (e) {
+	console.log('click outside');
+	//resetLastClass();
+	closeAllSelect();
+});
+
+////////////////////////////////////////////////
+styleLastDiv();
+
+function resetLastClass() {
+	let last = Array.from(document.querySelectorAll('.last'));
+	//console.log(last);
+	if (last.length !== 0) {
+		last.forEach((element) => {
+			element.classList.remove('last');
+			//console.log('class removed from ' + element.innerText);
 		});
 	}
-	function closeAllSelect(elmnt) {
-		/*a function that will close all select boxes in the document,
-  except the current select box:*/
-		var x,
-			y,
-			i,
-			xl,
-			yl,
-			arrNo = [];
-		x = document.getElementsByClassName('select-items');
-		y = document.getElementsByClassName('select-selected');
-		xl = x.length;
-		yl = y.length;
-		for (i = 0; i < yl; i++) {
-			if (elmnt == y[i]) {
-				arrNo.push(i);
-			} else {
-				y[i].classList.remove('select-arrow-active');
-			}
-		}
-		for (i = 0; i < xl; i++) {
-			if (arrNo.indexOf(i)) {
-				x[i].classList.add('select-hide');
-			}
+	styleLastDiv();
+}
+
+function styleLastDiv() {
+	let optionsBox = Array.from(document.querySelectorAll('.select-items'));
+	//console.log(optionsBox);
+	//console.log(optionsBox);
+	optionsBox = optionsBox[0];
+	//console.log(optionsBox.children);
+	let visibleOptions = [];
+	for (let d = 0; d < optionsBox.children.length; d++) {
+		if (optionsBox.children[d].className !== 'same-as-selected') {
+			visibleOptions.push(optionsBox.children[d]);
 		}
 	}
-	/*if the user clicks anywhere outside the select box,
-then close all select boxes:*/
-	document.addEventListener('click', function (e) {
-		console.log('click outside');
-		closeAllSelect;
-	});
+	//console.log(visibleOptions[visibleOptions.length - 1]);
+	visibleOptions[visibleOptions.length - 1].classList.add('last');
+	// console.log(
+	// 	'class put on ' + visibleOptions[visibleOptions.length - 1].innerText
+	// );
 }
