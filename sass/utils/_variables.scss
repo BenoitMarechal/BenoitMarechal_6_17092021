@@ -6,6 +6,7 @@ $colour-grey: #525252;
 $colour-light-grey: #c4c4c4;
 $colour-white: #fff;
 $colour-black: #000000;
+$darken-primary: darken($colour-primary, 5%);
 
 /*valeurs de marges les plus utilisées*/
 $marginH: 15px;

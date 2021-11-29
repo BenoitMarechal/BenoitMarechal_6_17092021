@@ -310,7 +310,6 @@ label {
   color: #ffffff;
   padding: 8px 16px;
   border: 1px solid transparent;
-  border-color: transparent transparent rgba(0, 0, 0, 0.1) transparent;
   cursor: pointer;
   user-select: none;
 }
@@ -334,8 +333,26 @@ label {
   display: none;
 }
 
+.select-items div:hover {
+  background-color: #7b1818;
+}
+
 .same-as-selected {
   display: none;
+}
+
+.select-items div {
+  position: relative;
+}
+
+.select-items div:after {
+  content: "";
+  background: white;
+  position: absolute;
+  top: -1px;
+  left: 10%;
+  width: 80%;
+  height: 2px;
 }
 
 .modal {
