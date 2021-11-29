@@ -1,23 +1,39 @@
+.custom-select select {
+	display: none; /*hide original SELECT element:*/
+}
+
 /*the container must be positioned relative:*/
 .custom-select {
 	position: relative;
-	font-family: Arial;
+	//	font-family: Arial;
+	////////////@at-root// 	position: relative;
+	//	font-family: Arial;
+	display: flex;
+	align-items: center;
+	margin-left: $marginV;
 }
 
-// .custom-select select {
-// 	display: none; /*hide original SELECT element:*/
+.custom-select div {
+	background-color: $colour-primary;
+	width: $option-width;
+	height: $option-height;
+}
+// .select-selected {
+// 	background-color: $colour-primary;
 // }
 
-.select-selected {
-	background-color: DodgerBlue;
+label {
+	width: $label-width;
+	margin-right: $marginH;
 }
 
 /*style the arrow inside the select element:*/
 .select-selected:after {
-	position: absolute;
+	position: relative;
 	content: '';
-	top: 14px;
-	right: 10px;
+	top: 0.5 * $option-height;
+	left: $marginH;
+	//	right: 10px;
 	width: 0;
 	height: 0;
 	border: 6px solid transparent;
@@ -27,7 +43,10 @@
 /*point the arrow upwards when the select box is open (active):*/
 .select-selected.select-arrow-active:after {
 	border-color: transparent transparent #fff transparent;
-	top: 7px;
+	//top: 7px;
+	position: relative;
+	top: -0.5 * $option-height;
+	left: $marginH;
 }
 
 /*style the items (options), including the selected item:*/
@@ -46,9 +65,8 @@
 	position: absolute;
 	background-color: DodgerBlue;
 	top: 100%;
-	left: 0;
-	right: 0;
 	z-index: 99;
+	margin-left: $label-width + $marginH;
 }
 
 /*hide the items when the select box is closed:*/
@@ -62,116 +80,3 @@
 .same-as-selected {
 	display: none;
 }
-
-//////////////////////////////////////////////////////////OLD/////////////////////////////////
-// /*the container must be positioned relative:*/
-// label {
-// 	margin-right: $marginV;
-// 	width: $label-width;
-// }
-// .custom-select {
-// 	position: relative;
-// 	font-family: Arial;
-// 	display: flex;
-// 	align-items: center;
-// 	margin-left: $marginV;
-// }
-
-// // .custom-select select {
-// // 	display: none; /*hide original SELECT element:*/
-// // }
-
-// .select-selected {
-// 	// background-color: DodgerBlue;
-// 	@include colorway-white-on-red;
-// 	display: flex;
-// 	justify-content: space-between;
-// 	border-top-left-radius: $select-radius;
-// 	border-top-right-radius: $select-radius;
-// }
-
-// /*style the arrow inside the select element:*/
-// .select-selected:after {
-// 	//position: relative;
-// 	// position: absolute;
-// 	content: '';
-// 	// top: 14px;
-// 	// right: -200px;
-// 	//left: 50px;
-// 	width: 0;
-// 	height: 0;
-// 	border: 6px solid transparent;
-// 	border-color: #fff transparent transparent transparent;
-// 	//@include format-options;
-// 	@include colorway-white-on-red;
-// }
-
-// .select-selected,
-// .select-items div {
-// 	display: flex;
-// 	align-items: center;
-// }
-// .select-items :last-child {
-// 	border-bottom-left-radius: $select-radius;
-// 	border-bottom-right-radius: $select-radius;
-// }
-
-// .select-items ::after {
-// 	content: '';
-// 	border-top: white 2px solid;
-// 	position: relative;
-// 	bottom: 0px;
-// 	right: 0px;
-// 	left: 0px;
-// 	width: 100px;
-// 	height: 2px;
-// }
-
-// /*point the arrow upwards when the select box is open (active):*/
-// .select-selected.select-arrow-active:after {
-// 	border-color: transparent transparent #fff transparent;
-// 	top: 7px;
-// }
-
-// /*style the items (options), including the selected item:*/
-// .select-items div,
-// .select-selected {
-// 	//color: #ffffff;
-// 	padding: 8px 16px;
-// 	//	border-top: 2px solid white;
-// 	// border: 1px solid transparent;
-// 	// border-color: transparent transparent rgba(0, 0, 0, 0.1) transparent;
-// 	cursor: pointer;
-// 	user-select: none;
-// 	@include format-options;
-// 	@include colorway-white-on-red;
-// }
-
-// /*style items (options):*/
-// .select-items {
-// 	position: absolute;
-// 	// background-color: DodgerBlue;
-// 	//@include colorway-white-on-red;
-// 	top: 100%;
-// 	left: 0;
-// 	right: 0;
-// 	z-index: 99;
-// }
-
-// /*hide the items when the select box is closed:*/
-// .select-hide {
-// 	display: none;
-// }
-
-// .select-items div
-// // ,.same-as-selected
-// {
-// 	//background-color: rgba(0, 0, 0, 0.1);
-// 	//border: 1px solid black;
-// 	margin-left: ($label-width + $marginV);
-// }
-
-// // div {
-// // 	border: 1px solid black;
-// // 	margin-left: ($label-width + $marginV);
-// // }
