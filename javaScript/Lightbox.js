@@ -1,6 +1,6 @@
 ///listening to tags
 export class LightBox {
-	constructor(medias, visibleMedias, lightBox, index) {
+	constructor(medias) {
 		this.medias = medias;
 		this.visibleMedias = [];
 		this.lightBox = document.querySelector('.lightbox__modal');
@@ -10,7 +10,6 @@ export class LightBox {
 		this.closeLightbox();
 		this.openLightbox();
 		this.navigateLightBox();
-		this.keyboard();
 	}
 	async getvisibleMedias() {
 		this.visibleMedias = []; //resets visibleMedias
@@ -21,35 +20,19 @@ export class LightBox {
 		});
 	}
 
-	closeLightbox2() {
+	closeLightbox() {
 		this.lightBox.style.display = 'none';
 	}
-	next2() {
-		//next.addEventListener('click', function (e) {
+	next() {
 		this.index++;
-		//index = index + 1;
 		this.correctIndex();
 		this.lightBoxDisplay(this.index);
-		//});
 	}
-	prev2() {
-		//next.addEventListener('click', function (e) {
+	prev() {
 		this.index--;
-		//index = index + 1;
 		this.correctIndex();
 		this.lightBoxDisplay(this.index);
-		//});
 	}
-
-	closeLightbox() {
-		let btnClose = document.getElementById('btnCloseLightbox'); //gets the "close" button
-		//let page = this.Gallery;
-		let box = this.lightBox;
-		btnClose.addEventListener('click', function (e) {
-			box.style.display = 'none';
-		});
-	}
-
 	lightBoxDisplay(index) {
 		let container = document.querySelector(
 			'.lightbox__modal__container__mediaContainer'
@@ -75,12 +58,8 @@ export class LightBox {
 		let page = this;
 		this.medias.forEach((media) => {
 			media.returnThumbnail().addEventListener('click', function (e) {
-				// console.log(this);
-				// console.log(page);
 				page.getvisibleMedias();
-				console.log(page);
 				page.index = page.visibleMedias.indexOf(media);
-				console.log(page.index);
 				page.lightBox.style.display = 'block';
 
 				page.lightBoxDisplay(page.index);
@@ -88,28 +67,32 @@ export class LightBox {
 		});
 	}
 	navigateLightBox() {
+		let page = this;
 		let next = document.getElementById('btnNextLightbox');
 		let prev = document.getElementById('btnPrevLightbox');
-		let page = this;
+		let close = document.getElementById('btnCloseLightbox'); //gets the "close" button
+		//////clicks
 		prev.addEventListener('click', function (e) {
-			//index = index - 1;
-			page.index--;
-			page.correctIndex(); //manages limit conditions
-			page.lightBoxDisplay(page.index);
+			page.next();
 		});
 		next.addEventListener('click', function (e) {
-			page.index++;
-			//index = index + 1;
-			page.correctIndex();
-			page.lightBoxDisplay(page.index);
+			page.next();
 		});
-
-		// next.addEventListener('click', function (e) {
-		// 	page.index++;
-		// 	//index = index + 1;
-		// 	page.correctIndex();
-		// 	page.lightBoxDisplay(page.index);
-		// });
+		close.addEventListener('click', function (e) {
+			page.closeLightbox();
+		});
+		////////keyboard
+		document.addEventListener('keydown', (e) => {
+			if (e.key == 'Escape') {
+				page.closeLightbox();
+			}
+			if (e.key == 'ArrowRight') {
+				page.next();
+			}
+			if (e.key == 'ArrowLeft') {
+				page.prev();
+			}
+		});
 	}
 
 	correctIndex() {
@@ -123,24 +106,5 @@ export class LightBox {
 			this.index = max - 1;
 		}
 		return this.index;
-	}
-
-	keyboard() {
-		let page = this;
-		document.addEventListener('keydown', (e) => {
-			console.log(e);
-			if (e.key == 'Escape') {
-				console.log('ESCAPE');
-				page.closeLightbox2();
-			}
-			if (e.key == 'ArrowRight') {
-				console.log('RIGHT');
-				page.next2();
-			}
-			if (e.key == 'ArrowLeft') {
-				console.log('LEFT');
-				page.prev2();
-			}
-		});
 	}
 }

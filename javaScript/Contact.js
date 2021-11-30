@@ -1,5 +1,5 @@
 export class ContactModal {
-	constructor(contactForm, photographer, DOMelement) {
+	constructor(photographer) {
 		this.contactForm = {
 			id: ['first', 'last', 'email', 'message'],
 			value: [undefined, undefined, undefined, undefined],

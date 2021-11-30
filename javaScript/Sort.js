@@ -18,12 +18,6 @@ export class Sort {
 				medias.sortArticles();
 			});
 		});
-		// selector.addEventListener('click', function (e) {
-		// 	console.log(box.value);
-
-		// 	medias.sortThisMedia(box.value);
-		// 	medias.sortArticles();
-		// });
 	}
 
 	////sorting gallery's Media

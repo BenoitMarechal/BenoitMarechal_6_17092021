@@ -13,7 +13,7 @@ class Gallery {
 		//loading
 		this.getPhotographer();
 		this.getGalleryMedia();
-		this.sortMedias();
+		this.sortMedias(); //also gets the sorting running
 		//building
 		this.writePresentation();
 		this.contact();
@@ -60,10 +60,10 @@ class Gallery {
 	}
 
 	writePresentation() {
-		let pres = new Presentation(this.photographer, '');
+		let pres = new Presentation(this.photographer);
 	}
 	contact() {
-		let contact = new ContactModal('', this.photographer, '');
+		let contact = new ContactModal(this.photographer);
 	}
 	writeAllArticles() {
 		this.medias.forEach((media) => {
@@ -103,7 +103,7 @@ class Gallery {
 	}
 	/////LIKES
 	mediaLikes() {
-		let likes = new Like(this, '');
+		let likes = new Like(this);
 	}
 	/////end of LIKES
 
@@ -115,7 +115,7 @@ class Gallery {
 
 	///////////// lightbox
 	enableLightBox() {
-		let lightbox = new LightBox(this.medias, '', '', '');
+		let lightbox = new LightBox(this.medias);
 	}
 }
 let gallery = new Gallery();
