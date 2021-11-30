@@ -66,7 +66,7 @@ label {
 /*style items (options):*/
 .select-items {
 	position: absolute;
-	background-color: DodgerBlue;
+	//background-color: DodgerBlue;
 	top: 100%;
 	z-index: 99;
 	margin-left: $label-width + $marginH;
@@ -74,7 +74,6 @@ label {
 .last {
 	border-bottom-left-radius: $select-radius;
 	border-bottom-right-radius: $select-radius;
-	//background-color: yellow !important;
 }
 
 /*hide the items when the select box is closed:*/

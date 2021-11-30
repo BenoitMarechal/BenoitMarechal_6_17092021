@@ -317,7 +317,6 @@ label {
 /*style items (options):*/
 .select-items {
   position: absolute;
-  background-color: DodgerBlue;
   top: 100%;
   z-index: 99;
   margin-left: 80px;
