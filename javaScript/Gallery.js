@@ -2,7 +2,6 @@
 import { dataFromJson } from './FetchData.js';
 import { Media } from './Media.js';
 import { ContactModal } from './Contact.js';
-
 import { Like } from './GalleryLikes.js';
 import { Presentation } from './PhotographerPres.js';
 import { NavTags } from './RunTags.js';
@@ -11,9 +10,20 @@ import { LightBox } from './Lightbox.js';
 
 class Gallery {
 	constructor() {
-		this.photographer = {};
-		this.medias = []; //passer au pluriel
-		this.currentTag = undefined;
+		//loading
+		this.getPhotographer();
+		this.getGalleryMedia();
+		this.sortMedias();
+		//building
+		this.writePresentation();
+		this.contact();
+		this.writeAllArticles();
+		this.fillBottomLikes();
+		this.fillBottomPrice();
+		/////running
+		this.manageTags(); //tags
+		this.enableLightBox(); //lightbox
+		this.mediaLikes(); //likes management
 	}
 
 	getPhotographer() {
@@ -29,6 +39,7 @@ class Gallery {
 
 	getGalleryMedia() {
 		//gets all the media from the photographer, assigns to gallery page
+		this.medias = [];
 		let page = this;
 		dataFromJson.media.forEach((media) => {
 			if (media.photographerId == page.photographer.id) {
@@ -107,27 +118,4 @@ class Gallery {
 		let lightbox = new LightBox(this.medias, '', '', '');
 	}
 }
-
-(function launchGallery() {
-	let gallery = new Gallery();
-	///loading
-	gallery.getPhotographer(); //gets photographer based on id
-	gallery.getGalleryMedia(); //gets media nbased on photographer
-	////building
-	gallery.writePresentation(); //writes upper part with photographer data
-	gallery.contact(); //fills contact modal with artist name and runs modal functions
-
-	gallery.sortMedias(); //sorts medias with default combobox value (popularity), runs combobox
-	gallery.writeAllArticles(); //generating all articles
-
-	gallery.fillBottomLikes();
-	gallery.fillBottomPrice();
-	/////running
-	gallery.manageTags(); //tags
-	gallery.enableLightBox(); //lightbox
-	gallery.mediaLikes(); //likes management
-})();
-
-//accessibilité à voir après
-//faire un fichier spécial pour dataFrom Json
-//deadline fin novembre
+let gallery = new Gallery();

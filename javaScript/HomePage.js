@@ -1,5 +1,3 @@
-// let dataFromJson = [];
-
 import { utils } from './utilitaries.js';
 import { dataFromJson } from './FetchData.js';
 import { Photographer } from './Photographers.js';
@@ -7,14 +5,20 @@ import { Media } from './Media.js';
 import { NavTags } from './RunTags.js';
 
 class HomePage {
-	constructor(photographers, tags, medias, currentTag) {
-		this.photographers = [];
-		this.tags = [];
-		this.medias = [];
-		this.currentTag = '';
+	constructor() {
+		//loading
+		this.getAllArtists();
+		this.getAllMedias();
+		this.getAllTags();
+		//building
+		this.buildNavBar();
+		this.writeAllArticles();
+		//running
+		this.manageTags();
 	}
 
 	getAllArtists() {
+		this.photographers = [];
 		dataFromJson.photographers.forEach((photographer) => {
 			let artist = new Photographer(
 				photographer.name,
@@ -29,6 +33,7 @@ class HomePage {
 		});
 	}
 	getAllMedias() {
+		this.medias = [];
 		dataFromJson.media.forEach((media) => {
 			media = new Media(
 				media.id,
@@ -46,6 +51,7 @@ class HomePage {
 	}
 
 	getAllTags() {
+		this.tags = [];
 		this.photographers.forEach((photographer) => {
 			//get all tags from artists
 			for (var i = 0; i < photographer.tags.length; i++) {
@@ -87,15 +93,4 @@ class HomePage {
 	}
 }
 
-(async function launch() {
-	//loading
-	let homepage = new HomePage();
-	homepage.getAllArtists();
-	homepage.getAllMedias();
-	homepage.getAllTags();
-	//building
-	homepage.buildNavBar();
-	homepage.writeAllArticles();
-	//running
-	homepage.manageTags();
-})();
+let homepage = new HomePage();
