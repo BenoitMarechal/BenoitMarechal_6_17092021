@@ -32,6 +32,14 @@ export class LightBox {
 		this.lightBoxDisplay(this.index);
 		//});
 	}
+	prev2() {
+		//next.addEventListener('click', function (e) {
+		this.index--;
+		//index = index + 1;
+		this.correctIndex();
+		this.lightBoxDisplay(this.index);
+		//});
+	}
 
 	closeLightbox() {
 		let btnClose = document.getElementById('btnCloseLightbox'); //gets the "close" button
@@ -124,6 +132,14 @@ export class LightBox {
 			if (e.key == 'Escape') {
 				console.log('ESCAPE');
 				page.closeLightbox2();
+			}
+			if (e.key == 'ArrowRight') {
+				console.log('RIGHT');
+				page.next2();
+			}
+			if (e.key == 'ArrowLeft') {
+				console.log('LEFT');
+				page.prev2();
 			}
 		});
 	}
