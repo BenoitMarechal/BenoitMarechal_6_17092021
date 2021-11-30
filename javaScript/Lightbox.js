@@ -10,6 +10,7 @@ export class LightBox {
 		this.closeLightbox();
 		this.openLightbox();
 		this.navigateLightBox();
+		this.keyboard();
 	}
 	async getvisibleMedias() {
 		this.visibleMedias = []; //resets visibleMedias
@@ -18,6 +19,18 @@ export class LightBox {
 				this.visibleMedias.push(media);
 			}
 		});
+	}
+
+	closeLightbox2() {
+		this.lightBox.style.display = 'none';
+	}
+	next2() {
+		//next.addEventListener('click', function (e) {
+		this.index++;
+		//index = index + 1;
+		this.correctIndex();
+		this.lightBoxDisplay(this.index);
+		//});
 	}
 
 	closeLightbox() {
@@ -82,6 +95,13 @@ export class LightBox {
 			page.correctIndex();
 			page.lightBoxDisplay(page.index);
 		});
+
+		// next.addEventListener('click', function (e) {
+		// 	page.index++;
+		// 	//index = index + 1;
+		// 	page.correctIndex();
+		// 	page.lightBoxDisplay(page.index);
+		// });
 	}
 
 	correctIndex() {
@@ -95,5 +115,16 @@ export class LightBox {
 			this.index = max - 1;
 		}
 		return this.index;
+	}
+
+	keyboard() {
+		let page = this;
+		document.addEventListener('keydown', (e) => {
+			console.log(e);
+			if (e.key == 'Escape') {
+				console.log('ESCAPE');
+				page.closeLightbox2();
+			}
+		});
 	}
 }
