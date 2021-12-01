@@ -40,13 +40,6 @@ main {
   justify-content: center;
 }
 
-h1 {
-  width: 100%;
-  display: flex;
-  justify-content: flex-end;
-  color: #901c1c;
-}
-
 /*FONTS*/
 @font-face {
   font-family: "DMsans";
@@ -126,6 +119,10 @@ li {
   right: 20px;
   font-weight: normal;
   width: auto;
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  color: #901c1c;
 }
 
 .gallery___nav {

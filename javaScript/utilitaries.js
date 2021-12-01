@@ -63,7 +63,7 @@ export let elementsOfArtistArticle = {
 
 // //////////////////////////////CREATING MEDIA ARTICLES///////////////////
 export let elementsOfMediaArticle = {
-	typeOfElement: ['article', 'img', 'div', 'div', 'div', 'div', 'div'],
+	typeOfElement: ['article', 'img', 'div', 'h2', 'div', 'div', 'div'],
 	classOfElement: [
 		'gallery__main__gallery__container',
 		'gallery__main__gallery__container__thumbnail',

@@ -23,9 +23,15 @@ export class ContactModal {
 		btnLaunch.addEventListener('click', function (e) {
 			modal.style.display = 'block';
 		});
-		// //close modal event
+		// //close modal event (btn)
 		btnClose.addEventListener('click', function (e) {
 			modal.style.display = 'none';
+		});
+
+		document.addEventListener('keydown', (e) => {
+			if (e.key == 'Escape') {
+				modal.style.display = 'none';
+			}
 		});
 	}
 	//////listening

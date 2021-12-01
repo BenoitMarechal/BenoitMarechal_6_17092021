@@ -64,6 +64,10 @@
 		right: $marginV;
 		font-weight: normal;
 		width: auto;
+		width: 100%;
+		display: flex;
+		justify-content: flex-end;
+		color: $colour-primary;
 	}
 }
 .gallery___nav {
