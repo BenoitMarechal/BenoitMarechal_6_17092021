@@ -15,6 +15,18 @@ class HomePage {
 		this.writeAllArticles();
 		//running
 		this.manageTags();
+		this.hideShowLink();
+	}
+	hideShowLink() {
+		let link = document.querySelector('.header__linkContainer__link');
+		//	console.log(link);
+		link.style.display = 'none';
+		document.addEventListener('keydown', function (e) {
+			link.style.display = 'block';
+		});
+		document.addEventListener('mouseover', function (e) {
+			link.style.display = 'block';
+		});
 	}
 
 	getAllArtists() {
@@ -72,7 +84,10 @@ class HomePage {
 
 	buildNavBar() {
 		let navBar = document.getElementById('header__content__nav__ul');
-		navBar.innerHTML = utils.generateTagButtons(this.tags); //fills navbar with tag buttons (function also used when building Artists Articles)
+		//navBar.innerHTML = utils.generateTagButtons(this.tags); //fills navbar with tag buttons (function also used when building Artists Articles)
+		this.tags.forEach((tag) => {
+			navBar.appendChild(utils.generateTagButtons(tag));
+		});
 	}
 	// displays all artists
 	writeAllArticles() {
@@ -94,3 +109,4 @@ class HomePage {
 }
 
 let homepage = new HomePage();
+utils.generateTagButtons2(homepage.tags);

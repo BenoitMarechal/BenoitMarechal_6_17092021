@@ -140,3 +140,19 @@ function styleLastDiv() {
 	// 	'class put on ' + visibleOptions[visibleOptions.length - 1].innerText
 	// );
 }
+///////keyboard navigation
+let listOfDivs = [];
+listOfDivs.push(document.querySelector('.select-selected'));
+let options = document.querySelectorAll('.select-items div');
+options.forEach((options) => {
+	listOfDivs.push(options);
+});
+//console.log(listOfDivs);
+listOfDivs.forEach((div) => {
+	div.addEventListener('keydown', function (e) {
+		console.log(e.key);
+		if (e.key == 'Enter') {
+			div.click();
+		}
+	});
+});

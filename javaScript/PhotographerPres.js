@@ -83,8 +83,10 @@ export class Presentation {
 
 		let articleToFill = '';
 		articleToFill = document.querySelector('.gallery__main__presentation');
+
 		articleToFill.querySelector('.photographer__link__name').innerText =
 			this.photographer.name;
+
 		articleToFill.querySelector(
 			'.photographer__link__location__city'
 		).innerText = this.photographer.city + ',';
@@ -93,8 +95,17 @@ export class Presentation {
 		).innerText = '\u00A0' + this.photographer.country;
 		articleToFill.querySelector('.photographer__link__tagline').innerText =
 			this.photographer.tagline;
-		articleToFill.querySelector('.photographer__link__tags').innerHTML =
-			utils.generateTagButtons(this.photographer.tags);
+		/////////////////////////////////////////////////////
+		this.photographer.tags.forEach((tag) => {
+			articleToFill
+				.querySelector('.photographer__link__tags')
+				.appendChild(utils.generateTagButtons(tag));
+		});
+
+		// articleToFill.querySelector('.photographer__link__tags').innerHTML =
+		// 	utils.generateTagButtons(this.photographer.tags);
+
+		//////////////////////////////////////////////////////////////////////
 		articleToFill.querySelector('.gallery__main__presentation__btn').innerText =
 			'Contactez moi';
 		let clearedName = utils.removeSpacesInString(this.photographer.name);

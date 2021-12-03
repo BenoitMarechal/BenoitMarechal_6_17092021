@@ -20,15 +20,14 @@ export class FishEyeUtilitaires {
 		var reg = /[-, ]/g;
 		return string.replace(reg, ' ');
 	}
-	generateTagButtons(tagsArray) {
-		let resultString = '';
-		let firstHalfOfString = '<li><button class="tag">#';
-		let secondHalfOfString = '</button></li>';
-		tagsArray.forEach((tag) => {
-			resultString =
-				resultString + firstHalfOfString + tag + secondHalfOfString;
-		});
-		return resultString;
+	generateTagButtons(tag) {
+		let liElem = document.createElement('li');
+		let buttonElem = document.createElement('button');
+		buttonElem.classList = 'tag';
+		buttonElem.innerText = '#' + tag;
+		buttonElem.setAttribute('aria-label', tag);
+		liElem.appendChild(buttonElem);
+		return liElem;
 	}
 }
 // //////////////////////////////CREATING ARTISTS ARTICLES///////////////////
@@ -63,7 +62,7 @@ export let elementsOfArtistArticle = {
 
 // //////////////////////////////CREATING MEDIA ARTICLES///////////////////
 export let elementsOfMediaArticle = {
-	typeOfElement: ['article', 'img', 'div', 'h2', 'div', 'div', 'div'],
+	typeOfElement: ['article', 'img', 'div', 'h2', 'div', 'div', 'button'],
 	classOfElement: [
 		'gallery__main__gallery__container',
 		'gallery__main__gallery__container__thumbnail',

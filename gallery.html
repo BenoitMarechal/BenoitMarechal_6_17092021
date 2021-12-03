@@ -16,7 +16,7 @@
 	<body>
 		<header class="header">
 			<nav class="header__content gallery___nav">
-				<a class="header__content__logo" href="index.html">
+				<a class="header__content__logo" href="index.html" tabindex="1">
 					<span class="header__content__logo__txt">Fish</span>
 					<img
 						src="images/logo/logo.png"
@@ -31,7 +31,7 @@
 		<main class="gallery__main">
 			<div class="gallery__main__presentation"></div>
 			<div class="custom-select">
-				<label>Trier par:</label>
+				<label for="sort">Trier par:</label>
 				<select id="sort">
 					<option value="likes">Popularité</option>
 					<option value="date">Date</option>
@@ -56,8 +56,10 @@
 				<div class="modal__bground"></div>
 				<div class="modal__container modal__form">
 					<div class="modal__container__head">
-						<div class="modal__container__head__contact">Contactez-moi</div>
-						<span class="pointer" id="btnClose"
+						<div class="modal__container__head__contact" role="button">
+							Contactez-moi
+						</div>
+						<span class="pointer" id="btnClose" role="button"
 							><i class="fas fa-times"></i
 						></span>
 					</div>
@@ -114,6 +116,7 @@
 								class="button"
 								id="submit"
 								value="Envoyer"
+								role="button"
 							/>
 						</form>
 					</div>

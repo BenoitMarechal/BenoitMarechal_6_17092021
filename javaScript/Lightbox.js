@@ -61,11 +61,29 @@ export class LightBox {
 				page.getvisibleMedias();
 				page.index = page.visibleMedias.indexOf(media);
 				page.lightBox.style.display = 'block';
-
 				page.lightBoxDisplay(page.index);
+			});
+			media.returnThumbnail().addEventListener('keydown', (e) => {
+				//ecouter suelement sur le fond de la modale
+				if (e.key == 'Enter') {
+					media.returnThumbnail().click();
+				}
 			});
 		});
 	}
+	// openLightbox() {
+	// 	let page = this;
+	// 	this.medias.forEach((media) => {
+	// 		media.returnThumbnail().addEventListener('keydown', (e) => {
+	// 			//ecouter suelement sur le fond de la modale
+	// 			console.log(e.key);
+	// 			if (e.key == 'Enter') {
+	// 				media.returnThumbnail().click();
+	// 			}
+	// 		});
+	// 	});
+	// }
+
 	navigateLightBox() {
 		let page = this;
 		let next = document.getElementById('btnNextLightbox');
@@ -82,7 +100,12 @@ export class LightBox {
 			page.closeLightbox();
 		});
 		////////keyboard
+		// let bground = document.querySelector(
+		// 	'.lightbox__modal__container__mediaContainer'
+		// );
+		//console.log(bground);
 		document.addEventListener('keydown', (e) => {
+			//ecouter suelement sur le fond de la modale
 			if (e.key == 'Escape') {
 				page.closeLightbox();
 			}

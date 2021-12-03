@@ -216,6 +216,11 @@ li {
   margin: 20px 15px 20px 15px;
   font-size: 1.2rem;
 }
+.gallery__main__gallery__container__info__title {
+  font-size: inherit;
+  font-weight: normal;
+  margin: 0;
+}
 .gallery__main__gallery__container__info__likes {
   display: flex;
 }
@@ -224,6 +229,9 @@ li {
 }
 .gallery__main__gallery__container__info__likes__heart {
   cursor: pointer;
+  border-radius: 0px;
+  border: none;
+  font-size: 1.2rem;
 }
 
 .bottom {
@@ -368,11 +376,9 @@ label {
   overflow: hidden;
   position: fixed;
   top: 0px;
-  bottom: 30px;
   left: 0px;
   right: 0px;
   margin-top: 30px;
-  margin-bottom: 30px;
   margin-left: 37%;
   margin-right: 37%;
   border-radius: 10px;
@@ -394,21 +400,22 @@ label {
 .modal__container__fields {
   margin-top: 10px;
   color: #525252;
-  font-size: 1.3rem;
+  font-size: 1.2rem;
   width: 100%;
 }
 
 input {
   font-size: 1.2rem;
   margin-bottom: 5px;
+  width: 100%;
+  padding: 0;
 }
 
 #message {
-  height: 280px;
+  height: 240px;
   font-size: 1.2rem;
   width: 100%;
   padding: 0;
-  margin: 0;
 }
 
 .lightboxBtn {

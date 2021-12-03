@@ -16,11 +16,11 @@
 		overflow: hidden;
 		position: fixed;
 		top: 0px;
-		bottom: 30px;
+		//bottom: 30px;
 		left: 0px;
 		right: 0px;
 		margin-top: 30px;
-		margin-bottom: 30px;
+		//margin-bottom: 30px;
 		margin-left: 37%;
 		margin-right: 37%;
 		border-radius: 10px;
@@ -47,8 +47,10 @@
 		&__fields {
 			margin-top: 0.5 * $marginV;
 			color: $colour-grey;
-			font-size: 1.3rem;
+			// font-size: 1.3rem;
+			font-size: $input-fontsize;
 			width: 100%;
+			//width: auto;
 		}
 	}
 }
@@ -56,14 +58,20 @@
 input {
 	font-size: $input-fontsize;
 	margin-bottom: 5px;
+	width: 100%;
+	//border: 1px solid green;
+	padding: 0;
 }
+// form {
+// 	//border: 1px solid blue;
+// }
 #message {
-	height: 280px;
+	height: 240px;
 
 	font-size: $input-fontsize;
 	width: 100%;
 	padding: 0;
-	margin: 0;
+	//margin: 0;
 }
 
 ///////////////////////////////lightBox modal/////////////////////////////////////

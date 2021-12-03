@@ -1,8 +1,9 @@
 import { utils } from './utilitaries.js';
 ///listening to tags
 export class Sort {
-	constructor(medias) {
-		this.medias = medias;
+	constructor(parent) {
+		this.parent = parent;
+		this.medias = this.parent.medias;
 		this.sortDefault();
 		this.listenToBox();
 	}
@@ -55,5 +56,6 @@ export class Sort {
 		for (let a = 0; a < this.medias.length; a++) {
 			parentDiv.appendChild(this.medias[a].returnArticle()); //rebuilds this.articles from this.media
 		}
+		this.parent.assignTabIndex();
 	}
 }

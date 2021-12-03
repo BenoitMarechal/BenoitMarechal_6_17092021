@@ -20,6 +20,7 @@ class Gallery {
 		this.writeAllArticles();
 		this.fillBottomLikes();
 		this.fillBottomPrice();
+		this.assignTabIndex();
 		/////running
 		this.manageTags(); //tags
 		this.enableLightBox(); //lightbox
@@ -69,6 +70,7 @@ class Gallery {
 		this.medias.forEach((media) => {
 			media.createArticle();
 		});
+		//this.assignArticleTabIndex();
 	}
 
 	hideAllArticles() {
@@ -109,13 +111,73 @@ class Gallery {
 
 	/////////SORT
 	sortMedias() {
-		let sorting = new Sort(this.medias);
+		let sorting = new Sort(this);
 	}
 	/////////END OF SORT
 
 	///////////// lightbox
 	enableLightBox() {
 		let lightbox = new LightBox(this.medias);
+	}
+	assignTabIndex() {
+		//logo link tabIndex is 1
+		let index = 2;
+		//tag buttons
+		let tagBar = document.querySelectorAll('.tag');
+		for (let i = 0; i < tagBar.length; i++) {
+			tagBar[i].tabIndex = index;
+			index++;
+		}
+		//contact button
+		document.querySelector('.gallery__main__presentation__btn').tabIndex =
+			index;
+		index++;
+		// /////contact form fields
+		let contactModalElements = Array.from(
+			document.querySelectorAll('input , textarea')
+		);
+		let close = document.getElementById('btnClose');
+		contactModalElements.push(close);
+		console.log(contactModalElements);
+		for (let i = 0; i < contactModalElements.length; i++) {
+			contactModalElements[i].tabIndex = index;
+			index++;
+		}
+		////SORT
+		let listOfDivs = [];
+		listOfDivs.push(document.querySelector('.select-selected'));
+		let options = document.querySelectorAll('.select-items div');
+		options.forEach((options) => {
+			//if (options.className !== 'same-as-selected') {
+			listOfDivs.push(options);
+			//}
+		});
+		//console.log(listOfDivs);
+		for (let i = 0; i < listOfDivs.length; i++) {
+			listOfDivs[i].tabIndex = index;
+			index++;
+		}
+		//console.log(index);
+
+		//////articles (thumbnails and hearts)
+		//console.log(this);
+
+		this.visibleMedias = [];
+		let gallery = this;
+		this.medias.forEach((media) => {
+			if (media.returnArticle().style.display == 'block') {
+				gallery.visibleMedias.push(media);
+			}
+		});
+		//console.log(gallery);
+		// let visibleArticles = document.querySelectorAll('article', 'display=block');
+		// console.log(visibleArticles);
+		for (let i = 0; i < gallery.visibleMedias.length; i++) {
+			gallery.visibleMedias[i].returnThumbnail().tabIndex = index;
+			index++;
+			gallery.visibleMedias[i].returnHeart().tabIndex = index;
+			index++;
+		}
 	}
 }
 let gallery = new Gallery();

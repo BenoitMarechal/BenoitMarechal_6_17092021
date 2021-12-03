@@ -24,11 +24,27 @@ export class ContactModal {
 			modal.style.display = 'block';
 		});
 		// //close modal event (btn)
+		//click
 		btnClose.addEventListener('click', function (e) {
 			modal.style.display = 'none';
 		});
+		//enter
+		btnClose.addEventListener('keydown', (e) => {
+			if (e.key == 'Enter') {
+				btnClose.click();
+			}
+		});
+
+		// media.returnThumbnail().addEventListener('keydown', (e) => {
+		// 	//ecouter suelement sur le fond de la modale
+		// 	if (e.key == 'Enter') {
+		// 		media.returnThumbnail().click();
+		// 	}
+		// });
+		//console.log(modal);
 
 		document.addEventListener('keydown', (e) => {
+			//ecouter suelement sur le fond de la modale
 			if (e.key == 'Escape') {
 				modal.style.display = 'none';
 			}
