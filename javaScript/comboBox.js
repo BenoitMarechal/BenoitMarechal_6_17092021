@@ -1,6 +1,5 @@
 var x, i, j, l, ll, selElmnt, a, b, c;
 let firstTour = true;
-//console.log('first ' + firstTour);
 /*look for any elements with the class "custom-select":*/
 x = document.getElementsByClassName('custom-select');
 l = x.length;
@@ -8,13 +7,11 @@ let first = '';
 for (i = 0; i < l; i++) {
 	selElmnt = x[i].getElementsByTagName('select')[0];
 	ll = selElmnt.length;
-	//console.log(selElmnt); //orginal regular select element
 	/*for each element, create a new DIV that will act as the selected item:*/
 	a = document.createElement('DIV');
 	a.setAttribute('class', 'select-selected');
 	a.innerHTML = selElmnt.options[selElmnt.selectedIndex].innerHTML;
 	x[i].appendChild(a);
-	//console.log(a);
 	/*for each element, create a new DIV that will contain the option list:*/
 	b = document.createElement('DIV');
 	b.setAttribute('class', 'select-items select-hide');
@@ -26,12 +23,9 @@ for (i = 0; i < l; i++) {
 		c.innerHTML = selElmnt.options[j].innerHTML;
 
 		c.addEventListener('click', function (e) {
-			// console.log('CHANGE HAPPENDED');
-			// resetLastClass();
 			/*when an item is clicked, update the original select box,
         and the selected item:*/
 			firstTour = false;
-			//console.log('first ' + firstTour);
 			var y, i, k, s, h, sl, yl;
 			s = this.parentNode.parentNode.getElementsByTagName('select')[0];
 			sl = s.length;
@@ -63,11 +57,9 @@ for (i = 0; i < l; i++) {
 	//END hiding redundant option on first tour
 
 	a.addEventListener('click', function (e) {
-		//console.log('open/close');
 		/*when the select box is clicked, close any other select boxes,
       and open/close the current select box:*/
 		resetLastClass();
-		//styleLastDiv();
 		e.stopPropagation();
 		closeAllSelect(this);
 		this.nextSibling.classList.toggle('select-hide');
@@ -112,11 +104,9 @@ styleLastDiv();
 
 function resetLastClass() {
 	let last = Array.from(document.querySelectorAll('.last'));
-	//console.log(last);
 	if (last.length !== 0) {
 		last.forEach((element) => {
 			element.classList.remove('last');
-			//console.log('class removed from ' + element.innerText);
 		});
 	}
 	styleLastDiv();
@@ -124,21 +114,14 @@ function resetLastClass() {
 
 function styleLastDiv() {
 	let optionsBox = Array.from(document.querySelectorAll('.select-items'));
-	//console.log(optionsBox);
-	//console.log(optionsBox);
 	optionsBox = optionsBox[0];
-	//console.log(optionsBox.children);
 	let visibleOptions = [];
 	for (let d = 0; d < optionsBox.children.length; d++) {
 		if (optionsBox.children[d].className !== 'same-as-selected') {
 			visibleOptions.push(optionsBox.children[d]);
 		}
 	}
-	//console.log(visibleOptions[visibleOptions.length - 1]);
 	visibleOptions[visibleOptions.length - 1].classList.add('last');
-	// console.log(
-	// 	'class put on ' + visibleOptions[visibleOptions.length - 1].innerText
-	// );
 }
 ///////keyboard navigation
 let listOfDivs = [];
@@ -147,10 +130,8 @@ let options = document.querySelectorAll('.select-items div');
 options.forEach((options) => {
 	listOfDivs.push(options);
 });
-//console.log(listOfDivs);
 listOfDivs.forEach((div) => {
 	div.addEventListener('keydown', function (e) {
-		console.log(e.key);
 		if (e.key == 'Enter') {
 			div.click();
 		}

@@ -19,7 +19,6 @@ class HomePage {
 	}
 	hideShowLink() {
 		let link = document.querySelector('.header__linkContainer__link');
-		//	console.log(link);
 		link.style.display = 'none';
 		document.addEventListener('keydown', function (e) {
 			link.style.display = 'block';
@@ -71,12 +70,12 @@ class HomePage {
 			}
 		});
 		this.medias.forEach((media) => {
-			//get all tags from artists
+			//get all tags from medias
 			for (var i = 0; i < media.tags.length; i++) {
 				this.tags.push(media.tags[i]);
 			}
 		});
-		this.tags = [...new Set(this.tags)]; //delete all duplicates in list of every tags
+		this.tags = [...new Set(this.tags)]; //deletes all duplicates in list of every tags
 	}
 	manageTags() {
 		let tags = new NavTags(this, this.photographers);
@@ -84,7 +83,6 @@ class HomePage {
 
 	buildNavBar() {
 		let navBar = document.getElementById('header__content__nav__ul');
-		//navBar.innerHTML = utils.generateTagButtons(this.tags); //fills navbar with tag buttons (function also used when building Artists Articles)
 		this.tags.forEach((tag) => {
 			navBar.appendChild(utils.generateTagButtons(tag));
 		});
@@ -109,4 +107,3 @@ class HomePage {
 }
 
 let homepage = new HomePage();
-utils.generateTagButtons2(homepage.tags);

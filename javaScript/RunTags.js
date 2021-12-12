@@ -11,31 +11,24 @@ export class NavTags {
 		let nav = this;
 		let allNavBtn = document.querySelectorAll('.tag');
 		let page = this.page; //otherwise, "this" will refer to the buttons once inside the "foreach" loop
-		let emptySelection = true;
 		allNavBtn.forEach((btn) => {
 			btn.addEventListener('click', function (e) {
-				e.preventDefault(); //allows sorting from photographer's portaits in homepage
+				e.preventDefault(); //allows sorting from photographer's portaits in homepage, blocking the openning of Gallery
 				let btnInput = utils.removeHasgTagInString(btn.innerText);
 				// particular case: if click happens on the same tag that was already selected at the previous click
-				if (
-					(page.currentTag === btnInput) &
-					(emptySelection === false) //and a button is selected ie not coming from an "empty bar" (which happens if 3 clicks on the same button, then regular behaviour is needed)
-				) {
+				if (page.currentTag === btnInput) {
 					btn.classList = 'tag--Off'; //set btn off
-					page.currentTag = '';
-					emptySelection = true; //state that no button is selected
-				}
-				// end of particular case
+					page.currentTag = ''; //delete currentTag
+				} // end of particular case
 				else {
 					//Filtering
 					page.currentTag = btnInput; //sets the value of currentTag
-					emptySelection = false; //state that selection is not empty
 				}
-				nav.hideShowArticles(page.currentTag); //calls update method
+
+				nav.hideShowArticles(page.currentTag); //calls update method after currentTag is set
 				//management of ON/OFF state of btns
 				allNavBtn.forEach((btn) => {
 					btn.classList = 'tag--Off'; //set all of them OFF
-
 					if (
 						utils.removeHasgTagInString(btn.innerText) === page.currentTag //find the one that is selected
 					) {
@@ -53,11 +46,11 @@ export class NavTags {
 			for (let a = 0; a < this.material.length; a++) {
 				//loop through material
 				for (let b = 0; b < this.material[a].tags.length; b++) {
-					//loop through each media's tags (only one tag per media for now)
+					//loop through each material's tags (only one tag per media for now, several tags per photographer)
 					if (this.material[a].tags[b] === this.page.currentTag) {
 						//if tag matches selection
-						this.material[a].displayArticle(); //push media in visibleMedia
-						break; //stop looping through their tags and move on to next media
+						this.material[a].displayArticle();
+						break; //stop looping through tags and move on to next media/photographer
 					}
 				}
 			}

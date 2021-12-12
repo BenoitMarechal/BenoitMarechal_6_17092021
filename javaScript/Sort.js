@@ -1,5 +1,5 @@
 import { utils } from './utilitaries.js';
-///listening to tags
+
 export class Sort {
 	constructor(parent) {
 		this.parent = parent;
@@ -23,7 +23,7 @@ export class Sort {
 
 	////sorting gallery's Media
 	sortDefault() {
-		//on init
+		//on init, sort per default value
 		let box = document.getElementById('sort');
 		this.sortThisMedia(box[0].value);
 	}
@@ -54,8 +54,8 @@ export class Sort {
 	sortArticles() {
 		let parentDiv = document.querySelector('.gallery__main__gallery'); //declares parent gallery
 		for (let a = 0; a < this.medias.length; a++) {
-			parentDiv.appendChild(this.medias[a].returnArticle()); //rebuilds this.articles from this.media
+			parentDiv.appendChild(this.medias[a].returnArticle()); //rebuilds this.articles from this.medias
 		}
-		this.parent.assignTabIndex();
+		this.parent.assignTabIndex(); //resets index
 	}
 }

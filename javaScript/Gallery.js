@@ -70,7 +70,6 @@ class Gallery {
 		this.medias.forEach((media) => {
 			media.createArticle();
 		});
-		//this.assignArticleTabIndex();
 	}
 
 	hideAllArticles() {
@@ -138,45 +137,35 @@ class Gallery {
 		);
 		let close = document.getElementById('btnClose');
 		contactModalElements.push(close);
-		console.log(contactModalElements);
 		for (let i = 0; i < contactModalElements.length; i++) {
 			contactModalElements[i].tabIndex = index;
 			index++;
 		}
-		////SORT
+		////Select
 		let listOfDivs = [];
-		listOfDivs.push(document.querySelector('.select-selected'));
-		let options = document.querySelectorAll('.select-items div');
+		listOfDivs.push(document.querySelector('.select-selected')); //gets the first div
+		let options = document.querySelectorAll('.select-items div'); //gets the other divs
 		options.forEach((options) => {
-			//if (options.className !== 'same-as-selected') {
 			listOfDivs.push(options);
-			//}
-		});
-		//console.log(listOfDivs);
+		}); //assebles all divs
 		for (let i = 0; i < listOfDivs.length; i++) {
 			listOfDivs[i].tabIndex = index;
 			index++;
 		}
-		//console.log(index);
 
-		//////articles (thumbnails and hearts)
-		//console.log(this);
-
+		//media articles and like buttons
 		this.visibleMedias = [];
 		let gallery = this;
 		this.medias.forEach((media) => {
 			if (media.returnArticle().style.display == 'block') {
 				gallery.visibleMedias.push(media);
 			}
-		});
-		//console.log(gallery);
-		// let visibleArticles = document.querySelectorAll('article', 'display=block');
-		// console.log(visibleArticles);
+		}); //makes a list of all visible  medias
 		for (let i = 0; i < gallery.visibleMedias.length; i++) {
 			gallery.visibleMedias[i].returnThumbnail().tabIndex = index;
 			index++;
 			gallery.visibleMedias[i].returnHeart().tabIndex = index;
-			index++;
+			index++; //assigns index to clickable thumbnails and like buttons
 		}
 	}
 }

@@ -11,7 +11,7 @@ export class LightBox {
 		this.openLightbox();
 		this.navigateLightBox();
 	}
-	async getvisibleMedias() {
+	getvisibleMedias() {
 		this.visibleMedias = []; //resets visibleMedias
 		this.medias.forEach((media) => {
 			if (media.returnArticle().style.display == 'block') {
@@ -71,18 +71,6 @@ export class LightBox {
 			});
 		});
 	}
-	// openLightbox() {
-	// 	let page = this;
-	// 	this.medias.forEach((media) => {
-	// 		media.returnThumbnail().addEventListener('keydown', (e) => {
-	// 			//ecouter suelement sur le fond de la modale
-	// 			console.log(e.key);
-	// 			if (e.key == 'Enter') {
-	// 				media.returnThumbnail().click();
-	// 			}
-	// 		});
-	// 	});
-	// }
 
 	navigateLightBox() {
 		let page = this;
@@ -100,10 +88,6 @@ export class LightBox {
 			page.closeLightbox();
 		});
 		////////keyboard
-		// let bground = document.querySelector(
-		// 	'.lightbox__modal__container__mediaContainer'
-		// );
-		//console.log(bground);
 		document.addEventListener('keydown', (e) => {
 			//ecouter suelement sur le fond de la modale
 			if (e.key == 'Escape') {

@@ -34,17 +34,7 @@ export class ContactModal {
 				btnClose.click();
 			}
 		});
-
-		// media.returnThumbnail().addEventListener('keydown', (e) => {
-		// 	//ecouter suelement sur le fond de la modale
-		// 	if (e.key == 'Enter') {
-		// 		media.returnThumbnail().click();
-		// 	}
-		// });
-		//console.log(modal);
-
 		document.addEventListener('keydown', (e) => {
-			//ecouter suelement sur le fond de la modale
 			if (e.key == 'Escape') {
 				modal.style.display = 'none';
 			}
