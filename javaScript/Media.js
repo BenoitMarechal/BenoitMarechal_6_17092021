@@ -1,62 +1,19 @@
-import { elementsOfMediaArticle } from './utilitaries.js';
-import { utils } from './utilitaries.js';
 import { dataFromJson } from './FetchData.js';
 
-export class Media {
-	constructor(
-		//utilise type, data
-		id,
-		photographerId,
-		title,
-		image,
-		video,
-		tags,
-		likes,
-		date,
-		price
-	) {
-		//ici, mettre un if 
-		this.id = id;
-		this.photographerId = photographerId;
-		this.title = title;
-		this.image = image;
-		this.video = video;
-		this.tags = tags;
-		this.likes = likes;
-		this.date = date;
-		this.price = price;
-	}
+import { elementsOfMediaArticle } from './utilitaries.js';
+import { utils } from './utilitaries.js';
 
-	defineType() {
-		//checks if photo or video
-		let newObject = {};
-		if (this.image !== undefined) {
-			newObject = new Photo(
-				this.id,
-				this.photographerId,
-				this.title,
-				this.image,
-				undefined,
-				this.tags,
-				this.likes,
-				this.date,
-				this.price
-			);
-		}
-		if (this.video !== undefined) {
-			newObject = new Video(
-				this.id,
-				this.photographerId,
-				this.title,
-				undefined,
-				this.video,
-				this.tags,
-				this.likes,
-				this.date,
-				this.price
-			);
-		}
-		return newObject;
+export class Media {
+	constructor(data) {
+		this.id = data.id;
+		this.photographerId = data.photographerId;
+		this.title = data.title;
+		this.image = data.image;
+		this.video = data.video;
+		this.tags = data.tags;
+		this.likes = data.likes;
+		this.date = data.date;
+		this.price = data.price;
 	}
 
 	getPath() {
@@ -69,7 +26,6 @@ export class Media {
 				let array = [];
 				array = name.split(' ');
 				let path = array[0];
-
 				if (array.length > 0) {
 					array.pop();
 					for (let i = 1; i < array.length; i++) {
@@ -77,9 +33,9 @@ export class Media {
 						path = path + ' ' + array[i];
 					}
 				}
-				if (this.image !== undefined) {
+				if (this.type === 'photo') {
 					path = 'images/' + path + '/' + this.image;
-				} else {
+				} else if (this.type === 'video') {
 					path = 'images/' + path + '/' + this.video;
 				}
 				return path;
@@ -108,7 +64,8 @@ export class Media {
 		} //EMPTY ARTICLE CREATED
 		let articleToFill = '';
 		articleToFill = document.getElementById('id' + this.id);
-		if (this.image !== undefined) {
+
+		if (this.type === 'photo') {
 			articleToFill.querySelector(
 				'.gallery__main__gallery__container__thumbnail'
 			).src = this.getPath();
@@ -172,61 +129,31 @@ export class Media {
 }
 
 export class Photo extends Media {
-	constructor(
-		id,
-		photographerId,
-		title,
-		image,
-		video = undefined,
-		tags,
-		likes,
-		date,
-		price
-	) {
-		super(id, photographerId, title, image, video, tags, likes, date, price);
+	constructor(data) {
+		super(data);
+		this.image = data.image;
+		this.type = 'photo';
 	}
 }
 
 export class Video extends Media {
-	constructor(
-		id,
-		photographerId,
-		title,
-		image = undefined,
-		video,
-		tags,
-		likes,
-		date,
-		price
-	) {
-		super(id, photographerId, title, image, video, tags, likes, date, price);
+	constructor(data) {
+		super(data);
+		this.video = data.video;
+		this.type = 'video';
 	}
 }
 
-// class Factory{
-	
-// 	constructor(type, data) {
+export class MediaFactory {
+	constructor(media) {
+		if (media.image === undefined) {
+			return new Video(media);
+		}
 
-// 	if(type === 'image') {
-// 		return new Image(data)
-// 		}
-// 		if(type === 'video') {
-// 		return new Video(data)
-// 		}
-// }
-// }
-
-// class Media {
-	
-// 	constructor(data) {
-// 		this.id = data.id
-// 		this. = data..
-// 	}
-// }
-
-// Class Video{
-	
-// 	constructor(data) {
-// 		super(data)
-// 	}
-// }
+		if (media.video === undefined) {
+			return new Photo(media);
+		} else {
+			throw 'unknown format';
+		}
+	}
+}

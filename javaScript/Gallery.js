@@ -1,6 +1,7 @@
 /////////////////////////// import
 import { dataFromJson } from './FetchData.js';
-import { Media } from './Media.js';
+// import { Media } from './Media.js';
+// import { MediaFactory } from './Media.js';
 import { ContactModal } from './Contact.js';
 import { Like } from './GalleryLikes.js';
 import { Presentation } from './PhotographerPres.js';
@@ -12,7 +13,9 @@ class Gallery {
 	constructor() {
 		//loading
 		this.getPhotographer();
-		this.getGalleryMedia();
+
+		//this.getGalleryMedia();
+		this.getAllMedias();
 		this.sortMedias(); //also gets the sorting running
 		//building
 		this.writePresentation();
@@ -38,24 +41,11 @@ class Gallery {
 		}
 	}
 
-	getGalleryMedia() {
-		//gets all the media from the photographer, assigns to gallery page
+	getAllMedias() {
 		this.medias = [];
-		let page = this;
 		dataFromJson.media.forEach((media) => {
-			if (media.photographerId == page.photographer.id) {
-				media = new Media(
-					media.id,
-					media.photographerId,
-					media.title,
-					media.image,
-					media.video,
-					media.tags,
-					media.likes,
-					media.date,
-					media.price
-				);
-				page.medias.push(media.defineType());
+			if (media.photographerId == this.photographer.id) {
+				this.medias.push(media);
 			}
 		});
 	}

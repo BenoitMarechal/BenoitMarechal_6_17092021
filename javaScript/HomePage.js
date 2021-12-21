@@ -1,7 +1,8 @@
-import { utils } from './utilitaries.js';
 import { dataFromJson } from './FetchData.js';
+import { utils } from './utilitaries.js';
+
 import { Photographer } from './Photographers.js';
-import { Media } from './Media.js';
+
 import { NavTags } from './RunTags.js';
 
 class HomePage {
@@ -44,21 +45,7 @@ class HomePage {
 		});
 	}
 	getAllMedias() {
-		this.medias = [];
-		dataFromJson.media.forEach((media) => {
-			media = new Media(
-				media.id,
-				media.photographerId,
-				media.title,
-				media.image,
-				media.video,
-				media.tags,
-				media.likes,
-				media.date,
-				media.price
-			);
-			this.medias.push(media.defineType());
-		});
+		this.medias = dataFromJson.media;
 	}
 
 	getAllTags() {
