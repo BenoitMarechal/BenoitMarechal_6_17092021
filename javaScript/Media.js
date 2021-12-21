@@ -4,6 +4,7 @@ import { dataFromJson } from './FetchData.js';
 
 export class Media {
 	constructor(
+		//utilise type, data
 		id,
 		photographerId,
 		title,
@@ -14,6 +15,7 @@ export class Media {
 		date,
 		price
 	) {
+		//ici, mettre un if 
 		this.id = id;
 		this.photographerId = photographerId;
 		this.title = title;
@@ -200,3 +202,31 @@ export class Video extends Media {
 		super(id, photographerId, title, image, video, tags, likes, date, price);
 	}
 }
+
+// class Factory{
+	
+// 	constructor(type, data) {
+
+// 	if(type === 'image') {
+// 		return new Image(data)
+// 		}
+// 		if(type === 'video') {
+// 		return new Video(data)
+// 		}
+// }
+// }
+
+// class Media {
+	
+// 	constructor(data) {
+// 		this.id = data.id
+// 		this. = data..
+// 	}
+// }
+
+// Class Video{
+	
+// 	constructor(data) {
+// 		super(data)
+// 	}
+// }

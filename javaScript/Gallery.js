@@ -147,7 +147,7 @@ class Gallery {
 		let options = document.querySelectorAll('.select-items div'); //gets the other divs
 		options.forEach((options) => {
 			listOfDivs.push(options);
-		}); //assebles all divs
+		}); //assembles all divs
 		for (let i = 0; i < listOfDivs.length; i++) {
 			listOfDivs[i].tabIndex = index;
 			index++;

@@ -102,9 +102,6 @@ export class Presentation {
 				.appendChild(utils.generateTagButtons(tag));
 		});
 
-		// articleToFill.querySelector('.photographer__link__tags').innerHTML =
-		// 	utils.generateTagButtons(this.photographer.tags);
-
 		//////////////////////////////////////////////////////////////////////
 		articleToFill.querySelector('.gallery__main__presentation__btn').innerText =
 			'Contactez moi';

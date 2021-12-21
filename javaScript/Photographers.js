@@ -54,18 +54,6 @@ export class Photographer {
 				.querySelector('.photographer__link__tags')
 				.appendChild(utils.generateTagButtons(tag));
 		});
-
-		// articleToFill.querySelector('.photographer__link__tags').innerHTML =
-		// 	utils.generateTagButtons(this.tags); //ARTICLE COMPLETED
-		// return articleToFill;
-
-		// buildNavBar() {
-		// 	let navBar = document.getElementById('header__content__nav__ul');
-		// 	//navBar.innerHTML = utils.generateTagButtons(this.tags); //fills navbar with tag buttons (function also used when building Artists Articles)
-		// 	this.tags.forEach((tag) => {
-		// 		navBar.appendChild(utils.generateTagButtons2(tag));
-		// 	});
-		// }
 	}
 
 	returnArticle() {
