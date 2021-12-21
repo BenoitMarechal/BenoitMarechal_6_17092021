@@ -234,7 +234,6 @@ li {
   font-size: 1.2rem;
 }
 .gallery__main__gallery__container__info__likes__heart:hover {
-  background-color: none;
   color: #901c1c;
   background: #fff;
   border: none;
