@@ -10,8 +10,11 @@
 	@include tablet-1200 {
 		top: 8px;
 		right: 0px;
-		@include tablet-scale;
+		// @include tablet-scale;
 		margin-top: 0px;
+	}
+	@include mobile-800 {
+		@include tablet-scale;
 	}
 
 	@include mobile-420 {
@@ -71,9 +74,13 @@
 			align-items: center;
 			@include tablet-1200 {
 				display: block;
-				@include tablet-scale;
+				// @include tablet-scale;
 				width: auto;
 			}
+			@include mobile-800 {
+				@include tablet-scale;
+			}
+
 			@include mobile-420 {
 				width: auto;
 				margin: auto;

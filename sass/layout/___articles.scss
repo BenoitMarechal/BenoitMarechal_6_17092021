@@ -47,16 +47,30 @@
 		&__tags {
 			display: flex;
 			justify-content: center;
+			padding-left: 0;
+			@include mobile-800 {
+				margin: 5px;
+			}
 		}
 		&__name {
 			color: $colour-secondary;
 			margin: 0;
+			font-size: 1.8rem;
 		}
 
 		&__location {
 			display: flex;
 			color: $colour-primary;
 			margin: 0;
+			font-size: 1rem;
+			&__city {
+				margin: 2px 0px;
+			}
+
+			&__country {
+				margin: 0;
+				margin: 2px 0px;
+			}
 		}
 
 		&__tagline {
@@ -67,11 +81,10 @@
 		&__price {
 			color: $colour-grey;
 			margin: 0;
-
-			&__tags {
-				margin: 0;
-				//	z-index: 2;
-			}
+		}
+		&__tags {
+			margin: 2px 0px;
+			//	z-index: 2;
 		}
 	}
 }
