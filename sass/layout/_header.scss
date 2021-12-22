@@ -1,8 +1,36 @@
+.main__h1 {
+	position: absolute;
+	top: $marginH;
+	right: $marginV;
+	font-weight: normal;
+	width: auto;
+	display: flex;
+	justify-content: flex-end;
+	color: $colour-primary;
+	@include tablet-1200 {
+		top: 8px;
+		right: 0px;
+		@include tablet-scale;
+		margin-top: 0px;
+	}
+
+	@include mobile-420 {
+		top: 42px;
+		margin: 0;
+		justify-content: center;
+		//transform: none;
+		width: 100%;
+	}
+}
+
 .header {
 	&__linkContainer {
 		position: relative;
 		display: flex;
 		justify-content: center;
+		@include tablet-1200 {
+			display: none;
+		}
 
 		&__link {
 			//font
@@ -28,11 +56,30 @@
 		align-items: center;
 		margin-top: -8px;
 		z-index: 1;
+		@include tablet-1200 {
+			flex-direction: column;
+			align-items: flex-start;
+			margin: 0px;
+			padding: 0px;
+			width: 100%;
+			justify-content: space-between;
+		}
 		&__logo {
 			color: $colour-primary;
 			width: 30%;
 			display: flex;
 			align-items: center;
+			@include tablet-1200 {
+				display: block;
+				@include tablet-scale;
+				width: auto;
+			}
+			@include mobile-420 {
+				width: auto;
+				margin: auto;
+				margin-bottom: 35px;
+				//transform: none;
+			}
 
 			&__img {
 				height: 28px;
@@ -47,28 +94,25 @@
 		}
 		&__nav {
 			justify-content: center;
+			@include tablet-1200 {
+				display: flex;
+				flex-direction: row;
+				flex-wrap: wrap;
+				justify-content: center;
+				width: 100%;
+			}
 			&__ul {
 				display: flex;
 				margin: 0;
 				padding: 0;
 				z-index: 2;
+				@include tablet-1200 {
+					flex-wrap: wrap;
+					justify-self: center;
+					width: 75%;
+					justify-content: center;
+				}
 			}
 		}
 	}
-}
-
-.main {
-	&__h1 {
-		position: absolute;
-		top: $marginH;
-		right: $marginV;
-		font-weight: normal;
-		width: auto;
-		display: flex;
-		justify-content: flex-end;
-		color: $colour-primary;
-	}
-}
-.gallery___nav {
-	margin-top: 15px;
 }

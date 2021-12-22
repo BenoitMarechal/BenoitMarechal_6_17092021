@@ -1,3 +1,15 @@
+.main {
+	//see "base" file
+	justify-content: space-around;
+	@include mobile-800 {
+		margin: 20px 0px 0px 0px;
+		padding: 0px;
+		flex-direction: column;
+		flex-wrap: nowrap;
+		align-items: center;
+	}
+}
+
 .photographer {
 	width: 30%;
 	//	border: 1px solid blue;
@@ -5,6 +17,10 @@
 	padding: 0;
 	font-size: 0.8rem;
 	//z-index: 0;
+	@include mobile-800 {
+		width: 100%;
+		margin: 10px 0px;
+	}
 
 	&__link {
 		display: flex;
@@ -14,9 +30,19 @@
 		//padding: $margindefault;
 		&__img {
 			object-fit: cover;
-			width: $photographer-avatar-dims;
-			height: $photographer-avatar-dims;
-			border-radius: 0.5 * $photographer-avatar-dims;
+			width: $photographer-avatar-dims-M;
+			height: $photographer-avatar-dims-M;
+			border-radius: 0.5 * $photographer-avatar-dims-M;
+			@include mobile-800 {
+				width: $photographer-avatar-dims-L;
+				height: $photographer-avatar-dims-L;
+				border-radius: 0.5 * $photographer-avatar-dims-L;
+			}
+			@include mobile-450 {
+				width: $photographer-avatar-dims-S;
+				height: $photographer-avatar-dims-S;
+				border-radius: 0.5 * $photographer-avatar-dims-S;
+			}
 		}
 		&__tags {
 			display: flex;

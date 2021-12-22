@@ -1,5 +1,9 @@
 .gallery__main {
 	display: block;
+
+	&__nav {
+		margin-top: 15px;
+	}
 	&__presentation {
 		//border: 1px solid red;
 		display: flex;
