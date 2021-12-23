@@ -10,6 +10,12 @@
 	}
 }
 
+@mixin mobile-500 {
+	@media screen and (max-width: 500px) {
+		@content;
+	}
+}
+
 @mixin mobile-600 {
 	@media screen and (max-width: 600px) {
 		@content;

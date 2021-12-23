@@ -21,11 +21,17 @@
 .select-selected {
 	border-top-left-radius: $select-radius;
 	border-top-right-radius: $select-radius;
+	@include mobile-800 {
+		display: none;
+	}
 }
 
-label {
+.custom-select__label {
 	width: $label-width;
 	margin-right: $marginH;
+	@include mobile-800 {
+		display: none;
+	}
 }
 
 /*style the arrow inside the select element:*/

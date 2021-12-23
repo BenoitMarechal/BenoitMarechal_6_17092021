@@ -1,77 +1,138 @@
-.gallery__main {
-	display: block;
-
+.gallery {
 	&__nav {
-		margin-top: 15px;
-	}
-	&__presentation {
-		//border: 1px solid red;
-		display: flex;
-		flex-direction: row;
-		justify-content: space-around;
-		align-items: center;
-
-		&__info {
-			display: flex;
-			flex-direction: column;
-
-			&__name {
-				justify-content: flex-start;
+		margin: 15px 0px 15px 0px;
+		@include tablet-1200 {
+			margin-left: $marginH;
+		}
+		@include mobile-800 {
+			margin-left: 5px;
+		}
+		&__logo {
+			@include tablet-1200 {
+				display: flex !important;
 			}
 
-			&__location {
-				flex-direction: row;
+			@include mobile-420 {
+				margin: 0px;
 			}
 		}
 	}
 
-	&__gallery {
-		display: flex;
-		flex-wrap: wrap;
-		justify-content: space-around;
-		margin-bottom: 60px;
-		width: 100%;
-		height: 100%;
+	&__main {
+		display: block;
 
-		&__container {
-			//article
-			margin: $marginH;
-			//display: flex;
-			flex-direction: column;
-			height: 100%;
+		&__presentation {
+			//border: 1px solid red;
+			display: flex;
+			flex-direction: row;
+			justify-content: space-between;
+			align-items: center;
+			margin: 0px $marginV * 3;
 
-			&__thumbnail {
-				object-fit: cover;
-				width: $gallery_container_dim;
-				height: $gallery_container_dim;
-				cursor: pointer;
+			@include mobile-800 {
+				margin: 0px $marginV * 1;
 			}
 
 			&__info {
-				color: $colour-primary;
 				display: flex;
-				justify-content: space-between;
-				margin: $margindefault;
-				font-size: 1.2rem;
-				&__title {
-					font-size: inherit;
-					font-weight: normal;
-					margin: 0;
+				flex-direction: column;
+
+				&__name {
+					justify-content: flex-start;
+					@include mobile-500 {
+						font-size: 1.4rem;
+					}
 				}
 
-				&__likes {
-					display: flex;
-					&__number {
-						margin-right: 5px;
+				&__location {
+					flex-direction: row;
+					@include mobile-500 {
+						font-size: 0.9rem;
 					}
-					&__heart {
-						cursor: pointer;
-						border-radius: 0px;
-						border: none;
-						font-size: 1.2rem;
-						&:hover {
-							@include colorway-red-on-white;
+				}
+
+				&__tagline {
+					@include mobile-500 {
+						font-size: 0.9rem;
+					}
+				}
+				&__tags {
+					&__btn {
+						@include mobile-500 {
+							font-size: 0.6rem;
+						}
+					}
+				}
+			}
+			&__img {
+				@include mobile-800 {
+					width: $photographer-avatar-dims-M;
+					height: $photographer-avatar-dims-M;
+					border-radius: 0.5 * $photographer-avatar-dims-M;
+				}
+				@include mobile-500 {
+					width: $photographer-avatar-dims-XS;
+					height: $photographer-avatar-dims-XS;
+					border-radius: 0.5 * $photographer-avatar-dims-XS;
+				}
+			}
+		}
+
+		&__gallery {
+			display: flex;
+			flex-wrap: wrap;
+			justify-content: space-around;
+			margin-bottom: 60px;
+			width: 100%;
+			height: 100%;
+
+			&__container {
+				//article
+				margin: $marginH;
+				//display: flex;
+				flex-direction: column;
+				height: 100%;
+
+				&__thumbnail {
+					object-fit: cover;
+					width: $gallery_container_dim;
+					height: $gallery_container_dim;
+					cursor: pointer;
+					@include mobile-450 {
+						width: $gallery_container_dim_S;
+						height: $gallery_container_dim_S;
+					}
+				}
+
+				&__info {
+					color: $colour-primary;
+					display: flex;
+					justify-content: space-between;
+					margin: $margindefault;
+					font-size: 1.2rem;
+					@include tablet-1200 {
+						font-size: 0.9rem;
+					}
+					&__title {
+						font-size: inherit;
+						font-weight: normal;
+						margin: 0;
+					}
+
+					&__likes {
+						display: flex;
+						&__number {
+							margin-right: 5px;
+						}
+						&__heart {
+							cursor: pointer;
+							border-radius: 0px;
 							border: none;
+							font-size: 1.2rem;
+							&:hover {
+								@include colorway-red-on-white;
+								border: none;
+							}
 						}
 					}
 				}
@@ -98,6 +159,9 @@
 	width: auto;
 	//width: 200px;
 	//height: 100px;
+	@include mobile-800 {
+		display: none;
+	}
 	&__likes {
 		display: flex;
 		//flex-direction: row;

@@ -30,18 +30,18 @@
 		//padding: $margindefault;
 		&__img {
 			object-fit: cover;
-			width: $photographer-avatar-dims-M;
-			height: $photographer-avatar-dims-M;
-			border-radius: 0.5 * $photographer-avatar-dims-M;
+			width: $photographer-avatar-dims-S;
+			height: $photographer-avatar-dims-S;
+			border-radius: 0.5 * $photographer-avatar-dims-S;
 			@include mobile-800 {
 				width: $photographer-avatar-dims-L;
 				height: $photographer-avatar-dims-L;
 				border-radius: 0.5 * $photographer-avatar-dims-L;
 			}
 			@include mobile-450 {
-				width: $photographer-avatar-dims-S;
-				height: $photographer-avatar-dims-S;
-				border-radius: 0.5 * $photographer-avatar-dims-S;
+				width: $photographer-avatar-dims-M;
+				height: $photographer-avatar-dims-M;
+				border-radius: 0.5 * $photographer-avatar-dims-M;
 			}
 		}
 		&__tags {

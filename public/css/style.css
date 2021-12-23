@@ -119,7 +119,7 @@ li {
 }
 .header__content {
   display: flex;
-  margin-left: 15px;
+  margin: 15px;
   align-items: center;
   margin-top: -8px;
   z-index: 1;
@@ -128,7 +128,6 @@ li {
   .header__content {
     flex-direction: column;
     align-items: flex-start;
-    margin: 0px;
     padding: 0px;
     width: 100%;
     justify-content: space-between;
@@ -285,17 +284,43 @@ li {
   margin: 2px 0px;
 }
 
+.gallery__nav {
+  margin: 15px 0px 15px 0px;
+}
+@media screen and (max-width: 1200px) {
+  .gallery__nav {
+    margin-left: 15px;
+  }
+}
+@media screen and (max-width: 800px) {
+  .gallery__nav {
+    margin-left: 5px;
+  }
+}
+@media screen and (max-width: 1200px) {
+  .gallery__nav__logo {
+    display: flex !important;
+  }
+}
+@media screen and (max-width: 450px) {
+  .gallery__nav__logo {
+    margin: 0px;
+  }
+}
 .gallery__main {
   display: block;
-}
-.gallery__main__nav {
-  margin-top: 15px;
 }
 .gallery__main__presentation {
   display: flex;
   flex-direction: row;
-  justify-content: space-around;
+  justify-content: space-between;
   align-items: center;
+  margin: 0px 60px;
+}
+@media screen and (max-width: 800px) {
+  .gallery__main__presentation {
+    margin: 0px 20px;
+  }
 }
 .gallery__main__presentation__info {
   display: flex;
@@ -304,8 +329,42 @@ li {
 .gallery__main__presentation__info__name {
   justify-content: flex-start;
 }
+@media screen and (max-width: 500px) {
+  .gallery__main__presentation__info__name {
+    font-size: 1.4rem;
+  }
+}
 .gallery__main__presentation__info__location {
   flex-direction: row;
+}
+@media screen and (max-width: 500px) {
+  .gallery__main__presentation__info__location {
+    font-size: 0.9rem;
+  }
+}
+@media screen and (max-width: 500px) {
+  .gallery__main__presentation__info__tagline {
+    font-size: 0.9rem;
+  }
+}
+@media screen and (max-width: 500px) {
+  .gallery__main__presentation__info__tags__btn {
+    font-size: 0.6rem;
+  }
+}
+@media screen and (max-width: 800px) {
+  .gallery__main__presentation__img {
+    width: 200px;
+    height: 200px;
+    border-radius: 100px;
+  }
+}
+@media screen and (max-width: 500px) {
+  .gallery__main__presentation__img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50px;
+  }
 }
 .gallery__main__gallery {
   display: flex;
@@ -326,12 +385,23 @@ li {
   height: 400px;
   cursor: pointer;
 }
+@media screen and (max-width: 450px) {
+  .gallery__main__gallery__container__thumbnail {
+    width: 250px;
+    height: 250px;
+  }
+}
 .gallery__main__gallery__container__info {
   color: #901c1c;
   display: flex;
   justify-content: space-between;
   margin: 20px 15px 20px 15px;
   font-size: 1.2rem;
+}
+@media screen and (max-width: 1200px) {
+  .gallery__main__gallery__container__info {
+    font-size: 0.9rem;
+  }
 }
 .gallery__main__gallery__container__info__title {
   font-size: inherit;
@@ -371,6 +441,11 @@ li {
   padding: 20px;
   width: auto;
 }
+@media screen and (max-width: 800px) {
+  .bottom {
+    display: none;
+  }
+}
 .bottom__likes {
   display: flex;
 }
@@ -404,10 +479,20 @@ li {
   border-top-left-radius: 5px;
   border-top-right-radius: 5px;
 }
+@media screen and (max-width: 800px) {
+  .select-selected {
+    display: none;
+  }
+}
 
-label {
+.custom-select__label {
   width: 65px;
   margin-right: 15px;
+}
+@media screen and (max-width: 800px) {
+  .custom-select__label {
+    display: none;
+  }
 }
 
 /*style the arrow inside the select element:*/
@@ -513,6 +598,17 @@ label {
   animation: apparition 0.6s forwards;
   padding: 20px;
 }
+@media screen and (max-width: 1200px) {
+  .modal__container {
+    top: 0px;
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
+    margin: 0;
+    height: 100%;
+    border-radius: 0px;
+  }
+}
 .modal__container__head {
   display: flex;
   width: 100%;
@@ -524,6 +620,11 @@ label {
   color: #525252;
   font-size: 1.2rem;
   width: 100%;
+}
+
+label {
+  width: 65px;
+  margin-right: 15px;
 }
 
 input {
@@ -539,6 +640,11 @@ input {
   width: 100%;
   padding: 0;
 }
+@media screen and (max-width: 1200px) {
+  #message {
+    height: 180px;
+  }
+}
 
 .lightboxBtn {
   position: absolute;
@@ -550,6 +656,22 @@ input {
   justify-content: center;
   align-items: center;
   overflow: visible;
+}
+@media screen and (max-width: 1200px) {
+  .lightboxBtn {
+    font-size: 1rem;
+    margin: 30px;
+  }
+}
+@media screen and (max-width: 800px) {
+  .lightboxBtn {
+    font-size: 1rem;
+  }
+}
+@media screen and (max-width: 500px) {
+  .lightboxBtn {
+    margin: 5px;
+  }
 }
 
 .prev {
@@ -563,6 +685,26 @@ input {
 .close {
   top: 0px;
   right: 0px;
+}
+@media screen and (max-width: 800px) {
+  .close {
+    margin: 50px;
+  }
+}
+@media screen and (max-width: 600px) {
+  .close {
+    margin: 80px 30px 30px 30px;
+  }
+}
+@media screen and (max-width: 500px) {
+  .close {
+    margin: 90px 10px 10px 10px;
+  }
+}
+@media screen and (max-width: 450px) {
+  .close {
+    margin: 120px 10px 10px 10px;
+  }
 }
 
 .lightbox__modal {
@@ -590,12 +732,35 @@ input {
   width: 1050px;
   height: 900px;
 }
+@media screen and (max-width: 1200px) {
+  .lightbox__modal__container__mediaContainer {
+    width: 400px;
+    height: 400px;
+  }
+}
+@media screen and (max-width: 450px) {
+  .lightbox__modal__container__mediaContainer {
+    width: 350px;
+    height: 350px;
+  }
+}
+@media screen and (max-width: 450px) {
+  .lightbox__modal__container__mediaContainer {
+    width: 250px;
+    height: 250px;
+  }
+}
 .lightbox__modal__container__mediaContainer__media {
   object-fit: contain;
   width: 100%;
   height: 100%;
   max-width: 1050px;
   max-height: 900px;
+}
+@media screen and (max-width: 1200px) {
+  .lightbox__modal__container__mediaContainer__media {
+    object-fit: cover;
+  }
 }
 
 button {
@@ -636,6 +801,14 @@ button:hover {
   color: #000000;
   background: #db8876;
   border: none;
+}
+@media screen and (max-width: 800px) {
+  .gallery__main__presentation__btn {
+    position: fixed;
+    left: 50%;
+    bottom: 15vh;
+    transform: translate(-50%, 50%);
+  }
 }
 
 .btn-submit {

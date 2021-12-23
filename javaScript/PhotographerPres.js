@@ -101,6 +101,11 @@ export class Presentation {
 				.querySelector('.photographer__link__tags')
 				.appendChild(utils.generateTagButtons(tag));
 		});
+		let allTagsBtns = document.querySelectorAll('.tag');
+		console.log(allTagsBtns);
+		allTagsBtns.forEach((btn) => {
+			btn.classList.add('gallery__main__presentation__info__tags__btn');
+		});
 
 		//////////////////////////////////////////////////////////////////////
 		articleToFill.querySelector('.gallery__main__presentation__btn').innerText =
