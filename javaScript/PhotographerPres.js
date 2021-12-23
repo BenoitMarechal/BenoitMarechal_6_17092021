@@ -84,21 +84,23 @@ export class Presentation {
 		let articleToFill = '';
 		articleToFill = document.querySelector('.gallery__main__presentation');
 
-		articleToFill.querySelector('.photographer__link__name').innerText =
-			this.photographer.name;
+		articleToFill.querySelector(
+			'.gallery__main__presentation__info__name'
+		).innerText = this.photographer.name;
 
 		articleToFill.querySelector(
-			'.photographer__link__location__city'
+			'.gallery__main__presentation__info__location__city'
 		).innerText = this.photographer.city + ',';
 		articleToFill.querySelector(
-			'.photographer__link__location__country'
+			'.gallery__main__presentation__info__location__country'
 		).innerText = '\u00A0' + this.photographer.country;
-		articleToFill.querySelector('.photographer__link__tagline').innerText =
-			this.photographer.tagline;
+		articleToFill.querySelector(
+			'.gallery__main__presentation__info__tagline'
+		).innerText = this.photographer.tagline;
 		/////////////////////////////////////////////////////
 		this.photographer.tags.forEach((tag) => {
 			articleToFill
-				.querySelector('.photographer__link__tags')
+				.querySelector('.gallery__main__presentation__info__tags')
 				.appendChild(utils.generateTagButtons(tag));
 		});
 		let allTagsBtns = document.querySelectorAll('.tag');
@@ -112,8 +114,8 @@ export class Presentation {
 			'Contactez moi';
 		let clearedName = utils.removeSpacesInString(this.photographer.name);
 		let path = 'images/Photographers ID Photos/' + clearedName + '.jpg';
-		articleToFill.querySelector('.photographer__link__img').src = path;
-		articleToFill.querySelector('.photographer__link__img').alt =
+		articleToFill.querySelector('.gallery__main__presentation__img').src = path;
+		articleToFill.querySelector('.gallery__main__presentation__img').alt =
 			this.photographer.name;
 		//presentation filled
 	}

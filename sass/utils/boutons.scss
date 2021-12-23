@@ -12,12 +12,21 @@ button //for tag buttons
 }
 
 .tag {
+	@include mobile-500 {
+		font-size: 0.7rem;
+	}
 	&--On {
 		@include colorway-white-on-red;
+		@include mobile-500 {
+			font-size: 0.7rem;
+		}
 	}
 
 	&--Off {
 		@include colorway-red-on-white;
+		@include mobile-500 {
+			font-size: 0.7rem;
+		}
 	}
 }
 .pointer {

@@ -1,5 +1,6 @@
 .gallery {
 	&__nav {
+		width: auto;
 		margin: 15px 0px 15px 0px;
 		@include tablet-1200 {
 			margin-left: $marginH;
@@ -7,9 +8,14 @@
 		@include mobile-800 {
 			margin-left: 5px;
 		}
+		@include mobile-450 {
+			margin-left: -5px;
+		}
 		&__logo {
+			margin-left: $marginV;
 			@include tablet-1200 {
 				display: flex !important;
+				margin-left: 0;
 			}
 
 			@include mobile-420 {
@@ -33,14 +39,24 @@
 				margin: 0px $marginV * 1;
 			}
 
+			@include mobile-420 {
+				margin: 0px $marginV * 0.5;
+			}
+
 			&__info {
 				display: flex;
 				flex-direction: column;
+				@include mobile-600 {
+					max-width: 60%;
+				}
 
 				&__name {
 					justify-content: flex-start;
 					@include mobile-500 {
 						font-size: 1.4rem;
+					}
+					@include mobile-420 {
+						font-size: 1.2rem;
 					}
 				}
 
@@ -49,31 +65,56 @@
 					@include mobile-500 {
 						font-size: 0.9rem;
 					}
+					@include mobile-420 {
+						font-size: 0.8rem;
+					}
 				}
 
 				&__tagline {
 					@include mobile-500 {
 						font-size: 0.9rem;
+						overflow-wrap: normal;
+						flex-wrap: wrap;
+					}
+					@include mobile-420 {
+						font-size: 0.8rem;
+						overflow-wrap: normal;
+						flex-wrap: wrap;
 					}
 				}
 				&__tags {
-					&__btn {
-						@include mobile-500 {
-							font-size: 0.6rem;
-						}
-					}
+					flex-wrap: wrap;
+					// &__btn {
+					// 	// @include mobile-500 {
+					// 	// 	font-size: 0.6rem;
+					// 	// }
+					// }
 				}
 			}
 			&__img {
-				@include mobile-800 {
-					width: $photographer-avatar-dims-M;
-					height: $photographer-avatar-dims-M;
-					border-radius: 0.5 * $photographer-avatar-dims-M;
+				width: $photographer-avatar-dims-L !important;
+				height: $photographer-avatar-dims-L !important;
+				border-radius: 0.5 * $photographer-avatar-dims-L !important;
+				@include tablet-1200 {
+					width: $photographer-avatar-dims-M !important;
+					height: $photographer-avatar-dims-M !important;
+					border-radius: 0.5 * $photographer-avatar-dims-M !important;
 				}
 				@include mobile-500 {
-					width: $photographer-avatar-dims-XS;
-					height: $photographer-avatar-dims-XS;
-					border-radius: 0.5 * $photographer-avatar-dims-XS;
+					width: $photographer-avatar-dims-S !important;
+					height: $photographer-avatar-dims-S !important;
+					border-radius: 0.5 * $photographer-avatar-dims-S !important;
+				}
+				@include mobile-450 {
+					//display: none;
+					width: $photographer-avatar-dims-S !important;
+					height: $photographer-avatar-dims-S !important;
+					border-radius: 0.5 * $photographer-avatar-dims-S !important;
+				}
+				@include mobile-420 {
+					width: $photographer-avatar-dims-XS !important;
+					height: $photographer-avatar-dims-XS !important;
+					border-radius: 0.5 * $photographer-avatar-dims-XS !important;
 				}
 			}
 		}
