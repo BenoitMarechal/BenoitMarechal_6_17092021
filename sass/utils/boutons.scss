@@ -40,16 +40,10 @@ button //for tag buttons
 	}
 	@include mobile-800 {
 		position: fixed;
-		//top: 50%;
 		left: 50%;
 		bottom: 15vh;
 		transform: translate(-50%, 50%);
-		//ransform-origin: 50% 50%;
-		//transform: translateY(50%);
 	}
-	// @include mobile-450 {
-	// 	transform: none !important;
-	// }
 }
 
 .btn-submit {

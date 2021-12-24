@@ -1,8 +1,6 @@
 import { dataFromJson } from './FetchData.js';
 import { utils } from './utilitaries.js';
-
 import { Photographer } from './Photographers.js';
-
 import { NavTags } from './RunTags.js';
 
 class HomePage {
@@ -94,5 +92,3 @@ class HomePage {
 }
 
 let homepage = new HomePage();
-
-//wilfriedmamboupro@gmail.com/

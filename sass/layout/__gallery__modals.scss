@@ -31,13 +31,11 @@
 		animation: apparition 0.6s forwards;
 		padding: $marginV;
 		@include tablet-1200 {
-			//position: absolute;
 			top: 0px;
 			bottom: 0px;
 			left: 0px;
 			right: 0px;
 			margin: 0;
-			//width: 100%;
 			height: 100%;
 			border-radius: 0px;
 		}
@@ -47,22 +45,12 @@
 			width: 100%;
 			justify-content: space-between;
 			align-items: center;
-			//margin-top: -20px;
-			// @include tablet-1200 {
-			// 	width: auto;
-			// }
 		}
-		// &__name {
-		// //	width: 100%;
-		// }
-
 		&__fields {
 			margin-top: 0.5 * $marginV;
 			color: $colour-grey;
-			// font-size: 1.3rem;
 			font-size: $input-fontsize;
 			width: 100%;
-			//width: auto;
 		}
 	}
 }
@@ -70,28 +58,21 @@
 label {
 	width: $label-width;
 	margin-right: $marginH;
-	// @include mobile-800 {
-	// 	display: none;
-	// }
 }
 
 input {
 	font-size: $input-fontsize;
 	margin-bottom: 5px;
 	width: 100%;
-	//border: 1px solid green;
 	padding: 0;
 }
-// form {
-// 	//border: 1px solid blue;
-// }
+
 #message {
 	height: 240px;
 
 	font-size: $input-fontsize;
 	width: 100%;
 	padding: 0;
-	//margin: 0;
 	@include tablet-1200 {
 		height: 180px;
 	}
@@ -108,7 +89,6 @@ input {
 	justify-content: center;
 	align-items: center;
 	overflow: visible;
-	//margin: $lightbox-side-padding;
 	@include tablet-1200 {
 		font-size: 1rem;
 		margin: 30px;
@@ -116,21 +96,17 @@ input {
 
 	@include mobile-800 {
 		font-size: 1rem;
-		//margin: 10px;
 	}
 
 	@include mobile-500 {
-		//font-size: 1rem;
 		margin: 5px;
 	}
 }
 .prev {
 	left: 0px;
-	//top: 40%;
 }
 .next {
 	right: 0px;
-	//top: 40%;
 }
 .close {
 	top: 0px;
@@ -154,7 +130,6 @@ input {
 	display: none;
 	&__bground {
 		animation: lightbox-modal-background-opacity 0.4s forwards ease-out;
-		//opacity: 0;
 		background-color: white;
 	}
 
@@ -170,19 +145,8 @@ input {
 		display: flex;
 		align-items: center;
 		justify-content: center;
-		// @include tablet-1200 {
-		// 	width: 400px;
-		// 	height: 400px;
-		// }
-		// @include mobile-450 {
-		// 	width: 300px;
-		// 	height: 300px;
-		// }
 
 		&__mediaContainer {
-			// width: $lightbox-width;
-
-			// height: $lightbox-height;
 			height: 80%;
 			@include tablet-1200 {
 				width: 400px;
@@ -197,14 +161,11 @@ input {
 				height: 250px;
 			}
 			&__media {
-				object-fit: contain;
+				object-fit: cover;
 				width: 100%;
 				height: 100%;
 				max-width: $lightbox-width;
 				max-height: $lightbox-height;
-				@include tablet-1200 {
-					object-fit: cover;
-				}
 			}
 			&__title {
 				font-size: 1rem;

@@ -2,7 +2,6 @@
 export class LightBox {
 	constructor(medias) {
 		this.medias = medias;
-		//this.visibleMedias = [];
 		this.lightBox = document.querySelector('.lightbox__modal');
 		this.index = undefined;
 		this.getvisibleMedias();

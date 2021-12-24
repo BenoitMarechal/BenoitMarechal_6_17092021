@@ -1,7 +1,5 @@
 /////////////////////////// import
 import { dataFromJson } from './FetchData.js';
-// import { Media } from './Media.js';
-// import { MediaFactory } from './Media.js';
 import { ContactModal } from './Contact.js';
 import { Like } from './GalleryLikes.js';
 import { Presentation } from './PhotographerPres.js';
@@ -13,8 +11,6 @@ class Gallery {
 	constructor() {
 		//loading
 		this.getPhotographer();
-
-		//this.getGalleryMedia();
 		this.getAllMedias();
 		this.sortMedias(); //also gets the sorting running
 		//building

@@ -1,6 +1,5 @@
-@charset "UTF-8";
-/*Couleurs*/
-/*valeurs de marges les plus utilisées*/
+/*Colors*/
+/*most common margin values*/
 /*Radii*/
 @keyframes link-apparition {
   0% {
@@ -46,7 +45,6 @@ main {
   src: url("../../polices/DMSans-Regular.ttf") format("truetype");
   font-weight: normal;
   font-style: normal;
-  /*END FONTS*/
 }
 /*END FONTS*/
 html {
@@ -814,16 +812,11 @@ input {
   }
 }
 .lightbox__modal__container__mediaContainer__media {
-  object-fit: contain;
+  object-fit: cover;
   width: 100%;
   height: 100%;
   max-width: 1050px;
   max-height: 900px;
-}
-@media screen and (max-width: 1200px) {
-  .lightbox__modal__container__mediaContainer__media {
-    object-fit: cover;
-  }
 }
 .lightbox__modal__container__mediaContainer__title {
   font-size: 1rem;

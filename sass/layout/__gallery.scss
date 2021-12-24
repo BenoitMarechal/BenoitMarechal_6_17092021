@@ -17,7 +17,6 @@
 				display: flex !important;
 				margin-left: 0;
 			}
-
 			@include mobile-420 {
 				margin: 0px;
 			}
@@ -28,17 +27,14 @@
 		display: block;
 
 		&__presentation {
-			//border: 1px solid red;
 			display: flex;
 			flex-direction: row;
 			justify-content: space-between;
 			align-items: center;
 			margin: 0px $marginV * 3;
-
 			@include mobile-800 {
 				margin: 0px $marginV * 1;
 			}
-
 			@include mobile-420 {
 				margin: 0px $marginV * 0.5;
 			}
@@ -84,11 +80,6 @@
 				}
 				&__tags {
 					flex-wrap: wrap;
-					// &__btn {
-					// 	// @include mobile-500 {
-					// 	// 	font-size: 0.6rem;
-					// 	// }
-					// }
 				}
 			}
 			&__img {
@@ -99,13 +90,11 @@
 					width: $photographer-avatar-dims-M !important;
 					height: $photographer-avatar-dims-M !important;
 					border-radius: 0.5 * $photographer-avatar-dims-M !important;
-					//border-radius: 0px !important;
 				}
 				@include mobile-800 {
 					width: $photographer-avatar-dims-M !important;
 					height: $photographer-avatar-dims-M !important;
 					border-radius: 0.5 * $photographer-avatar-dims-M !important;
-					//border-radius: 0px !important;
 				}
 
 				@include mobile-500 {
@@ -114,17 +103,14 @@
 					border-radius: 0.5 * $photographer-avatar-dims-S !important;
 				}
 				@include mobile-450 {
-					//display: none;
 					width: $photographer-avatar-dims-S !important;
 					height: $photographer-avatar-dims-S !important;
 					border-radius: 0.5 * $photographer-avatar-dims-S !important;
-					//border-radius: 0px !important;
 				}
 				@include mobile-420 {
 					width: $photographer-avatar-dims-XS !important;
 					height: $photographer-avatar-dims-XS !important;
 					border-radius: 0.5 * $photographer-avatar-dims-XS !important;
-					//border-radius: 0px !important;
 				}
 			}
 		}
@@ -139,9 +125,7 @@
 			margin-top: $marginV;
 
 			&__container {
-				//article
 				margin: $marginH;
-				//display: flex;
 				flex-direction: column;
 				height: 100%;
 
@@ -196,27 +180,21 @@
 .bottom {
 	@include colorway-black-on-salmon;
 	border-radius: $radius-small $radius-small 0px 0px;
-
 	position: fixed;
 	bottom: 0px;
 	right: 30px;
-	//float: bottom;
 	font-size: 1.2rem;
-
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
 	margin: 0px 30px;
 	padding: 20px;
 	width: auto;
-	//width: 200px;
-	//height: 100px;
 	@include mobile-800 {
 		display: none;
 	}
 	&__likes {
 		display: flex;
-		//flex-direction: row;
 		&__heart {
 			margin-left: 5px;
 		}

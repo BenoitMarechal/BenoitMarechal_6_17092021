@@ -12,11 +12,9 @@
 
 .photographer {
 	width: 30%;
-	//	border: 1px solid blue;
 	margin: $marginH 0 0 0;
 	padding: 0;
 	font-size: 0.8rem;
-	//z-index: 0;
 	@include mobile-800 {
 		width: 100%;
 		margin: 10px 0px;
@@ -27,7 +25,6 @@
 		flex-direction: column;
 		justify-content: center;
 		align-items: center;
-		//padding: $margindefault;
 		&__img {
 			object-fit: cover;
 			width: $photographer-avatar-dims-S;
@@ -84,7 +81,6 @@
 		}
 		&__tags {
 			margin: 2px 0px;
-			//	z-index: 2;
 		}
 	}
 }

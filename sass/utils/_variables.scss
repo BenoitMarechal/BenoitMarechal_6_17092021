@@ -1,28 +1,24 @@
-/*Couleurs*/
+/*Colors*/
 $colour-primary: #901c1c;
 $colour-secondary: #db8876;
-//$colour-secondary: darkblue;
 $colour-tertiary: #d3573c;
 $colour-grey: #525252;
 $colour-light-grey: #c4c4c4;
 $colour-white: #fff;
 $colour-black: #000000;
-//$colour-black: white;
 $darken-primary: darken($colour-primary, 5%);
 
-/*valeurs de marges les plus utilisées*/
+/*most common margin values*/
 $marginH: 15px;
 $marginV: 20px;
 $margindefault: $marginV $marginH $marginV $marginH;
 
+//dims for gallery containers
 $gallery_container_dim: 400px;
 $gallery_container_dim_S: 250px;
 
 /*Radii*/
 $radius-small: 5px;
-
-//modal
-$modal-duration: 5s;
 
 //lightbox
 $lightbox-btn-size: 20px;
@@ -30,6 +26,7 @@ $lightbox-btn-margin: 50px 100px 100px 100px;
 $lightbox-width: 1050px;
 $lightbox-height: 900px;
 
+//photographer avatar dims
 $photographer-avatar-dims-XS: 100px;
 $photographer-avatar-dims-S: 180px;
 $photographer-avatar-dims-M: 200px;

@@ -5,9 +5,6 @@
 /*the container must be positioned relative:*/
 .custom-select {
 	position: relative;
-	//	font-family: Arial;
-	////////////@at-root// 	position: relative;
-	//	font-family: Arial;
 	display: flex;
 	align-items: center;
 	margin-left: $marginV;
@@ -52,10 +49,6 @@
 	position: absolute;
 	top: 0.5 * $option-height;
 	left: $label-width + $option-width + $marginV;
-	//top: 7px;
-	// position: relative;
-	// top: -0.5 * $option-height;
-	// left: $marginH;
 }
 
 /*style the items (options), including the selected item:*/
@@ -64,7 +57,6 @@
 	color: #ffffff;
 	padding: 8px 16px;
 	border: 1px solid transparent;
-	//border-color: transparent transparent rgba(0, 0, 0, 0.1) transparent;
 	cursor: pointer;
 	user-select: none;
 }
@@ -72,7 +64,6 @@
 /*style items (options):*/
 .select-items {
 	position: absolute;
-	//background-color: DodgerBlue;
 	top: 100%;
 	z-index: 99;
 	margin-left: $label-width + $marginH;
