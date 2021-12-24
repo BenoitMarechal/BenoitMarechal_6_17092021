@@ -99,7 +99,15 @@
 					width: $photographer-avatar-dims-M !important;
 					height: $photographer-avatar-dims-M !important;
 					border-radius: 0.5 * $photographer-avatar-dims-M !important;
+					//border-radius: 0px !important;
 				}
+				@include mobile-800 {
+					width: $photographer-avatar-dims-M !important;
+					height: $photographer-avatar-dims-M !important;
+					border-radius: 0.5 * $photographer-avatar-dims-M !important;
+					//border-radius: 0px !important;
+				}
+
 				@include mobile-500 {
 					width: $photographer-avatar-dims-S !important;
 					height: $photographer-avatar-dims-S !important;
@@ -110,11 +118,13 @@
 					width: $photographer-avatar-dims-S !important;
 					height: $photographer-avatar-dims-S !important;
 					border-radius: 0.5 * $photographer-avatar-dims-S !important;
+					//border-radius: 0px !important;
 				}
 				@include mobile-420 {
 					width: $photographer-avatar-dims-XS !important;
 					height: $photographer-avatar-dims-XS !important;
 					border-radius: 0.5 * $photographer-avatar-dims-XS !important;
+					//border-radius: 0px !important;
 				}
 			}
 		}
@@ -126,6 +136,7 @@
 			margin-bottom: 60px;
 			width: 100%;
 			height: 100%;
+			margin-top: $marginV;
 
 			&__container {
 				//article

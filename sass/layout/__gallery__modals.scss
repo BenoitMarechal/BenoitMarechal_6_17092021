@@ -180,8 +180,10 @@ input {
 		// }
 
 		&__mediaContainer {
-			width: $lightbox-width;
-			height: $lightbox-height;
+			// width: $lightbox-width;
+
+			// height: $lightbox-height;
+			height: 80%;
 			@include tablet-1200 {
 				width: 400px;
 				height: 400px;
@@ -203,6 +205,9 @@ input {
 				@include tablet-1200 {
 					object-fit: cover;
 				}
+			}
+			&__title {
+				font-size: 1rem;
 			}
 		}
 	}

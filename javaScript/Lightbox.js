@@ -49,8 +49,14 @@ export class LightBox {
 		child.classList.add('lightbox__modal__container__mediaContainer__media'); //filling element
 		child.src = media.getPath();
 		child.alt = media.title;
+		/////creating title div
+		let titleDiv = document.createElement('div');
+		titleDiv.innerHTML = media.title;
+		titleDiv.classList.add('lightbox__modal__container__mediaContainer__title');
+
 		container.innerHTML = ''; //delete previous picture
 		container.appendChild(child); //filling container
+		container.appendChild(titleDiv); //adding title
 	}
 
 	openLightbox() {
